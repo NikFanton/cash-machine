@@ -1,4 +1,4 @@
-package ua.training.model.dao.connection.pool;
+package ua.training.model.dao.datasource;
 
 import org.apache.commons.dbcp.BasicDataSource;
 import ua.training.model.util.ConnectionConstants;
