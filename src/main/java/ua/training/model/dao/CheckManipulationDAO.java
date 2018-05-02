@@ -1,4 +1,9 @@
 package ua.training.model.dao;
 
-public class CheckManipulationDAO {
+import ua.training.model.entity.CheckManipulation;
+
+import java.util.List;
+
+public interface CheckManipulationDAO extends GenericDAO<CheckManipulation, Long> {
+    List<CheckManipulation> getCheckManipulationsBuCheckId(Long checkId);
 }

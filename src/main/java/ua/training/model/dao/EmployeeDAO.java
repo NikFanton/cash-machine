@@ -1,11 +1,9 @@
 package ua.training.model.dao;
 
-import ua.training.model.entity.User;
+import ua.training.model.entity.Employee;
 
 import java.util.List;
 
-public interface UserDAO extends GenericDAO<User, Long> {
-    User getByLogin(String login);
-    User getByLoginAndPassword(String login, String password);
-    List<String> getAllLogin();
+public interface EmployeeDAO extends GenericDAO<Employee, Long> {
+    Employee getByLoginAndPassword(String login, String password);
 }

@@ -1,4 +1,7 @@
 package ua.training.model.dao;
 
-public class ReportDAO {
+import ua.training.model.entity.Report;
+
+public interface ReportDAO extends GenericDAO<Report, Long> {
+    Report getLatestReport();
 }

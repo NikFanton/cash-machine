@@ -1,4 +1,7 @@
 package ua.training.model.dao;
 
-public interface ProductDAO {
+import ua.training.model.entity.Product;
+
+public interface ProductDAO extends GenericDAO<Product, Long> {
+
 }
