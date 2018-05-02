@@ -1,9 +1,9 @@
 package ua.training.controller.servlet;
 
-import ua.training.controller.command.*;
+import ua.training.controller.command.Command;
+import ua.training.controller.command.LogOut;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
