@@ -1,4 +1,7 @@
 package ua.training.model.entity.enums;
 
-public class ProductInCheckType {
+public enum ProductInCheckType {
+    NORMAL,
+
+    CANCELED
 }
