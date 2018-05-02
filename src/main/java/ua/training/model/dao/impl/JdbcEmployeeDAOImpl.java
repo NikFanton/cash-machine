@@ -1,56 +1,49 @@
 package ua.training.model.dao.impl;
 
-import ua.training.model.dao.UserDAO;
-import ua.training.model.entity.Role;
-import ua.training.model.entity.User;
+import ua.training.model.dao.factory.DAOFactory;
+import ua.training.model.dao.EmployeeDAO;
+import ua.training.model.dao.SQLQueries;
+import ua.training.model.dao.mapper.EmployeeMapper;
+import ua.training.model.entity.Employee;
+import ua.training.model.entity.enums.Role;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JdbcUserDAOImpl implements UserDAO {
-    private static final String SQL_REQUEST_GET_BY_ID = "SELECT * FROM user WHERE id = ";
-    private static final String SQL_REQUEST_ADD = "INSERT INTO USER (LOGIN, PASSWORD, ROLE) VALUES (?, ?, ?)";
-    private static final String SQL_REQUEST_GET_ALL = "SELECT * FROM USER";
-    private static final String SQL_REQUEST_GET_BY_LOGIN = "SELECT * FROM USER WHERE USER.LOGIN = ?";
-    private static final String SQL_REQUEST_GET_BY_LOGIN_AND_PASSWORD = "SELECT * FROM USER WHERE USER.LOGIN = ? AND USER.PASSWORD = ?";
-    private static final String SQL_REQUEST_GET_ALL_LOGIN = "SELECT * FROM USER";
+public class JdbcEmployeeDAOImpl implements EmployeeDAO {
+    private Connection connection;
+
+    public JdbcEmployeeDAOImpl(Connection connection) {
+        this.connection = connection;
+    }
 
     @Override
-    public void add(User user) {
-        Connection connection;
-        try {
-            connection = JdbcDAOFactory.getConnection();
-            try (PreparedStatement preparedStatement = connection.prepareStatement(SQL_REQUEST_ADD)) {
-                preparedStatement.setString(1, user.getLogin());
-                preparedStatement.setString(2, user.getPassword());
-                preparedStatement.setString(3, user.getRole().getRoleName());
-                preparedStatement.executeUpdate();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+    public void add(Employee employee) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.ADD_EMPLOYEE)) {
+            preparedStatement.setString(1, employee.getFirstName());
+            preparedStatement.setString(2, employee.getLastName());
+            preparedStatement.setString(3, employee.getLogin());
+            preparedStatement.setString(4, employee.getPassword());
+            preparedStatement.setString(5, employee.getRole().name());
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
-    public User getById(Long id) {
+    public Employee getById(Long id) {
         return null;
     }
 
     @Override
-    public List<User> getAll() {
-        List<User> users = new ArrayList<>();
-        Statement statement;
-        Connection connection;
-        try {
-            connection = JdbcDAOFactory.getConnection();
-            statement = connection.createStatement();
-            try(ResultSet resultSet = statement.executeQuery(SQL_REQUEST_GET_ALL)) {
-                while (resultSet.next()) {
-                    users.add(extractUserFromResultSet(resultSet));
-                }
+    public List<Employee> getAll() {
+        List<Employee> users = new ArrayList<>();
+        try(ResultSet resultSet = connection.createStatement().executeQuery(SQLQueries.GET_ALL_EMPLOYEES)) {
+            EmployeeMapper mapper = new EmployeeMapper();
+            while (resultSet.next()) {
+                users.add(mapper.extractFromResultSet(resultSet));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -58,18 +51,8 @@ public class JdbcUserDAOImpl implements UserDAO {
         return users;
     }
 
-    private User extractUserFromResultSet(ResultSet resultSet) throws SQLException {
-        Long id = resultSet.getLong("id");
-        String login = resultSet.getString("login");
-        String password = resultSet.getString("password");
-        String roleName = resultSet.getString("role");
-        Role role = Role.valueOf(roleName);
-        System.out.println(roleName);
-        return new User(id, login, password, role);
-    }
-
     @Override
-    public void update(User user) {
+    public void update(Employee employee) {
 
     }
 
@@ -80,22 +63,19 @@ public class JdbcUserDAOImpl implements UserDAO {
 
     @Override
     public void close() throws Exception {
-        JdbcDAOFactory.getConnection().close();
+        connection.close();
     }
 
     @Override
-    public User getByLogin(String login) {
-        try {
-            Connection connection = JdbcDAOFactory.getConnection();
-            try (PreparedStatement ps = connection.prepareStatement(SQL_REQUEST_GET_BY_LOGIN)) {
-                ps.setString(1, login);
-                try (ResultSet resultSet = ps.executeQuery()) {
-                    if (resultSet.first()) {
-                        return extractUserFromResultSet(resultSet);
-                    }
+    public Employee getByLoginAndPassword(String login, String password) {
+        try (PreparedStatement ps = connection.prepareStatement(SQLQueries.GET_EMPLOYEE_BY_LOGIN_AND_PASSWORD)) {
+            ps.setString(1, login);
+            ps.setString(2, password);
+            try (ResultSet resultSet = ps.executeQuery()) {
+                if (resultSet.first()) {
+                    EmployeeMapper mapper = new EmployeeMapper();
+                    return mapper.extractFromResultSet(resultSet);
                 }
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -103,42 +83,11 @@ public class JdbcUserDAOImpl implements UserDAO {
         return null;
     }
 
-    @Override
-    public User getByLoginAndPassword(String login, String password) {
-        try {
-            Connection connection = JdbcDAOFactory.getConnection();
-            try (PreparedStatement ps = connection.prepareStatement(SQL_REQUEST_GET_BY_LOGIN_AND_PASSWORD)) {
-                ps.setString(1, login);
-                ps.setString(2, password);
-                try (ResultSet resultSet = ps.executeQuery()) {
-                    if (resultSet.first()) {
-                        return extractUserFromResultSet(resultSet);
-                    }
-                }
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return null;
-    }
-
-    @Override
-    public List<String> getAllLogin() {
-        List<String> allLogin = new ArrayList<>();
-        Connection connection;
-        try {
-            connection = JdbcDAOFactory.getConnection();
-            Statement statement = connection.createStatement();
-            try (ResultSet resultSet = statement.executeQuery(SQL_REQUEST_GET_ALL_LOGIN)) {
-                while (resultSet.next()) {
-                    allLogin.add(resultSet.getString("login"));
-                }
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return allLogin;
+    public static void main(String[] args) {
+        EmployeeDAO dao = DAOFactory.getDaoFactory().getEmployeeDAO();
+        Employee employee = new Employee("Jack", "Linden", "jlin", "abc123", Role.CASHIER);
+//        dao.add(employee);
+        dao.getAll().forEach(System.out::println);
+        System.out.println(dao.getByLoginAndPassword("jlin", "abc123"));
     }
 }

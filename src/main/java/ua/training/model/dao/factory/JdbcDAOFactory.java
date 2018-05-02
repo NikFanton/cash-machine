@@ -1,12 +1,11 @@
-package ua.training.model.dao.impl;
+package ua.training.model.dao.factory;
 
-import ua.training.model.dao.DAOFactory;
-import ua.training.model.dao.EmployeeDAO;
-import ua.training.model.dao.ProductDAO;
-import ua.training.model.util.ConnectionUtil;
+import ua.training.model.dao.*;
+import ua.training.model.dao.datasource.ConnectionPoolHolder;
+import ua.training.model.dao.impl.*;
+import ua.training.model.entity.CheckManipulation;
 
 import javax.sql.DataSource;
-import javax.xml.crypto.Data;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -21,6 +20,21 @@ public class JdbcDAOFactory extends DAOFactory {
     @Override
     public ProductDAO getProductDAO() {
         return new JdbcProductDAOImpl(getConnection());
+    }
+
+    @Override
+    public CheckManipulationDAO getCheckManipulationDAO() {
+        return new JdbcCheckManipulationDAOImpl(getConnection());
+    }
+
+    @Override
+    public CheckDAO getCheckDAO() {
+        return new JdbcCheckDAOImpl(getConnection());
+    }
+
+    @Override
+    public ReportDAO getReportDAO() {
+        return new JdbcReportDAOImpl(getConnection());
     }
 
     public Connection getConnection() {
