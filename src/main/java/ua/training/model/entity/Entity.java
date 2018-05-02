@@ -1,4 +1,6 @@
 package ua.training.model.entity;
 
-public class Entity {
+public interface Entity<ID> {
+    ID getId();
+    void setId(ID id);
 }
