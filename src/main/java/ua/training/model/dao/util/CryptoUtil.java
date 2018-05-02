@@ -1,4 +1,4 @@
-package ua.training.model.util;
+package ua.training.model.dao.util;
 
 import org.mindrot.jbcrypt.BCrypt;
 
