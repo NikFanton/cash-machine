@@ -1,7 +1,16 @@
 package ua.training.controller.servlet;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import ua.training.controller.command.Command;
+import ua.training.controller.command.CreateCheck;
 import ua.training.controller.command.LogOut;
+import ua.training.controller.constant.CommandNames;
+import ua.training.model.dao.CheckDAO;
+import ua.training.model.dao.CheckManipulationDAO;
+import ua.training.model.dao.EmployeeDAO;
+import ua.training.model.dao.factory.DAOFactory;
+import ua.training.model.dao.mapper.CheckManipulationMapper;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -12,11 +21,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Servlet extends HttpServlet {
+    private static Logger LOGGER = LogManager.getLogger(Servlet.class);
     private Map<String, Command> commands = new HashMap<>();
 
     @Override
     public void init() {
-        commands.put("logout", new LogOut());
+        CheckManipulationDAO dao = DAOFactory.getDaoFactory().getCheckManipulationDAO();
+        System.out.println(dao.getById(1L));
+
+        commands.put(CommandNames.LOGOUT, new LogOut());
+        commands.put(CommandNames.CREATE_CHECK, new CreateCheck());
     }
 
     @Override
@@ -37,7 +51,7 @@ public class Servlet extends HttpServlet {
         Command command = commands.getOrDefault(path, r -> "/index.jsp");
         String page = command.execute(request);
         if (page.contains("redirect:")) {
-            response.sendRedirect(page.replace("redirect:", "/api"));
+            response.sendRedirect(page.replace("redirect:", "/api/"));
         } else {
             request.getRequestDispatcher(page).forward(request, response);
         }

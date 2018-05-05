@@ -1,5 +1,7 @@
 package ua.training.model.util;
 
+import ua.training.model.dao.datasource.ConnectionConstants;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

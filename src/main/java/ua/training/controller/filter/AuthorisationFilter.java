@@ -1,8 +1,8 @@
 package ua.training.controller.filter;
 
-import ua.training.model.dao.EmployeeDAO;
-import ua.training.model.dao.factory.JdbcDAOFactory;
-import ua.training.model.entity.Employee;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import ua.training.controller.constant.Templates;
 import ua.training.model.entity.enums.Role;
 import ua.training.model.service.EmployeeService;
 
@@ -16,6 +16,8 @@ import static java.util.Objects.nonNull;
 
 public class AuthorisationFilter implements Filter {
 
+    final static Logger logger = LogManager.getLogger();
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -24,9 +26,6 @@ public class AuthorisationFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
             throws IOException, ServletException {
-        EmployeeDAO employeeDAO  = JdbcDAOFactory.getDaoFactory().getEmployeeDAO();
-        employeeDAO.add(new Employee("Tony", "Stark", "tonystark", "stark111", Role.SENIOR_CASHIER));
-        employeeDAO.getAll().forEach(System.out::println);
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         String login = request.getParameter("login");
@@ -34,6 +33,9 @@ public class AuthorisationFilter implements Filter {
         EmployeeService service = new EmployeeService();
         HttpSession session = request.getSession();
         Role role = getRoleAndSetInfoInSession(login, password, service, session);
+        System.out.println("login: " + login);
+        System.out.println("password: " + password);
+        System.out.println("Role" + role);
         moveToPage(request, response, role);
     }
 
@@ -44,7 +46,7 @@ public class AuthorisationFilter implements Filter {
                 nonNull(session.getAttribute("pass"))) {
             role = (Role) session.getAttribute("role");
         } else if (nonNull(session) && service.isEmployeeExist(login, password)) {
-            role = service.getEmployee(login, password).getRole();
+            role = service.getEmployee(login).getRole();
             session.setAttribute("login", login);
             session.setAttribute("pass", password);
             session.setAttribute("role", role);
@@ -58,9 +60,10 @@ public class AuthorisationFilter implements Filter {
             throws ServletException, IOException {
 
         if (!role.equals(Role.UNKNOWN)) {
-            request.getRequestDispatcher("/user-page.jsp").forward(request, response);
+            request.getRequestDispatcher(Templates.CREATE_CHECK).forward(request, response);
         } else {
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
+            System.out.println("GUEST");
+            request.getRequestDispatcher(Templates.LOGIN).forward(request, response);
         }
     }
 
