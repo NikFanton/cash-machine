@@ -13,7 +13,8 @@ public interface SQLQueries {
             "FROM `check` c\n" +
             "  LEFT JOIN check_product a ON c.`id` = a.`check_id`\n" +
             "  LEFT JOIN product p ON `product_id` = p.id\n" +
-            "  LEFT JOIN employee e ON employee_id = e.id";
+            "  LEFT JOIN employee e ON employee_id = e.id\n" +
+            "ORDER BY c.id DESC";
 
     String GET_ALL_REPORTS = "SELECT * FROM z_report";
 
@@ -31,15 +32,15 @@ public interface SQLQueries {
 
     String GET_EMPLOYEE_BY_LOGIN_AND_PASSWORD = "SELECT * FROM employee WHERE login = ? AND password = ?";
 
-    String GET_CHECK_MANIPULATION_BY_ID = "SELECT cmh.id, cmh.date_time_of_operation, cmh.check_manipulation_type, cmh.product_id,\n" +
-            "  e.id e_id, e.first_name e_first_name, e.last_name e_last_name, e.role e_role,\n" +
-            "  c.id check_id, c.date_time check_date_time, c.cash_payments check_cash_payments, c.cashless_payments check_cashless_payments, c.check_type check_check_type,\n" +
-            "  ec.id c_id, ec.first_name c_first_name, ec.last_name c_last_name, ec.role c_role\n" +
-            "FROM check_manipulation_history cmh\n" +
-            "  LEFT JOIN employee e ON cmh.employee_id = e.id\n" +
-            "  LEFT JOIN `check` c ON cmh.check_id = c.id\n" +
-            "  LEFT JOIN employee ec ON c.employee_id = ec.id\n" +
-            "WHERE cmh.id = ?";
+    String GET_CHECK_MANIPULATION_BY_ID = "SELECT cmh.id, cmh.date_time_of_operation, cmh.check_manipulation_type, cmh.check_id, cmh.product_id,\n" +
+            "              e.id e_id, e.first_name e_first_name, e.last_name e_last_name, e.role e_role,\n" +
+            "              cp.quantity p_quantity, cp.product_in_check_type p_product_in_check_type, cp.price p_price,\n" +
+            "              p.id p_id, p.name p_name, p.product_type p_product_type" +
+            "            FROM check_manipulation_history cmh\n" +
+            "              LEFT JOIN employee e ON cmh.employee_id = e.id\n" +
+            "              LEFT JOIN `check_product` cp ON cmh.check_id = cp.check_id AND cmh.product_id = cp.product_id\n" +
+            "              LEFT JOIN `product` p ON cmh.product_id = p.id\n" +
+            "            WHERE cmh.id = ?";
 
     String GET_CHECK_BY_ID = "SELECT  c.id, c.date_time, c.cash_payments, c.cashless_payments, c.check_type,\n" +
             "  a.quantity p_quantity, a.product_in_check_type p_product_in_check_type, a.price p_price,\n" +
