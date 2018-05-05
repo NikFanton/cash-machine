@@ -137,7 +137,7 @@
     <h2>Home Page</h2>
     <button onclick="document.getElementById('sign-in').style.display='block'" style="width:auto;">Sign in</button>
     <div id="sign-in" class="modal">
-        <form class="modal-content animate" action="${pageContext.request.contextPath}/api/" method="post">
+        <form class="modal-content animate" action="/api/" method="post">
             <div class="container">
                 <h1 class="h3 mb-3 font-weight-normal" style="margin-top: 20px">Please sign in</h1>
                 <h5 class="h5 font-weight-normal">Login</h5>

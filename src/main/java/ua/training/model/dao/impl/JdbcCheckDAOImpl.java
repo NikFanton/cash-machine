@@ -21,10 +21,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class JdbcCheckDAOImpl implements CheckDAO {
+public class MySqlCheckDAOImpl implements CheckDAO {
     private Connection connection;
 
-    public JdbcCheckDAOImpl(Connection connection) {
+    public MySqlCheckDAOImpl(Connection connection) {
         this.connection = connection;
     }
 

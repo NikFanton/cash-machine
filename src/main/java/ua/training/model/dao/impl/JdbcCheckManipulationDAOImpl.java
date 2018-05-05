@@ -13,10 +13,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-public class JdbcCheckManipulationDAOImpl implements CheckManipulationDAO {
+public class MySqlCheckManipulationDAOImpl implements CheckManipulationDAO {
     private Connection connection;
 
-    public JdbcCheckManipulationDAOImpl(Connection connection) {
+    public MySqlCheckManipulationDAOImpl(Connection connection) {
         this.connection = connection;
     }
 

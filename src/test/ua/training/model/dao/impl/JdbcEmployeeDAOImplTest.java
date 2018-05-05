@@ -4,7 +4,7 @@ import org.junit.Test;
 import ua.training.model.dao.factory.DAOFactory;
 import ua.training.model.dao.EmployeeDAO;
 
-public class JdbcEmployeeDAOImplTest {
+public class MySqlEmployeeDAOImplTest {
     private EmployeeDAO dao = DAOFactory.getDaoFactory().getEmployeeDAO();
 
     @Test

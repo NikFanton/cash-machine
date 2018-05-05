@@ -3,38 +3,37 @@ package ua.training.model.dao.factory;
 import ua.training.model.dao.*;
 import ua.training.model.dao.datasource.ConnectionPoolHolder;
 import ua.training.model.dao.impl.*;
-import ua.training.model.entity.CheckManipulation;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class JdbcDAOFactory extends DAOFactory {
+public class MySqlDAOFactory extends DAOFactory {
     private DataSource dataSource = ConnectionPoolHolder.getDataSource();
 
     @Override
     public EmployeeDAO getEmployeeDAO() {
-        return new JdbcEmployeeDAOImpl(getConnection());
+        return new MySqlEmployeeDAOImpl(getConnection());
     }
 
     @Override
     public ProductDAO getProductDAO() {
-        return new JdbcProductDAOImpl(getConnection());
+        return new MySqlProductDAOImpl(getConnection());
     }
 
     @Override
     public CheckManipulationDAO getCheckManipulationDAO() {
-        return new JdbcCheckManipulationDAOImpl(getConnection());
+        return new MySqlCheckManipulationDAOImpl(getConnection());
     }
 
     @Override
     public CheckDAO getCheckDAO() {
-        return new JdbcCheckDAOImpl(getConnection());
+        return new MySqlCheckDAOImpl(getConnection());
     }
 
     @Override
     public ReportDAO getReportDAO() {
-        return new JdbcReportDAOImpl(getConnection());
+        return new MySqlReportDAOImpl(getConnection());
     }
 
     public Connection getConnection() {
