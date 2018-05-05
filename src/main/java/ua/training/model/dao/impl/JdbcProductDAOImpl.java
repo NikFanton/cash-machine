@@ -10,10 +10,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MySqlProductDAOImpl implements ProductDAO {
+public class JdbcProductDAOImpl implements ProductDAO {
     private Connection connection;
 
-    public MySqlProductDAOImpl(Connection connection) {
+    public JdbcProductDAOImpl(Connection connection) {
         this.connection = connection;
     }
 

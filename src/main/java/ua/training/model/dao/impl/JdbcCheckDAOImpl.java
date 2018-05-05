@@ -4,7 +4,6 @@ import ua.training.model.dao.CheckDAO;
 import ua.training.model.dao.SQLQueries;
 import ua.training.model.dao.factory.DAOFactory;
 import ua.training.model.dao.mapper.CheckMapper;
-import ua.training.model.dao.mapper.EmployeeMapper;
 import ua.training.model.dao.mapper.ProductInCheckMapper;
 import ua.training.model.entity.Check;
 import ua.training.model.entity.Employee;
@@ -21,10 +20,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class MySqlCheckDAOImpl implements CheckDAO {
+public class JdbcCheckDAOImpl implements CheckDAO {
     private Connection connection;
 
-    public MySqlCheckDAOImpl(Connection connection) {
+    public JdbcCheckDAOImpl(Connection connection) {
         this.connection = connection;
     }
 
@@ -53,45 +52,46 @@ public class MySqlCheckDAOImpl implements CheckDAO {
     public Check getById(Long id) {
         try (PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.GET_CHECK_BY_ID)) {
             preparedStatement.setLong(1, id);
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                Map<Long, Check> checkMap = extractFullCheckInformationFromResultSet(resultSet);
-                return checkMap.get(id);
-            }
+            ResultSet resultSet = preparedStatement.executeQuery();
+            Map<Long, Check> checks = extractCheckWithProducts(resultSet);
+            return checks.get(id);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return null;
+    }
+
+    /**
+     *
+     * @param resultSet
+     * @return map of checks with products
+     * @throws SQLException
+     */
+    private Map<Long, Check> extractCheckWithProducts(ResultSet resultSet) throws SQLException {
+        Map<Long, Check> checks = new HashMap<>();
+        CheckMapper checkMapper = new CheckMapper();
+        ProductInCheckMapper productMapper = new ProductInCheckMapper();
+        while (resultSet.next()) {
+            Check check = checkMapper.extractFromResultSet(resultSet);
+            check = checkMapper.makeUnique(checks, check);
+            ProductInCheck productInCheck = productMapper.extractFromResultSet(resultSet, "p_");
+            check.getProductsInCheck().add(productInCheck);
+        }
+        return checks;
     }
 
     @Override
     public List<Check> getAll() {
         try (ResultSet resultSet = connection.createStatement().executeQuery(SQLQueries.GET_ALL_CHECKS)) {
-            Map<Long, Check> checks = extractFullCheckInformationFromResultSet(resultSet);
             List<Check> result = new ArrayList<>();
+            Map<Long, Check> checks = extractCheckWithProducts(resultSet);
             checks.keySet().forEach(key -> result.add(checks.get(key)));
             return result;
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
-    }
-
-    private Map<Long, Check> extractFullCheckInformationFromResultSet(ResultSet resultSet) throws SQLException {
-        CheckMapper checkMapper = new CheckMapper();
-        EmployeeMapper employeeMapper = new EmployeeMapper();
-        ProductInCheckMapper productInCheckMapper = new ProductInCheckMapper();
-        Map<Long, Check> checkMap = new HashMap<>();
-        Map<Long, Employee> employeeMap = new HashMap<>();
-        while (resultSet.next()) {
-            Employee cashier = employeeMapper.extractFromResultSetWithoutAccount(resultSet, "e_");
-            Check check = checkMapper.extractFromResultSet(resultSet);
-            ProductInCheck product = productInCheckMapper.extractFromResultSet(resultSet, "p_");
-            cashier = employeeMapper.makeUnique(employeeMap, cashier);
-            check = checkMapper.makeUnique(checkMap, check);
-            check.setEmployee(cashier);
-            addProductToCheck(check, product);
-        }
-        return checkMap;
     }
 
     private void addProductToCheck(Check check, ProductInCheck product) {
@@ -150,11 +150,10 @@ public class MySqlCheckDAOImpl implements CheckDAO {
         products.add(product2);
         products.add(product3);
 
-        Check check = new Check(BigInteger.valueOf(0), BigInteger.valueOf(20000), employee, products);
+//        Check check = new Check(BigInteger.valueOf(0), BigInteger.valueOf(20000), employee, products);
 //        dao.add(check);
-        Check check2 = dao.getById(1L);
-        dao.addProductToCheck(check2.getId(), product2);
+//        Check check2 = dao.getById(1L);
+//        dao.addProductToCheck(check2.getId(), product2);
         dao.getAll().forEach(System.out::println);
-
     }
 }

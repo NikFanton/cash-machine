@@ -12,10 +12,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MySqlReportDAOImpl implements ReportDAO {
+public class JdbcReportDAOImpl implements ReportDAO {
     private Connection connection;
 
-    public MySqlReportDAOImpl(Connection connection) {
+    public JdbcReportDAOImpl(Connection connection) {
         this.connection = connection;
     }
 
