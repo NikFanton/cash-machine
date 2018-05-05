@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Builder
-public class CheckManipulation {
+public class CheckManipulation implements Entity<Long> {
     private Long id;
     private Employee employee;
     private LocalDateTime dateTime;

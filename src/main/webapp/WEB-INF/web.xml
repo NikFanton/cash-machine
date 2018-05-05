@@ -10,7 +10,7 @@
 
   <servlet>
     <servlet-name>Servlet</servlet-name>
-    <servlet-class>ua.training.controller.servlet.Servlet</servlet-class>
+    <servlet-class>ua.training.controller.Servlet</servlet-class>
   </servlet>
 
   <servlet-mapping>

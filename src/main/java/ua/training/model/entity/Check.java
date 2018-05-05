@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Check {
+public class Check implements Entity<Long> {
     private Long id;
     private LocalDateTime dateTime;
     private BigInteger cashPayment;

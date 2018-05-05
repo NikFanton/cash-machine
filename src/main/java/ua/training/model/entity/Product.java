@@ -5,7 +5,7 @@ import ua.training.model.entity.enums.ProductType;
 import java.math.BigInteger;
 import java.util.Objects;
 
-public class Product {
+public class Product implements Entity<Long> {
     private Long id;
     private String name;
     private double quantity;

@@ -2,7 +2,8 @@ package ua.training.controller.filter;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ua.training.controller.constant.Templates;
+import ua.training.controller.constant.Pages;
+import ua.training.controller.util.ResourceUtil;
 import ua.training.model.entity.enums.Role;
 import ua.training.model.service.EmployeeService;
 
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 import static java.util.Objects.nonNull;
 
@@ -36,7 +38,8 @@ public class AuthorisationFilter implements Filter {
         System.out.println("login: " + login);
         System.out.println("password: " + password);
         System.out.println("Role" + role);
-        moveToPage(request, response, role);
+        String page = getPage(request, role);
+        request.getRequestDispatcher(page).forward(request, response);
     }
 
     private Role getRoleAndSetInfoInSession(String login, String password, EmployeeService service, HttpSession session) {
@@ -56,14 +59,13 @@ public class AuthorisationFilter implements Filter {
         return role;
     }
 
-    private void moveToPage(HttpServletRequest request, HttpServletResponse response, Role role)
-            throws ServletException, IOException {
-
+    private String getPage(ServletRequest servletRequest, Role role) {
         if (!role.equals(Role.UNKNOWN)) {
-            request.getRequestDispatcher(Templates.CREATE_CHECK).forward(request, response);
+            ResourceUtil.setAttributesCreateCheckForm(servletRequest);
+            return Pages.CREATE_CHECK;
         } else {
             System.out.println("GUEST");
-            request.getRequestDispatcher(Templates.LOGIN).forward(request, response);
+            return Pages.LOGIN;
         }
     }
 

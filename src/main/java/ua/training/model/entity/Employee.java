@@ -10,7 +10,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @Builder
-public class Employee {
+public class Employee implements Entity<Long> {
     private Long id;
     private String firstName;
     private String lastName;

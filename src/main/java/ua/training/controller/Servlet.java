@@ -1,12 +1,9 @@
-package ua.training.controller.servlet;
+package ua.training.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ua.training.controller.command.Command;
-import ua.training.controller.command.CreateCheck;
-import ua.training.controller.command.LogOut;
+import ua.training.controller.command.*;
 import ua.training.controller.constant.CommandNames;
-import ua.training.controller.util.ResourceUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -24,6 +21,8 @@ public class Servlet extends HttpServlet {
     public void init() {
         commands.put(CommandNames.LOGOUT, new LogOut());
         commands.put(CommandNames.CREATE_CHECK, new CreateCheck());
+        commands.put(CommandNames.CHECK_LIST, new CheckList());
+        commands.put(CommandNames.REPORT, new Report());
     }
 
     @Override

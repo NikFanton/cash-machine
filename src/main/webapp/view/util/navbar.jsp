@@ -1,4 +1,4 @@
-<%@include file="util/init.jsp"%>
+<%@include file="init.jsp"%>
 
 <section id="hero">
     <nav class="navbar navbar-light navbar-expand-md fixed-top" style="background-color:#fcd85a;">
@@ -6,23 +6,22 @@
             <div
                     class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav mx-auto" style="font-family:Montserrat, sans-serif;font-weight:normal;">
-                    <li class="nav-item" role="presentation" style="background-color:rgba(255,90,79,0.83);font-weight:normal;"><a class="nav-link active" href="api/create-check" style="color:rgb(255,255,255);font-size:17px;">Create check</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="api/check-list" style="color:rgb(34,34,34);">Check list</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="api/report" style="color:rgb(34,34,34);">Reports</a></li>
+                    <li class="nav-item" role="presentation" style="background-color:rgba(255,90,79,0.83);font-weight:normal;"><a class="nav-link active" href="${pageContext.request.contextPath}create-check" style="color:rgb(255,255,255);font-size:17px;"><fmt:message key="nav.create.check"/> </a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="${pageContext.request.contextPath}check-list" style="color:rgb(34,34,34);"><fmt:message key="nav.check.list"/> </a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="${pageContext.request.contextPath}report" style="color:rgb(34,34,34);"><fmt:message key="nav.reports"/></a></li>
                 </ul>
                 <ul class="nav navbar-nav" style="font-family:Montserrat, sans-serif;">
                     <li class="nav-item" role="presentation">
                         <label>
                             <form>
-                                <select class="form-control" id="lang" name="language" onchange="submit()">
-                                    <option value="en-us" ${language == 'en-us' ? 'selected' : ''}>ENG</option>
-                                    <option value="ru-ru" ${language == 'ru-ru' ? 'selected' : ''}>RUS</option>
+                                <select class="form-control" id="language" name="language" onchange="submit()">
+                                    <option value="en_US" ${language == 'en_US' ? 'selected' : ''}>ENG</option>
+                                    <option value="ru_RU" ${language == 'ru_RU' ? 'selected' : ''}>RUS</option>
                                 </select>
                             </form>
-
                         </label>
                     </li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="api/logout" style="color:rgb(51,51,51);">Log Out</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="api/logout" style="color:rgb(51,51,51);"><fmt:message key="nav.logout"/></a></li>
                 </ul>
             </div>
         </div>

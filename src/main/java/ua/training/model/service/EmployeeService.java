@@ -10,8 +10,7 @@ public class EmployeeService {
 
     public boolean isEmployeeExist(String login, String pass) {
         Employee employee = getEmployee(login);
-        boolean isCorrectPassword = CryptoUtil.checkPassword(pass, employee.getPassword());
-        return getEmployee(login) != null && isCorrectPassword;
+        return employee != null && CryptoUtil.checkPassword(pass, employee.getPassword());
     }
 
     public Employee getEmployee(String login) {

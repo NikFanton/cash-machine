@@ -3,7 +3,7 @@ package ua.training.model.entity;
 import java.math.BigInteger;
 import java.time.LocalDateTime;
 
-public class Report {
+public class Report implements Entity<Long> {
     private Long id;
     private BigInteger moneyPutInCashMachine;
     private BigInteger seizedMoney;
