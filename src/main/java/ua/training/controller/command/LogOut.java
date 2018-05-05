@@ -10,6 +10,6 @@ public class LogOut implements Command {
         session.removeAttribute("login");
         session.removeAttribute("pass");
         session.removeAttribute("role");
-        return "redirect:/";
+        return "redirect:";
     }
 }
