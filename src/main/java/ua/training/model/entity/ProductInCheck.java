@@ -26,8 +26,6 @@ public class ProductInCheck extends Product {
         return this;
     }
 
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

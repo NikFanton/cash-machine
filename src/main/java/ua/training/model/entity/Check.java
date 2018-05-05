@@ -1,11 +1,12 @@
 package ua.training.model.entity;
 
+import lombok.Builder;
 import ua.training.model.entity.enums.CheckType;
 
 import java.math.BigInteger;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 public class Check {
@@ -18,42 +19,7 @@ public class Check {
     private CheckType checkType;
 
     public Check() {
-    }
-
-    public Check(BigInteger cashPayment, BigInteger cashlessPayment, Employee employee, List<ProductInCheck> productsInCheck) {
-        this.cashPayment = cashPayment;
-        this.cashlessPayment = cashlessPayment;
-        this.employee = employee;
-        this.productsInCheck = productsInCheck;
-    }
-
-    public Check(Long id, LocalDateTime dateTime, BigInteger cashPayment, BigInteger cashlessPayment, CheckType checkType) {
-        this.id = id;
-        this.dateTime = dateTime;
-        this.cashPayment = cashPayment;
-        this.cashlessPayment = cashlessPayment;
-        this.checkType = checkType;
-    }
-
-    public Check(LocalDateTime dateTime, BigInteger cashPayment, BigInteger cashlessPayment,
-                 Employee employee, List<ProductInCheck> productsInCheck, CheckType checkType) {
-        this.dateTime = dateTime;
-        this.cashPayment = cashPayment;
-        this.cashlessPayment = cashlessPayment;
-        this.employee = employee;
-        this.productsInCheck = productsInCheck;
-        this.checkType = checkType;
-    }
-
-    public Check(Long id, LocalDateTime dateTime, BigInteger cashPayment, BigInteger cashlessPayment,
-                 Employee employee, List<ProductInCheck> productsInCheck, CheckType checkType) {
-        this.id = id;
-        this.dateTime = dateTime;
-        this.cashPayment = cashPayment;
-        this.cashlessPayment = cashlessPayment;
-        this.employee = employee;
-        this.productsInCheck = productsInCheck;
-        this.checkType = checkType;
+        productsInCheck = new ArrayList<>();
     }
 
     public Long getId() {
@@ -121,14 +87,12 @@ public class Check {
                 Objects.equals(getDateTime(), check.getDateTime()) &&
                 Objects.equals(getCashPayment(), check.getCashPayment()) &&
                 Objects.equals(getCashlessPayment(), check.getCashlessPayment()) &&
-                Objects.equals(getEmployee(), check.getEmployee()) &&
-                Objects.equals(getProductsInCheck(), check.getProductsInCheck());
+                Objects.equals(getEmployee(), check.getEmployee());
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(getId(), getDateTime(), getCashPayment(), getCashlessPayment(), getEmployee(), getProductsInCheck());
+        return Objects.hash(getId(), getDateTime(), getCashPayment(), getCashlessPayment(), getEmployee());
     }
 
     @Override
@@ -142,5 +106,70 @@ public class Check {
                 ", \n\temployee=" + employee +
                 ", \n\tproductsInCheck=" + productsInCheck +
                 '}';
+    }
+
+    public static CheckBuilder builder() {
+        return new CheckBuilder();
+    }
+
+    public static final class CheckBuilder {
+        private Long id;
+        private LocalDateTime dateTime;
+        private BigInteger cashPayment;
+        private BigInteger cashlessPayment;
+        private Employee employee;
+        private List<ProductInCheck> productsInCheck;
+        private CheckType checkType;
+
+        public CheckBuilder() {
+            productsInCheck = new ArrayList<>();
+        }
+
+        public CheckBuilder setId(Long id) {
+            this.id = id;
+            return this;
+        }
+
+        public CheckBuilder setDateTime(LocalDateTime dateTime) {
+            this.dateTime = dateTime;
+            return this;
+        }
+
+        public CheckBuilder setCashPayment(BigInteger cashPayment) {
+            this.cashPayment = cashPayment;
+            return this;
+        }
+
+        public CheckBuilder setCashlessPayment(BigInteger cashlessPayment) {
+            this.cashlessPayment = cashlessPayment;
+            return this;
+        }
+
+        public CheckBuilder setEmployee(Employee employee) {
+            this.employee = employee;
+            return this;
+        }
+
+        public CheckBuilder setProductsInCheck(List<ProductInCheck> productsInCheck) {
+            this.productsInCheck = productsInCheck;
+            return this;
+        }
+
+        public CheckBuilder setCheckType(CheckType checkType) {
+            this.checkType = checkType;
+            return this;
+        }
+
+        public Check build() {
+            Check check = new Check();
+            check.setId(id);
+            check.setDateTime(dateTime);
+            check.setCashPayment(cashPayment);
+            check.setCashlessPayment(cashlessPayment);
+            check.setEmployee(employee);
+            check.setProductsInCheck(productsInCheck);
+            check.setCheckType(checkType);
+            return check;
+        }
     }
 }

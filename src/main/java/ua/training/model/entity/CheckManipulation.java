@@ -15,7 +15,7 @@ public class CheckManipulation {
     private Employee employee;
     private LocalDateTime dateTime;
     private CheckManipulationType checkManipulationType;
-    private Check check;
+    private Long checkId;
     private ProductInCheck product;
 
     public CheckManipulation() {
@@ -27,20 +27,12 @@ public class CheckManipulation {
         this.checkManipulationType = checkManipulationType;
     }
 
-    public CheckManipulation(Employee employee, LocalDateTime dateTime, CheckManipulationType checkManipulationType, Check check, ProductInCheck product) {
-        this.employee = employee;
-        this.dateTime = dateTime;
-        this.checkManipulationType = checkManipulationType;
-        this.check = check;
-        this.product = product;
-    }
-
-    public CheckManipulation(Long id, Employee employee, LocalDateTime dateTime, CheckManipulationType checkManipulationType, Check check, ProductInCheck product) {
+    public CheckManipulation(Long id, Employee employee, LocalDateTime dateTime, CheckManipulationType checkManipulationType, Long checkId, ProductInCheck product) {
         this.id = id;
         this.employee = employee;
         this.dateTime = dateTime;
         this.checkManipulationType = checkManipulationType;
-        this.check = check;
+        this.checkId = checkId;
         this.product = product;
     }
 
@@ -48,20 +40,32 @@ public class CheckManipulation {
     public String toString() {
         return "CheckManipulation{" +
                 "id=" + id +
+                ", employee=" + employee +
                 ", dateTime=" + dateTime +
                 ", checkManipulationType=" + checkManipulationType +
-                ", \nemployee=" + employee +
-                ", \ncheck=Check{" + ((check != null) ?
-                        "id=" + id +
-                        ", dateTime=" + check.getDateTime() +
-                        ", cashPayment=" + check.getCashPayment() +
-                        ", cashlessPayment=" + check.getCashlessPayment() +
-                        ", employee=" + check.getEmployee() +
-                        ", productsInCheck=" + check.getProductsInCheck() +
-                        ", checkType=" + check.getCheckType() +
-                        '}'
-                : "null") +
-                ", \nproduct=" + product +
+                ", checkId=" + checkId +
+                ", product=" + product +
                 '}';
     }
+
+    //    @Override
+//    public String toString() {
+//        return "CheckManipulation{" +
+//                "id=" + id +
+//                ", dateTime=" + dateTime +
+//                ", checkManipulationType=" + checkManipulationType +
+//                ", \nemployee=" + employee +
+//                ", \ncheck=Check{" + ((check != null) ?
+//                        "id=" + id +
+//                        ", dateTime=" + check.getDateTime() +
+//                        ", cashPayment=" + check.getCashPayment() +
+//                        ", cashlessPayment=" + check.getCashlessPayment() +
+//                        ", employee=" + check.getEmployee() +
+//                        ", productsInCheck=" + check.getProductsInCheck() +
+//                        ", checkType=" + check.getCheckType() +
+//                        '}'
+//                : "null") +
+//                ", \nproduct=" + product +
+//                '}';
+//    }
 }
