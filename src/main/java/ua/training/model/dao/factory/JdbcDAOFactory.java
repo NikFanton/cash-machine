@@ -8,32 +8,32 @@ import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class MySqlDAOFactory extends DAOFactory {
+public class JdbcDAOFactory extends DAOFactory {
     private DataSource dataSource = ConnectionPoolHolder.getDataSource();
 
     @Override
     public EmployeeDAO getEmployeeDAO() {
-        return new MySqlEmployeeDAOImpl(getConnection());
+        return new JdbcEmployeeDAOImpl(getConnection());
     }
 
     @Override
     public ProductDAO getProductDAO() {
-        return new MySqlProductDAOImpl(getConnection());
+        return new JdbcProductDAOImpl(getConnection());
     }
 
     @Override
     public CheckManipulationDAO getCheckManipulationDAO() {
-        return new MySqlCheckManipulationDAOImpl(getConnection());
+        return new JdbcCheckManipulationDAOImpl(getConnection());
     }
 
     @Override
     public CheckDAO getCheckDAO() {
-        return new MySqlCheckDAOImpl(getConnection());
+        return new JdbcCheckDAOImpl(getConnection());
     }
 
     @Override
     public ReportDAO getReportDAO() {
-        return new MySqlReportDAOImpl(getConnection());
+        return new JdbcReportDAOImpl(getConnection());
     }
 
     public Connection getConnection() {

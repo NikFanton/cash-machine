@@ -21,4 +21,18 @@ public abstract class DAOFactory  {
         }
         return daoFactory;
     }
+
+//    public enum DataBase {
+//        MYSQL {
+//            {
+//                this.factory = new MySqlDAOFactory();
+//            }
+//        };
+//
+//        DAOFactory factory;
+//
+//        public DAOFactory getDAOFactory() {
+//            return factory;
+//        }
+//    }
 }
