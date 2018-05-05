@@ -14,7 +14,7 @@ public class ProductInCheckMapper implements BaseMapper<ProductInCheck> {
     public ProductInCheck extractFromResultSet(ResultSet resultSet, String prefix) throws SQLException {
         Long id = resultSet.getLong(prefix + "id");
         String name = resultSet.getString(prefix + "name");
-        double quantity = resultSet.getDouble(prefix + "quantity");
+        Double quantity = resultSet.getDouble(prefix + "quantity");
         BigInteger price = BigInteger.valueOf(resultSet.getInt(prefix + "price"));
         ProductType productType = ProductType.valueOf(resultSet.getString(prefix + "product_type"));
         String typeName = resultSet.getString(prefix + "product_in_check_type");
