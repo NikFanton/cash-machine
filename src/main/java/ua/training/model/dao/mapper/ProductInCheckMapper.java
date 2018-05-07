@@ -21,10 +21,4 @@ public class ProductInCheckMapper implements BaseMapper<ProductInCheck> {
         ProductInCheckType type = ProductInCheckType.valueOf(typeName);
         return new ProductInCheck(id, name, quantity, price, productType, type);
     }
-
-    @Override
-    public ProductInCheck makeUnique(Map<Long, ProductInCheck> cache, ProductInCheck productInCheck) {
-        cache.putIfAbsent(productInCheck.getId(), productInCheck);
-        return cache.get(productInCheck.getId());
-    }
 }

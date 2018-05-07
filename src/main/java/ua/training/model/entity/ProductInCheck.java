@@ -12,10 +12,18 @@ public class ProductInCheck extends Product {
     public ProductInCheck() {
     }
 
-    public ProductInCheck(Long id, String name, double quantity, BigInteger price, ProductType productType, ProductInCheckType productInCheckType) {
+    public ProductInCheck(Product product) {
+        super(product.getId(), product.getName(), product.getQuantity(), product.getPrice(), product.getProductType());
+        this.productInCheckType = ProductInCheckType.NORMAL;
+    }
+
+    public ProductInCheck(Long id, String name, double quantity, BigInteger price, ProductType productType,
+                          ProductInCheckType productInCheckType) {
         super(id, name, quantity, price, productType);
         this.productInCheckType = productInCheckType;
     }
+
+
 
     public ProductInCheckType getProductInCheckType() {
         return productInCheckType;

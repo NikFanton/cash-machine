@@ -10,19 +10,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 public class Servlet extends HttpServlet {
     private static Logger logger = LogManager.getLogger(Servlet.class);
-    private Map<String, Command> commands = new HashMap<>();
+    private ConcurrentMap<String, Command> commands = new ConcurrentHashMap<>();
 
     @Override
     public void init() {
         commands.put(CommandNames.LOGOUT, new LogOut());
-        commands.put(CommandNames.CREATE_CHECK, new CreateCheck());
+        commands.put(CommandNames.CREATE_CHECK_FORM, new CreateCheckForm());
         commands.put(CommandNames.CHECK_LIST, new CheckList());
         commands.put(CommandNames.REPORT, new Report());
+        commands.put(CommandNames.ADD_PRODUCT, new AddProduct());
+        commands.put(CommandNames.SAVE_CHECK, new SaveCheck());
     }
 
     @Override

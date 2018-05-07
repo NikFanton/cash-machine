@@ -4,9 +4,9 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class ResourceBundleHolder {
-    private final static String RESOURCE_BUNDLE_BASE_NAME = "l10n";
+    private final static String RESOURCE_BUNDLE_BASE_NAME = "messages";
 
-    private ResourceBundle resourceBundle;
+    private static ResourceBundle resourceBundle;
 
     public ResourceBundleHolder() {
         resourceBundle = ResourceBundle.getBundle(RESOURCE_BUNDLE_BASE_NAME, Locale.getDefault());
@@ -20,7 +20,7 @@ public class ResourceBundleHolder {
         resourceBundle = ResourceBundle.getBundle(RESOURCE_BUNDLE_BASE_NAME, locale);
     }
 
-    public String getParameter(String key) {
+    public static String getParameter(String key) {
         return resourceBundle.getString(key);
     }
 }

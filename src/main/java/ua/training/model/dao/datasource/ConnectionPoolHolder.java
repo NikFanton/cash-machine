@@ -22,9 +22,10 @@ public class ConnectionPoolHolder {
                         dSource.setUsername(configFile.getProperty(ConnectionConstants.DATABASE_USER));
                         dSource.setPassword(configFile.getProperty(ConnectionConstants.DATABASE_PASSWORD));
                         dSource.setDriverClassName(configFile.getProperty(ConnectionConstants.DATABASE_DRIVER));
-                        dSource.setMinIdle(5);
-                        dSource.setMinIdle(10);
-                        dSource.setMaxOpenPreparedStatements(100);
+                        dSource.setMinIdle(Integer.parseInt(configFile.getProperty(ConnectionConstants.DATABASE_MIN_IDLE)));
+                        dSource.setMaxIdle(Integer.parseInt(configFile.getProperty(ConnectionConstants.DATABASE_MAX_IDLE)));
+                        dSource.setMaxOpenPreparedStatements(Integer.parseInt(configFile.getProperty(
+                                ConnectionConstants.DATABASE_MAX_OPEN_PREPARED_STATEMENTS)));
                         dataSource = dSource;
                     } catch (IOException e) {
                         e.printStackTrace();

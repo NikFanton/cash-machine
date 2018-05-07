@@ -20,10 +20,4 @@ public class ProductMapper implements BaseMapper<Product> {
         ProductType type = ProductType.valueOf(resultSet.getString(prefix + "product_type"));
         return new Product(id, name, quantity, price, type);
     }
-
-    @Override
-    public Product makeUnique(Map<Long, Product> cache, Product product) {
-        cache.putIfAbsent(product.getId(), product);
-        return cache.get(product.getId());
-    }
 }

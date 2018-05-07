@@ -32,6 +32,16 @@ public class JdbcProductDAOImpl implements ProductDAO {
 
     @Override
     public Product getById(Long id) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.GET_PRODUCT_BY_ID)) {
+            preparedStatement.setLong(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            ProductMapper mapper = new ProductMapper();
+            if (resultSet.first()) {
+                return mapper.extractFromResultSet(resultSet);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         return null;
     }
 

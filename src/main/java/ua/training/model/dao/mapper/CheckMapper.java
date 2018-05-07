@@ -43,10 +43,4 @@ public class CheckMapper implements BaseMapper<Check> {
                 .setCheckType(type)
                 .build();
     }
-
-    @Override
-    public Check makeUnique(Map<Long, Check> cache, Check check) {
-        cache.putIfAbsent(check.getId(), check);
-        return cache.get(check.getId());
-    }
 }

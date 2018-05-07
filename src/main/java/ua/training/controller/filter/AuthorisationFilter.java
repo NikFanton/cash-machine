@@ -3,7 +3,6 @@ package ua.training.controller.filter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ua.training.controller.constant.Pages;
-import ua.training.controller.util.ResourceUtil;
 import ua.training.model.entity.enums.Role;
 import ua.training.model.service.EmployeeService;
 
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ResourceBundle;
 
 import static java.util.Objects.nonNull;
 
@@ -61,7 +59,6 @@ public class AuthorisationFilter implements Filter {
 
     private String getPage(ServletRequest servletRequest, Role role) {
         if (!role.equals(Role.UNKNOWN)) {
-            ResourceUtil.setAttributesCreateCheckForm(servletRequest);
             return Pages.CREATE_CHECK;
         } else {
             System.out.println("GUEST");

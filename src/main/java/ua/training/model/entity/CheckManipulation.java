@@ -21,13 +21,9 @@ public class CheckManipulation implements Entity<Long> {
     public CheckManipulation() {
     }
 
-    public CheckManipulation(Long id, LocalDateTime dateTime, CheckManipulationType checkManipulationType) {
-        this.id = id;
-        this.dateTime = dateTime;
-        this.checkManipulationType = checkManipulationType;
-    }
-
-    public CheckManipulation(Long id, Employee employee, LocalDateTime dateTime, CheckManipulationType checkManipulationType, Long checkId, ProductInCheck product) {
+    public CheckManipulation(Long id, Employee employee, LocalDateTime dateTime,
+                             CheckManipulationType checkManipulationType,
+                             Long checkId, ProductInCheck product) {
         this.id = id;
         this.employee = employee;
         this.dateTime = dateTime;

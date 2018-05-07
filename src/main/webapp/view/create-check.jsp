@@ -26,47 +26,47 @@
 
 <div class="container" id="content" style="background-color:#fffcf3;">
     <div class="row d-flex input-panel">
-        <div class="col-md-4 d-inline" style="min-width:276px;"><label class="col-form-label" style="font-family:Roboto, sans-serif;">Search</label><input class="align-items-baseline search-field" type="text" placeholder=" id or name" style="font-family:Roboto, sans-serif;"></div>
-        <div class="col d-inline"><label class="col-form-label" style="font-family:Roboto, sans-serif;">Quantity</label><input class="align-items-baseline quantity-field" type="text" inputmode="numeric" style="font-family:Roboto, sans-serif;"></div>
-        <div class="col-2" style="width:178px;min-width:0px;"><button class="btn btn-primary btn-sm float-right add-prod-btn" type="button" style="background-color:#fcd85a;color:rgb(34,34,34);">Add</button></div>
+        <form method="post" action="/api/add-product">
+            <div class="col-md-4 d-inline" style="min-width:276px;">
+                <label class="col-form-label" style="font-family:Roboto, sans-serif;">Search</label>
+                <input class="align-items-baseline search-field" name="id" type="text" placeholder=" id or name" style="font-family:Roboto, sans-serif;">
+            </div>
+            <div class="col d-inline">
+                <label class="col-form-label" style="font-family:Roboto, sans-serif;">Quantity</label>
+                <input class="align-items-baseline quantity-field" name="quantity" type="text" inputmode="numeric" style="font-family:Roboto, sans-serif;">
+            </div>
+            <div class="col-2" style="width:178px;min-width:0px;">
+                <button class="btn btn-primary btn-sm float-right add-prod-btn" type="submit" style="background-color:#fcd85a;color:rgb(34,34,34);" onchange="submit()">Add</button>
+            </div>
+        </form>
     </div>
-    <div class="table-responsive" style="font-family:Roboto, sans-serif;">
-        <table class="table table-striped table-sm">
-            <thead>
-            <tr>
-                <th style="font-family:Roboto, sans-serif;">#</th>
-                <th>serial number</th>
-                <th>name</th>
-                <th>quantity</th>
-                <th>price</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <td>1</td>
-                <td>453289781273</td>
-                <td>Tea "Lipton"</td>
-                <td>1</td>
-                <td>12.20</td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>463298973872<br></td>
-                <td>Marshmallow "Jet-Puffed"</td>
-                <td>2</td>
-                <td>6.50</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>478214392108<br></td>
-                <td>Cookies</td>
-                <td>1.5</td>
-                <td>5.25</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <div style="height:50px;"><button class="btn btn-primary btn-sm float-right" type="submit" style="background-color:#fcd85a;color:rgb(34,34,34);font-style:normal;font-weight:bold;">Print check</button></div>
+    <form method="post" action="/api/save-check">
+        <div class="table-responsive" style="font-family:Roboto, sans-serif;">
+            <table class="table table-striped table-sm">
+                <thead>
+                <tr>
+                    <th style="font-family:Roboto, sans-serif;">#</th>
+                    <th>serial number</th>
+                    <th>name</th>
+                    <th>quantity</th>
+                    <th>price</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="product" items="${products}" varStatus="loop">
+                    <tr>
+                        <td><c:out value="${loop.index + 1}"/></td>
+                        <td><c:out value="${product.id}"/></td>
+                        <td><c:out value="${product.name}"/></td>
+                        <td><c:out value="${product.quantity}"/></td>
+                        <td><c:out value="${product.price/100.}"/></td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
+        <div style="height:50px;"><button class="btn btn-primary btn-sm float-right" type="submit" style="background-color:#fcd85a;color:rgb(34,34,34);font-style:normal;font-weight:bold;">Done</button></div>
+    </form>
 </div>
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>

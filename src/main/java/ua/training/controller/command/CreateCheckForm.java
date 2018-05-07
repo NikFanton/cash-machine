@@ -1,17 +1,14 @@
 package ua.training.controller.command;
 
 import ua.training.controller.constant.Pages;
-import ua.training.model.entity.Product;
+import ua.training.controller.util.ProductsHolder;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
-public class CreateCheck implements Command {
+public class CreateCheckForm implements Command {
     @Override
     public String execute(HttpServletRequest request) {
-        System.out.println("AFTER REDIRECT");
-        Object products = request.getAttribute("products");
-        System.out.println(products);
+        request.setAttribute("products", ProductsHolder.getList());
         return Pages.CREATE_CHECK;
     }
 }

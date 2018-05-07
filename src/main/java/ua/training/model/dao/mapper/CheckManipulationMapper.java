@@ -55,10 +55,4 @@ public class CheckManipulationMapper implements BaseMapper<CheckManipulation> {
                 .product(product)
                 .build();
     }
-
-    @Override
-    public CheckManipulation makeUnique(Map<Long, CheckManipulation> cache, CheckManipulation checkManipulation) {
-        cache.putIfAbsent(checkManipulation.getId(), checkManipulation);
-        return cache.get(checkManipulation.getId());
-    }
 }

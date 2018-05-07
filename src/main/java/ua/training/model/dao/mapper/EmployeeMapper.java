@@ -35,10 +35,4 @@ public class EmployeeMapper implements BaseMapper<Employee> {
         Role role = Role.valueOf(roleName);
         return new Employee(id, firstName, lastName, role);
     }
-
-    @Override
-    public Employee makeUnique(Map<Long, Employee> cache, Employee employee) {
-        cache.putIfAbsent(employee.getId(), employee);
-        return cache.get(employee.getId());
-    }
 }

@@ -1,13 +1,9 @@
 package ua.training.model.service;
 
-import ua.training.model.dao.factory.DAOFactory;
-import ua.training.model.dao.factory.JdbcDAOFactory;
 import ua.training.model.dao.util.CryptoUtil;
 import ua.training.model.entity.Employee;
 
-public class EmployeeService {
-    private DAOFactory daoFactory = new JdbcDAOFactory();
-
+public class EmployeeService implements Service {
     public boolean isEmployeeExist(String login, String pass) {
         Employee employee = getEmployee(login);
         return employee != null && CryptoUtil.checkPassword(pass, employee.getPassword());

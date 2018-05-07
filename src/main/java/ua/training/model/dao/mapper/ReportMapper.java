@@ -35,10 +35,4 @@ public class ReportMapper implements BaseMapper<Report> {
                 .setCanceledChecksCount(canceledChecks)
                 .build();
     }
-
-    @Override
-    public Report makeUnique(Map<Long, Report> cache, Report report) {
-        cache.putIfAbsent(report.getId(), report);
-        return cache.get(report.getId());
-    }
 }
