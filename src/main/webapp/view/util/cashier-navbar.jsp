@@ -11,8 +11,8 @@
                     <li class="nav-item" role="presentation"><a class="nav-link" href="${pageContext.request.contextPath}report" style="color:rgb(34,34,34);"><fmt:message key="nav.reports"/></a></li>
                 </ul>
                 <ul class="nav navbar-nav" style="font-family:Montserrat, sans-serif;">
+
                     <li class="nav-item" role="presentation">
-                        <label>
                             <form>
                                 <select class="form-control" id="language" name="language" onchange="submit()">
                                     <option value="en_US" ${language == 'en_US' ? 'selected' : ''}>ENG</option>
@@ -20,6 +20,9 @@
                                 </select>
                             </form>
                         </label>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        ${login}
                     </li>
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="api/logout" style="color:rgb(51,51,51);"><fmt:message key="nav.logout"/></a></li>
                 </ul>

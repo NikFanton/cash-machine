@@ -22,7 +22,7 @@
 
 <body>
 
-<jsp:include page="util/navbar.jsp"/>
+<jsp:include page="util/cashier-navbar.jsp"/>
 
 <div class="features-boxed" style="margin-top:35px;background-color:rgba(252,216,90,0);">
     <div class="container">

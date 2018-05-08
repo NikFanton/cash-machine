@@ -1,4 +1,4 @@
-<%@ include file="util/init.jsp"%>
+<%@ include file="../../util/init.jsp"%>
 <!DOCTYPE html>
 <html>
 
@@ -22,20 +22,20 @@
 
 <body style="background-color:rgba(252,216,90,0.31);">
 
-<jsp:include page="util/navbar.jsp"/>
+<jsp:include page="../../util/cashier-navbar.jsp"/>
 
 <div class="container" id="content" style="background-color:#fffcf3;">
     <div class="row d-flex input-panel">
         <form method="post" action="/api/add-product">
             <div class="col-md-4 d-inline" style="min-width:276px;">
-                <label class="col-form-label" style="font-family:Roboto, sans-serif;">Search</label>
+                <label class="col-form-label" style="font-family:Roboto, sans-serif;">Search REGULAR</label>
                 <input class="align-items-baseline search-field" name="id" type="text" placeholder=" id or name" style="font-family:Roboto, sans-serif;">
             </div>
             <div class="col d-inline">
                 <label class="col-form-label" style="font-family:Roboto, sans-serif;">Quantity</label>
                 <input class="align-items-baseline quantity-field" name="quantity" type="text" inputmode="numeric" style="font-family:Roboto, sans-serif;">
             </div>
-            <div class="col-2" style="width:178px;min-width:0px;">
+            <div class="col-2 d-inline" style="width:178px;min-width:0px;">
                 <button class="btn btn-primary btn-sm float-right add-prod-btn" type="submit" style="background-color:#fcd85a;color:rgb(34,34,34);" onchange="submit()">Add</button>
             </div>
         </form>
@@ -50,26 +50,41 @@
                     <th>name</th>
                     <th>quantity</th>
                     <th>price</th>
+                    <c:if test="${role eq 'SENIOR_CASHIER'}">
+                        <th></th>
+                    </c:if>
                 </tr>
                 </thead>
                 <tbody>
+                <c:set var="total" value="${0}"/>
+                <%--<jsp:useBean id="products" scope="request" type="java.util.List"/>--%>
                 <c:forEach var="product" items="${products}" varStatus="loop">
-                    <tr>
-                        <td><c:out value="${loop.index + 1}"/></td>
-                        <td><c:out value="${product.id}"/></td>
-                        <td><c:out value="${product.name}"/></td>
-                        <td><c:out value="${product.quantity}"/></td>
-                        <td><c:out value="${product.price/100.}"/></td>
-                    </tr>
+                    <form method="post" action="/api/remove-from-check?productId=${product.id}">
+                        <tr>
+                            <td><c:out value="${loop.index + 1}"/></td>
+                            <td><c:out value="${product.id}"/></td>
+                            <td><c:out value="${product.name}"/></td>
+                            <td><c:out value="${product.quantity}${product.productType == 'UNCOUNTABLE' ? ' kg' : ''}"/></td>
+                            <td><c:out value="${product.price/100.}"/></td>
+                            <c:if test="${role eq 'SENIOR_CASHIER'}">
+                                <td style="width: 32px;"><button class="btn btn-primary btn-sm float-right add-prod-btn" type="submit" style="background-color:#fcd85a;color:rgb(34,34,34);" onchange="submit()">REMOVE</button></td>
+                            </c:if>
+                            <c:set var="total" value="${total + product.quantity * product.price/100.}"/>
+                        </tr>
+                    </form>
                 </c:forEach>
                 </tbody>
             </table>
         </div>
-        <div style="height:50px;"><button class="btn btn-primary btn-sm float-right" type="submit" style="background-color:#fcd85a;color:rgb(34,34,34);font-style:normal;font-weight:bold;">Done</button></div>
+
+        <div style="height:50px;">
+            <button class="btn btn-primary btn-sm float-right" type="submit" style="background-color:#fcd85a;color:rgb(34,34,34);font-style:normal;font-weight:bold;">Done</button>
+            <p class="float-left" style="color:rgb(34,34,34);font-style:normal;">TOTAL ${total}</p>
+        </div>
     </form>
 </div>
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../assets/js/jquery.min.js"></script>
+<script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>
