@@ -4,6 +4,8 @@ import org.apache.commons.dbcp.BasicDataSource;
 
 import javax.sql.DataSource;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Properties;
 
 public class ConnectionPoolHolder {
@@ -14,6 +16,14 @@ public class ConnectionPoolHolder {
             synchronized (ConnectionPoolHolder.class) {
                 if (dataSource == null) {
                     BasicDataSource dSource = new BasicDataSource();
+//                    dSource.setUrl("jdbc:mysql://localhost/cashmachine");
+//                    dSource.setDriverClassName("com.mysql.jdbc.Driver");
+//                    dSource.setUsername("root");
+//                    dSource.setPassword("root");
+//                    dSource.setMinIdle(5);
+//                    dSource.setMaxIdle(10);
+////                    dSource.setMaxActive(15);
+//                    dSource.setMaxOpenPreparedStatements(100);
                     try {
                         Properties configFile = new Properties();
                         configFile.load(ConnectionPoolHolder.class.getClassLoader()
@@ -26,10 +36,10 @@ public class ConnectionPoolHolder {
                         dSource.setMaxIdle(Integer.parseInt(configFile.getProperty(ConnectionConstants.DATABASE_MAX_IDLE)));
                         dSource.setMaxOpenPreparedStatements(Integer.parseInt(configFile.getProperty(
                                 ConnectionConstants.DATABASE_MAX_OPEN_PREPARED_STATEMENTS)));
-                        dataSource = dSource;
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                    dataSource = dSource;
                 }
             }
         }

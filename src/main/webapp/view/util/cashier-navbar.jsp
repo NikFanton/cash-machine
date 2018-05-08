@@ -7,6 +7,7 @@
                     class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav mx-auto" style="font-family:Montserrat, sans-serif;font-weight:normal;">
                     <li class="nav-item" role="presentation" style="background-color:rgba(255,90,79,0.83);font-weight:normal;"><a class="nav-link active" href="${pageContext.request.contextPath}create-check" style="color:rgb(255,255,255);font-size:17px;"><fmt:message key="nav.create.check"/> </a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="${pageContext.request.contextPath}find-product-form" style="color:rgb(34,34,34);"><fmt:message key="nav.find.product"/> </a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="${pageContext.request.contextPath}check-list" style="color:rgb(34,34,34);"><fmt:message key="nav.check.list"/> </a></li>
                     <li class="nav-item" role="presentation"><a class="nav-link" href="${pageContext.request.contextPath}report" style="color:rgb(34,34,34);"><fmt:message key="nav.reports"/></a></li>
                 </ul>

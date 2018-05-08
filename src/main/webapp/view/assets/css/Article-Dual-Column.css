@@ -111,3 +111,10 @@
   color:inherit;
 }
 
+select.form-control:not([size]):not([multiple]) {
+  font-family:Montserrat, sans-serif;
+}
+
+article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, section {
+}
+

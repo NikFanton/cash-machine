@@ -9,4 +9,6 @@ public interface CheckDAO extends GenericDAO<Check, Long> {
     }
 
     void addProductToCheck(Long checkId, Product product);
+
+    void markCheckAsCanceled(Long id);
 }

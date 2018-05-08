@@ -1,23 +1,26 @@
 package ua.training.model.entity.enums;
 
+import ua.training.controller.constant.CommandNames;
+import ua.training.controller.constant.Pages;
+
 public enum Role {
-    UNKNOWN("unknown"),
-    ADMIN("admin"),
-    CASHIER("cashier"),
-    SENIOR_CASHIER("senior cashier"),
-    MERCHANT("merchant");
+    UNKNOWN(Pages.LOGIN),
+    ADMIN(Pages.EMPLOYEE_REGISTRATION),
+    CASHIER(CommandNames.CREATE_CHECK_FORM),
+    SENIOR_CASHIER(CommandNames.CREATE_CHECK_FORM),
+    MERCHANT(Pages.ADD_PRODUCT_TO_STORAGE);
 
-    Role(String roleName) {
-        this.roleName = roleName;
+    Role(String page) {
+        this.page = page;
     }
 
-    private String roleName;
+    private String page;
 
-    public String getRoleName() {
-        return roleName;
+    public String getPage() {
+        return page;
     }
 
-    public void setRoleName(String roleName) {
-        this.roleName = roleName;
+    public void setPage (String page) {
+        this.page = page;
     }
 }

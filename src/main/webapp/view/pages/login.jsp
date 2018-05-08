@@ -1,4 +1,4 @@
-<%@ include file="util/init.jsp"%>
+<%@ include file="../util/init.jsp"%>
 <!DOCTYPE html>
 <html>
 
@@ -31,8 +31,8 @@
         <div class="form-group"><button class="btn btn-primary btn-block btn-login" type="submit" style="background-color:#fcd85a;font-weight:normal;font-style:normal;font-size:16px;">LOG IN</button></div>
     </form>
 </div>
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="../assets/js/jquery.min.js"></script>
+<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>

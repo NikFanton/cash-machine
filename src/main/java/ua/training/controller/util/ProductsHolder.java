@@ -10,13 +10,17 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class ProductsHolder {
-    public static final String REGEX_COUNTABLE = "[0-9]{1,10}";
-    public static final String REGEX_UNCOUNTABLE = "[0-9]{1,10}((\\.)[0-9]{1,10})?";
+    private static final String REGEX_COUNTABLE = "[0-9]{1,10}";
+    private static final String REGEX_UNCOUNTABLE = "[0-9]{1,10}((\\.)[0-9]{1,10})?";
 
     private static Map<Long, Product> products = new ConcurrentHashMap<>();
 
     public static Map<Long, Product> getProductsInCheck() {
         return products;
+    }
+
+    public static void removeProduct(Long id) {
+        products.remove(id);
     }
 
     public static void addProduct(Product product, String quantity) {

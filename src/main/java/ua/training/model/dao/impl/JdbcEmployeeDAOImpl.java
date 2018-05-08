@@ -1,5 +1,6 @@
 package ua.training.model.dao.impl;
 
+import ua.training.model.dao.datasource.ConnectionConstants;
 import ua.training.model.dao.factory.DAOFactory;
 import ua.training.model.dao.EmployeeDAO;
 import ua.training.model.dao.SQLQueries;
@@ -40,7 +41,8 @@ public class JdbcEmployeeDAOImpl implements EmployeeDAO {
     @Override
     public List<Employee> getAll() {
         List<Employee> users = new ArrayList<>();
-        try(ResultSet resultSet = connection.createStatement().executeQuery(SQLQueries.GET_ALL_EMPLOYEES)) {
+        try(Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(SQLQueries.GET_ALL_EMPLOYEES)) {
             EmployeeMapper mapper = new EmployeeMapper();
             while (resultSet.next()) {
                 users.add(mapper.extractFromResultSet(resultSet));
@@ -71,8 +73,9 @@ public class JdbcEmployeeDAOImpl implements EmployeeDAO {
         try (PreparedStatement ps = connection.prepareStatement(SQLQueries.GET_EMPLOYEE_BY_LOGIN_AND_PASSWORD)) {
             ps.setString(1, login);
             ps.setString(2, password);
-            ResultSet resultSet = ps.executeQuery();
-            return extractEmployeeFromResultSet(resultSet);
+            try (ResultSet resultSet = ps.executeQuery()) {
+                return extractEmployeeFromResultSet(resultSet);
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -82,8 +85,9 @@ public class JdbcEmployeeDAOImpl implements EmployeeDAO {
     public Employee getByLogin(String login) {
         try (PreparedStatement ps = connection.prepareStatement(SQLQueries.GET_EMPLOYEE_BY_LOGIN)) {
             ps.setString(1, login);
-            ResultSet resultSet = ps.executeQuery();
-            return extractEmployeeFromResultSet(resultSet);
+            try (ResultSet resultSet = ps.executeQuery()) {
+                return extractEmployeeFromResultSet(resultSet);
+            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

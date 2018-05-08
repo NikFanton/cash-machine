@@ -9,20 +9,20 @@ public class Product implements Entity<Long> {
     private Long id;
     private String name;
     private double quantity;
-    private BigInteger price;
+    private Double price;
     private ProductType productType;
 
     public Product() {
     }
 
-    public Product(String name, double quantity, BigInteger price, ProductType productType) {
+    public Product(String name, double quantity, Double price, ProductType productType) {
         this.name = name;
         this.quantity = quantity;
         this.price = price;
         this.productType = productType;
     }
 
-    public Product(Long id, String name, double quantity, BigInteger price, ProductType productType) {
+    public Product(Long id, String name, double quantity, Double price, ProductType productType) {
         this.id = id;
         this.name = name;
         this.quantity = quantity;
@@ -54,11 +54,11 @@ public class Product implements Entity<Long> {
         this.quantity = quantity;
     }
 
-    public BigInteger getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(BigInteger price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -78,7 +78,7 @@ public class Product implements Entity<Long> {
         private Long id;
         private String name;
         private double quantity;
-        private BigInteger price;
+        private Double price;
         private ProductType productType;
 
         public ProductBuilder setId(Long id) {
@@ -96,7 +96,7 @@ public class Product implements Entity<Long> {
             return this;
         }
 
-        public ProductBuilder setPrice(BigInteger price) {
+        public ProductBuilder setPrice(Double price) {
             this.price = price;
             return this;
         }
@@ -122,14 +122,13 @@ public class Product implements Entity<Long> {
         if (this == o) return true;
         if (!(o instanceof Product)) return false;
         Product product = (Product) o;
-        return Objects.equals(getId(), product.getId()) &&
-                Objects.equals(getName(), product.getName()) &&
+        return Objects.equals(getName(), product.getName()) &&
                 getProductType() == product.getProductType();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getProductType());
+        return Objects.hash(getName(), getProductType());
     }
 
     @Override

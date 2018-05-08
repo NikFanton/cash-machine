@@ -26,7 +26,7 @@ public interface SQLQueries {
             "LEFT JOIN product p ON cp.product_id = p.id\n" +
             "WHERE check_id = ? AND product_id = ?";
 
-    String GET_PRODUCT_BY_NAME = "SELECT * FROM product WHERE name = ?";
+    String GET_PRODUCTS_BY_NAME = "SELECT * FROM product WHERE name LIKE concat('%', ?, '%')";
 
     String GET_EMPLOYEE_BY_LOGIN = "SELECT * FROM employee WHERE login = ?";
 

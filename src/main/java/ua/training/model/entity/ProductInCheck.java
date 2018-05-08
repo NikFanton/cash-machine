@@ -17,13 +17,11 @@ public class ProductInCheck extends Product {
         this.productInCheckType = ProductInCheckType.NORMAL;
     }
 
-    public ProductInCheck(Long id, String name, double quantity, BigInteger price, ProductType productType,
+    public ProductInCheck(Long id, String name, double quantity, Double price, ProductType productType,
                           ProductInCheckType productInCheckType) {
         super(id, name, quantity, price, productType);
         this.productInCheckType = productInCheckType;
     }
-
-
 
     public ProductInCheckType getProductInCheckType() {
         return productInCheckType;

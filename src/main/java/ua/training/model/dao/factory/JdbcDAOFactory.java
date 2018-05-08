@@ -9,7 +9,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 public class JdbcDAOFactory extends DAOFactory {
-    private DataSource dataSource = ConnectionPoolHolder.getDataSource();
+    private static DataSource dataSource = ConnectionPoolHolder.getDataSource();
 
     @Override
     public EmployeeDAO getEmployeeDAO() {
@@ -36,7 +36,7 @@ public class JdbcDAOFactory extends DAOFactory {
         return new JdbcReportDAOImpl(getConnection());
     }
 
-    public Connection getConnection() {
+    public static Connection getConnection() {
         try {
             return dataSource.getConnection();
         } catch (SQLException e) {

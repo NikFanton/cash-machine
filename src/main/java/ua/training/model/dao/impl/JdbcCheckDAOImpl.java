@@ -11,10 +11,7 @@ import ua.training.model.entity.Product;
 import ua.training.model.entity.ProductInCheck;
 
 import java.math.BigInteger;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -83,7 +80,8 @@ public class JdbcCheckDAOImpl implements CheckDAO {
 
     @Override
     public List<Check> getAll() {
-        try (ResultSet resultSet = connection.createStatement().executeQuery(SQLQueries.GET_ALL_CHECKS)) {
+        try (Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(SQLQueries.GET_ALL_CHECKS)) {
             List<Check> result = new ArrayList<>();
             Map<Long, Check> checks = extractCheckWithProducts(resultSet);
             checks.keySet().forEach(key -> result.add(checks.get(key)));
@@ -128,8 +126,22 @@ public class JdbcCheckDAOImpl implements CheckDAO {
     }
 
     @Override
-    public void close() throws Exception {
-        connection.close();
+    public void markCheckAsCanceled(Long id) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.CANCEL_CHECK)) {
+            preparedStatement.setLong(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void close(){
+        try {
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
@@ -143,9 +155,9 @@ public class JdbcCheckDAOImpl implements CheckDAO {
         product1.setId(3L);
         product2.setId(9L);
         product3.setId(5L);
-        product1.setPrice(BigInteger.valueOf(20));
-        product2.setPrice(BigInteger.valueOf(20));
-        product3.setPrice(BigInteger.valueOf(20));
+        product1.setPrice(20.);
+        product2.setPrice(20.);
+        product3.setPrice(20.);
         products.add(product1);
         products.add(product2);
         products.add(product3);

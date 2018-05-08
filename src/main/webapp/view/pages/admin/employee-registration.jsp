@@ -1,4 +1,4 @@
-<%@ include file="../util/init.jsp"%>
+<%@ include file="../../util/init.jsp"%>
 <!DOCTYPE html>
 <html>
 
@@ -41,24 +41,30 @@
 
 <body style="background-color:rgba(252,216,90,0.31);">
 
-<jsp:include page="../util/admin-navbar.jsp"/>
+<jsp:include page="../../util/admin-navbar.jsp"/>
 
 <div class="register-photo" style="background-color:rgba(255,255,255,0.21);">
     <div class="form-container">
         <div class="image-holder"></div>
         <form method="post" style="background-color:rgba(255,255,255,0.76);">
             <h2 class="text-center"><strong>CREATE NEW ACCOUNT</strong></h2>
-            <div class="form-group"><input class="form-control" type="text" name="login" placeholder="First name"></div>
-            <div class="form-group"><input class="form-control" type="text" name="login" placeholder="Last name"></div>
-            <div class="form-group"><input class="form-control" type="text" name="login" placeholder="Position"></div>
+            <div class="form-group"><input class="form-control" type="text" name="firstName" placeholder="First name"></div>
+            <div class="form-group"><input class="form-control" type="text" name="lastName" placeholder="Last name"></div>
+            <div class="form-group">
+                <select class="form-control" style="margin-left:10px;">
+                    <option value="countable" selected="">Cashier</option>
+                    <option value="uncountable">Senior cashier</option>
+                    <option value="uncountable">Merchant</option>
+                </select>
+            </div>
             <div class="form-group"><input class="form-control" type="text" name="login" placeholder="Login"></div>
             <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password"></div>
             <div class="form-group"><button class="btn btn-primary btn-block btn-login" type="submit" style="background-color:#fcd85a;font-weight:normal;font-style:normal;font-size:16px;">SIGN UP</button></div>
         </form>
     </div>
 </div>
-<script src="../assets/js/jquery.min.js"></script>
-<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../assets/js/jquery.min.js"></script>
+<script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>

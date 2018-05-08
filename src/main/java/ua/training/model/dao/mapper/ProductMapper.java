@@ -16,7 +16,7 @@ public class ProductMapper implements BaseMapper<Product> {
         Long id = resultSet.getLong(prefix + "id");
         String name = resultSet.getString(prefix + "name");
         double quantity = resultSet.getDouble(prefix + "quantity");
-        BigInteger price = BigInteger.valueOf(resultSet.getInt(prefix + "price"));
+        Double price = resultSet.getDouble(prefix + "price");
         ProductType type = ProductType.valueOf(resultSet.getString(prefix + "product_type"));
         return new Product(id, name, quantity, price, type);
     }

@@ -26,7 +26,7 @@
 
 <body>
 
-<jsp:include page="util/cashier-navbar.jsp"/>
+<jsp:include page="../../util/cashier-navbar.jsp"/>
 
 <c:set var="green" value="#bae860;"/>
 <c:set var="yellow" value="#fcd85a;"/>
@@ -45,28 +45,6 @@
                     <div class="box">
                         <div class="row">
                             <div class="col">
-                                <div class="card" style="cursor: pointer;" onclick="document.getElementById('check-card-${check.id}').style.display='block'">
-                                    <div class="card-body"><i class="fa fa-circle icon" style="color:${check.checkType == 'NORMAL' ? green
-                                                                                                        : check.checkType == 'ALTERED' ? yellow
-                                                                                                        : red}"></i>
-                                        <h4 class="card-title" style="font-size:18px;">
-                                            <strong>
-                                                Check #<c:out value="${check.id}"/>
-                                            </strong><br>
-                                        </h4>
-                                        <h6 class="text-muted card-subtitle mb-2" style="font-size:16px;">
-                                            <c:out value="${check.dateTime.toLocalDate()}"/>
-                                            <c:out value="${check.dateTime.toLocalTime()}"/>
-                                            <%--03.05.2018 - 14:25--%>
-                                            <br>
-                                        </h6>
-                                        <a class="card-link" href="#" style="font-size:16px;">cancel check</a>
-                                        <%--<div class="form-group" style="margin-left: 0px;margin-bottom: 0px;">--%>
-                                            <%--<button class="btn btn-primary btn-block btn-login" type="submit" style="background-color:#fcd85a;font-weight:normal;font-style:normal;font-size:16px;margin-top: 0px;margin-bottom: 10px;padding-top: 5px;padding-bottom: 5px; border-color:#fcd85a;">cancel check</button>--%>
-                                        <%--</div>--%>
-                                    </div>
-                                </div>
-
                                 <div id="check-card-${check.id}" class="modal" style="padding-top: 70px;">
                                     <div class="login-clean" style="background-color:rgba(252,216,90,0);padding-top: 30px;">
                                         <form style="padding-top: 30px;">
@@ -147,6 +125,34 @@
                                         </form>
                                     </div>
                                 </div>
+
+                                <div class="card" style="cursor: pointer;">
+                                    <div class="card-body">
+                                        <div onclick="document.getElementById('check-card-${check.id}').style.display='block'">
+                                            <i class="fa fa-circle icon" style="color:${check.checkType == 'NORMAL' ? green
+                                                                                                        : check.checkType == 'ALTERED' ? yellow
+                                                                                                        : red}"></i>
+                                            <h4 class="card-title" style="font-size:18px;">
+                                                <strong>
+                                                    Check #<c:out value="${check.id}"/>
+                                                </strong><br>
+                                            </h4>
+                                            <h6 class="text-muted card-subtitle mb-2" style="font-size:16px;">
+                                                <c:out value="${check.dateTime.toLocalDate()}"/>
+                                                <c:out value="${check.dateTime.toLocalTime()}"/>
+                                                    <%--03.05.2018 - 14:25--%>
+                                                <br>
+                                            </h6>
+                                        </div>
+                                        <p style="margin-bottom: 6px;font-size:16px;margin-top: 6px;" <c:out value="${check.checkType != 'CANCELED' ? 'hidden' : ''}"/>>Returned ${total}</p>
+                                        <a class="card-link" href="${pageContext.request.contextPath}cancel-check?checkId=${check.id}" style="font-size:16px;" <c:out value="${check.checkType == 'CANCELED' ? 'hidden' : ''}"/>>cancel check</a>
+                                        <%--<div class="form-group" style="margin-left: 0px;margin-bottom: 0px;">--%>
+                                            <%--<button class="btn btn-primary btn-block btn-login" type="submit" style="background-color:#fcd85a;font-weight:normal;font-style:normal;font-size:16px;margin-top: 0px;margin-bottom: 10px;padding-top: 5px;padding-bottom: 5px; border-color:#fcd85a;">cancel check</button>--%>
+                                        <%--</div>--%>
+                                    </div>
+                                </div>
+
+
                             </div>
                         </div>
                     </div>
@@ -167,8 +173,8 @@
         </nav>
     </div>
 </div>
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../assets/js/jquery.min.js"></script>
+<script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>

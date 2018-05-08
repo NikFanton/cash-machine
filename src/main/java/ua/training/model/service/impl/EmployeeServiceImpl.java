@@ -4,9 +4,10 @@ import ua.training.model.dao.EmployeeDAO;
 import ua.training.model.dao.factory.DAOFactory;
 import ua.training.model.dao.util.CryptoUtil;
 import ua.training.model.entity.Employee;
+import ua.training.model.service.EmployeeService;
 import ua.training.model.service.Service;
 
-public class EmployeeService implements Service {
+public class EmployeeServiceImpl implements EmployeeService {
     public boolean isEmployeeExist(String login, String pass) {
         Employee employee = getEmployee(login);
         return employee != null && CryptoUtil.checkPassword(pass, employee.getPassword());

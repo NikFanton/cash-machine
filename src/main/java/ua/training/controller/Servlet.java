@@ -4,6 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import ua.training.controller.command.*;
 import ua.training.controller.constant.CommandNames;
+import ua.training.model.service.impl.CheckServiceImpl;
+import ua.training.model.service.impl.EmployeeServiceImpl;
+import ua.training.model.service.impl.ProductServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,10 +24,14 @@ public class Servlet extends HttpServlet {
     public void init() {
         commands.put(CommandNames.LOGOUT, new LogOut());
         commands.put(CommandNames.CREATE_CHECK_FORM, new CreateCheckForm());
-        commands.put(CommandNames.CHECK_LIST, new CheckList());
+        commands.put(CommandNames.CHECK_LIST, new CheckList(new CheckServiceImpl()));
         commands.put(CommandNames.REPORT, new Report());
-        commands.put(CommandNames.ADD_PRODUCT, new AddProduct());
-        commands.put(CommandNames.SAVE_CHECK, new SaveCheck());
+        commands.put(CommandNames.ADD_PRODUCT, new AddProduct(new ProductServiceImpl()));
+        commands.put(CommandNames.REMOVE_PRODUCT_FROM_CHECK, new RemoveFromCheck());
+        commands.put(CommandNames.SAVE_CHECK, new SaveCheck(new CheckServiceImpl(), new EmployeeServiceImpl()));
+        commands.put(CommandNames.CANCEL_CHECK, new CancelCheck(new CheckServiceImpl()));
+        commands.put(CommandNames.FIND_PRODUCT_FORM, new FindProductForm());
+        commands.put(CommandNames.FIND_PRODUCT, new FindProduct(new ProductServiceImpl()));
     }
 
     @Override

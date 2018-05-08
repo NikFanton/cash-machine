@@ -15,7 +15,7 @@ public class ProductInCheckMapper implements BaseMapper<ProductInCheck> {
         Long id = resultSet.getLong(prefix + "id");
         String name = resultSet.getString(prefix + "name");
         Double quantity = resultSet.getDouble(prefix + "quantity");
-        BigInteger price = BigInteger.valueOf(resultSet.getInt(prefix + "price"));
+        Double price = resultSet.getDouble(prefix + "price");
         ProductType productType = ProductType.valueOf(resultSet.getString(prefix + "product_type"));
         String typeName = resultSet.getString(prefix + "product_in_check_type");
         ProductInCheckType type = ProductInCheckType.valueOf(typeName);

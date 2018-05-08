@@ -39,7 +39,7 @@ public class CheckManipulationMapper implements BaseMapper<CheckManipulation> {
         if (productId != 0) {
             String productName = resultSet.getString(prefix + "p_name");
             Double quantity = resultSet.getDouble(prefix + "p_quantity");
-            BigInteger price = BigInteger.valueOf(resultSet.getInt(prefix + "p_price"));
+            Double price = resultSet.getDouble(prefix + "p_price");
             ProductType productType = ProductType.valueOf(resultSet.getString(prefix + "p_product_type"));
             String productInCheckTypeName = resultSet.getString(prefix + "p_product_in_check_type");
             ProductInCheckType productInCheckType = ProductInCheckType.valueOf(productInCheckTypeName);

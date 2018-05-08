@@ -2,9 +2,10 @@ package ua.training.controller.filter;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ua.training.controller.constant.CommandNames;
 import ua.training.controller.constant.Pages;
 import ua.training.model.entity.enums.Role;
-import ua.training.model.service.EmployeeService;
+import ua.training.model.service.impl.EmployeeServiceImpl;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
@@ -30,7 +31,7 @@ public class AuthorisationFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         String login = request.getParameter("login");
         String password = request.getParameter("pass");
-        EmployeeService service = new EmployeeService();
+        EmployeeServiceImpl service = new EmployeeServiceImpl();
         HttpSession session = request.getSession();
         Role role = getRoleAndSetInfoInSession(login, password, service, session);
         System.out.println("login: " + login);
@@ -40,7 +41,7 @@ public class AuthorisationFilter implements Filter {
         request.getRequestDispatcher(page).forward(request, response);
     }
 
-    private Role getRoleAndSetInfoInSession(String login, String password, EmployeeService service, HttpSession session) {
+    private Role getRoleAndSetInfoInSession(String login, String password, EmployeeServiceImpl service, HttpSession session) {
         Role role;
         if (nonNull(session) &&
                 nonNull(session.getAttribute("login")) &&
@@ -58,12 +59,7 @@ public class AuthorisationFilter implements Filter {
     }
 
     private String getPage(ServletRequest servletRequest, Role role) {
-        if (!role.equals(Role.UNKNOWN)) {
-            return Pages.CREATE_CHECK;
-        } else {
-            System.out.println("GUEST");
-            return Pages.LOGIN;
-        }
+        return role.getPage();
     }
 
     @Override

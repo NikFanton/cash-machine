@@ -28,15 +28,15 @@
     <div class="row d-flex input-panel">
         <form method="post" action="/api/add-product">
             <div class="col-md-4 d-inline" style="min-width:276px;">
-                <label class="col-form-label" style="font-family:Roboto, sans-serif;">Search REGULAR</label>
-                <input class="align-items-baseline search-field" name="id" type="text" placeholder=" id or name" style="font-family:Roboto, sans-serif;">
+                <label class="col-form-label" style="font-family:Roboto, sans-serif;">Search</label>
+                <input class="align-items-baseline search-field" name="id" type="text" placeholder=" id" style="font-family:Roboto, sans-serif;">
             </div>
             <div class="col d-inline">
                 <label class="col-form-label" style="font-family:Roboto, sans-serif;">Quantity</label>
-                <input class="align-items-baseline quantity-field" name="quantity" type="text" inputmode="numeric" style="font-family:Roboto, sans-serif;">
+                <input class="align-items-baseline quantity-field" name="quantity" type="text" placeholder=" number / weight" inputmode="numeric" style="font-family:Roboto, sans-serif;">
             </div>
             <div class="col-2 d-inline" style="width:178px;min-width:0px;">
-                <button class="btn btn-primary btn-sm float-right add-prod-btn" type="submit" style="background-color:#fcd85a;color:rgb(34,34,34);" onchange="submit()">Add</button>
+                <button class="btn btn-primary btn-sm float-right add-prod-btn" type="submit" style="background-color:#fcd85a;color:rgb(34,34,34);margin-top: 4px;" onchange="submit()">ADD</button>
             </div>
         </form>
     </div>
@@ -78,7 +78,7 @@
         </div>
 
         <div style="height:50px;">
-            <button class="btn btn-primary btn-sm float-right" type="submit" style="background-color:#fcd85a;color:rgb(34,34,34);font-style:normal;font-weight:bold;">Done</button>
+            <button class="btn btn-primary btn-sm float-right" type="submit" style="background-color:#fcd85a;color:rgb(34,34,34);font-style:normal;font-weight:bold;">DONE</button>
             <p class="float-left" style="color:rgb(34,34,34);font-style:normal;">TOTAL ${total}</p>
         </div>
     </form>

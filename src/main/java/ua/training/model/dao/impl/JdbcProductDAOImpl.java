@@ -78,4 +78,20 @@ public class JdbcProductDAOImpl implements ProductDAO {
         ProductDAO dao = DAOFactory.getDaoFactory().getProductDAO();
         dao.getAll().forEach(System.out::println);
     }
+
+    @Override
+    public List<Product> getProductsByName(String name) {
+        List<Product> users = new ArrayList<>();
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.GET_PRODUCTS_BY_NAME)) {
+            preparedStatement.setString(1, name);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            ProductMapper mapper = new ProductMapper();
+            while (resultSet.next()) {
+                users.add(mapper.extractFromResultSet(resultSet));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return users;
+    }
 }
