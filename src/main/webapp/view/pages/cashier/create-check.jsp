@@ -1,3 +1,4 @@
+<%--@elvariable id="CryptoUtil" type="ua.training.model.dao.util.CryptoUtil"--%>
 <%@ include file="../../util/init.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -58,20 +59,24 @@
                 <tbody>
                 <c:set var="total" value="${0}"/>
                 <%--<jsp:useBean id="products" scope="request" type="java.util.List"/>--%>
+
                 <c:forEach var="product" items="${products}" varStatus="loop">
-                    <form method="post" action="/api/remove-from-check?productId=${product.id}">
                         <tr>
-                            <td><c:out value="${loop.index + 1}"/></td>
-                            <td><c:out value="${product.id}"/></td>
-                            <td><c:out value="${product.name}"/></td>
-                            <td><c:out value="${product.quantity}${product.productType == 'UNCOUNTABLE' ? ' kg' : ''}"/></td>
-                            <td><c:out value="${product.price/100.}"/></td>
-                            <c:if test="${role eq 'SENIOR_CASHIER'}">
-                                <td style="width: 32px;"><button class="btn btn-primary btn-sm float-right add-prod-btn" type="submit" style="background-color:#fcd85a;color:rgb(34,34,34);" onchange="submit()">REMOVE</button></td>
-                            </c:if>
+                            <%--<form method="post" action="${pageContext.request.contextPath}/api/remove-from-check?productId=${product.id}">--%>
+                                <div>
+                                    <td><c:out value="${loop.index + 1}"/></td>
+                                    <td><c:out value="${product.id}"/></td>
+                                    <td><c:out value="${product.name}"/></td>
+                                    <td><c:out value="${product.quantity}${product.productType == 'UNCOUNTABLE' ? ' kg' : ''}"/></td>
+                                    <td><c:out value="${product.price/100.}"/></td>
+                                    <c:if test="${role eq 'SENIOR_CASHIER'}">
+                                        <%--<td><div class="btn btn-primary btn-sm float-right add-prod-btn"><a href="/api/remove-from-check?productId=${product.id}">delete</a></div> </td>--%>
+                                        <td style="width: 32px;"><button class="btn btn-primary btn-sm float-right add-prod-btn" type="button" style="background-color:#fcd85a;color:rgb(34,34,34);" onclick="location.href='${pageContext.request.contextPath}/api/remove-from-check?productId=${product.id}'" ">REMOVE</button></td>
+                                    </c:if>
+                                </div>
+                            <%--</form>--%>
                             <c:set var="total" value="${total + product.quantity * product.price/100.}"/>
                         </tr>
-                    </form>
                 </c:forEach>
                 </tbody>
             </table>

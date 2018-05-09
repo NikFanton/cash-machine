@@ -1,4 +1,11 @@
 package ua.training.controller.command;
 
-public class Login {
+import javax.servlet.http.HttpServletRequest;
+
+public class Login implements Command {
+    @Override
+    public String execute(HttpServletRequest request) {
+        request.getSession();
+        return null;
+    }
 }

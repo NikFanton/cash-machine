@@ -27,7 +27,7 @@ public class Servlet extends HttpServlet {
         commands.put(CommandNames.CHECK_LIST, new CheckList(new CheckServiceImpl()));
         commands.put(CommandNames.REPORT, new Report());
         commands.put(CommandNames.ADD_PRODUCT, new AddProduct(new ProductServiceImpl()));
-        commands.put(CommandNames.REMOVE_PRODUCT_FROM_CHECK, new RemoveFromCheck());
+        commands.put(CommandNames.REMOVE_PRODUCT_FROM_CHECK, new RemoveProductFromCheck());
         commands.put(CommandNames.SAVE_CHECK, new SaveCheck(new CheckServiceImpl(), new EmployeeServiceImpl()));
         commands.put(CommandNames.CANCEL_CHECK, new CancelCheck(new CheckServiceImpl()));
         commands.put(CommandNames.FIND_PRODUCT_FORM, new FindProductForm());

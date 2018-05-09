@@ -20,6 +20,7 @@ public class ProductsHolder {
     }
 
     public static void removeProduct(Long id) {
+        System.out.println("REMOVE PRODUCT");
         products.remove(id);
     }
 
