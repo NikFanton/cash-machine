@@ -50,15 +50,13 @@ public class Employee implements Entity<Long> {
         if (this == o) return true;
         if (!(o instanceof Employee)) return false;
         Employee employee = (Employee) o;
-        return Objects.equals(getId(), employee.getId()) &&
-                Objects.equals(getFirstName(), employee.getFirstName()) &&
+        return Objects.equals(getFirstName(), employee.getFirstName()) &&
                 Objects.equals(getLastName(), employee.getLastName());
     }
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(getId(), getFirstName(), getLastName());
+        return Objects.hash(getFirstName(), getLastName());
     }
 
     @Override

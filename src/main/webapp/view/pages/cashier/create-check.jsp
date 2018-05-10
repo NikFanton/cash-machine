@@ -1,4 +1,4 @@
-<%--@elvariable id="CryptoUtil" type="ua.training.model.dao.util.CryptoUtil"--%>
+<%--@elvariable id="CryptoUtil" type="ua.training.model.util.CryptoUtil"--%>
 <%@ include file="../../util/init.jsp"%>
 <!DOCTYPE html>
 <html>
@@ -41,7 +41,7 @@
             </div>
         </form>
     </div>
-    <form method="post" action="/api/save-check">
+    <form method="post" action="${pageContext.request.contextPath}/api/save-check">
         <div class="table-responsive" style="font-family:Roboto, sans-serif;">
             <table class="table table-striped table-sm">
                 <thead>

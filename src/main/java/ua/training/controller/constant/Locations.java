@@ -1,6 +1,6 @@
 package ua.training.controller.constant;
 
-public interface CommandNames {
+public interface Locations {
     String LOGIN = "login";
     String LOGOUT = "logout";
     String LOGIN_FORM = "";
@@ -14,4 +14,5 @@ public interface CommandNames {
     String SAVE_CHECK = "save-check";
     String CANCEL_CHECK = "cancel-check";
     String EMPLOYEE_REGISTRATION_FORM = "register-employee-form";
+    String REDIRECT = "redirect:";
 }

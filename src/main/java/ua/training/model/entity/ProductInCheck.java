@@ -37,14 +37,13 @@ public class ProductInCheck extends Product {
         if (this == o) return true;
         if (!(o instanceof ProductInCheck)) return false;
         ProductInCheck product = (ProductInCheck) o;
-        return  Objects.equals(getId(), product.getId()) &&
-                Objects.equals(getName(), product.getName()) &&
+        return Objects.equals(getName(), product.getName()) &&
                 getProductType() == product.getProductType() &&
                 getProductInCheckType() == product.getProductInCheckType();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getProductType());
+        return Objects.hash(getName(), getProductType());
     }
 }

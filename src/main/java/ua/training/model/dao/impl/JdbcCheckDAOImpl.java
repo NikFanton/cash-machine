@@ -32,6 +32,7 @@ public class JdbcCheckDAOImpl implements CheckDAO {
             preparedStatement.setInt(1, check.getCashPayment().intValue());
             preparedStatement.setInt(2, check.getCashlessPayment().intValue());
             preparedStatement.setLong(3, check.getEmployee().getId());
+            preparedStatement.setString(4, String.valueOf(check.getCheckType()));
             preparedStatement.executeUpdate();
             for (ProductInCheck product : check.getProductsInCheck()) {
                 addProductToCheckStatement.setLong(1, product.getId());

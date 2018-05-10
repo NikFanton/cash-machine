@@ -6,6 +6,7 @@ import lombok.Setter;
 import ua.training.model.entity.enums.CheckManipulationType;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -30,6 +31,23 @@ public class CheckManipulation implements Entity<Long> {
         this.checkManipulationType = checkManipulationType;
         this.checkId = checkId;
         this.product = product;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CheckManipulation)) return false;
+        CheckManipulation that = (CheckManipulation) o;
+        return Objects.equals(getEmployee(), that.getEmployee()) &&
+                Objects.equals(getDateTime(), that.getDateTime()) &&
+                getCheckManipulationType() == that.getCheckManipulationType() &&
+                Objects.equals(getCheckId(), that.getCheckId()) &&
+                Objects.equals(getProduct(), that.getProduct());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getEmployee(), getDateTime(), getCheckManipulationType(), getCheckId(), getProduct());
     }
 
     @Override

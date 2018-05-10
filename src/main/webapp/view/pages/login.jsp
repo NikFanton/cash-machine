@@ -22,7 +22,7 @@
 
 <body style="background-color:rgba(252,216,90,0.31);">
 <div class="login-clean" style="background-color:rgba(252,216,90,0);">
-    <form method="post" action="${pageContext.request.contextPath}/api/">
+    <form method="post" action="${pageContext.request.contextPath}/api/login">
         <div class="illustration"><i class="fa fa-user-circle" style="color:#fcd85a;"></i>
             <h1 class="text-center" style="font-family:Montserrat, sans-serif;font-size:33px;color:#505e6c;">Cash Machine</h1>
         </div>

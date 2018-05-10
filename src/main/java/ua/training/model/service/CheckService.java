@@ -1,6 +1,5 @@
 package ua.training.model.service;
 
-import ua.training.model.dao.CheckDAO;
 import ua.training.model.entity.Check;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package ua.training.controller.command;
 
-import ua.training.controller.constant.CommandNames;
+import ua.training.controller.constant.Locations;
 import ua.training.controller.constant.Pages;
 import ua.training.controller.util.ProductsHolder;
 import ua.training.model.entity.Product;
@@ -29,6 +29,6 @@ public class AddProduct implements Command {
         } else {
             System.out.println("Not matches");
         }
-        return Pages.REDIRECT + CommandNames.CREATE_CHECK_FORM;
+        return Locations.REDIRECT + Locations.CREATE_CHECK_FORM;
     }
 }

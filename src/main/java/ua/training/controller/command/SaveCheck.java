@@ -1,15 +1,15 @@
 package ua.training.controller.command;
 
-import ua.training.controller.constant.CommandNames;
+import ua.training.controller.constant.Locations;
 import ua.training.controller.constant.Pages;
 import ua.training.controller.util.ProductsHolder;
 import ua.training.model.entity.Check;
 import ua.training.model.entity.Employee;
 import ua.training.model.entity.ProductInCheck;
+import ua.training.model.entity.enums.CheckType;
+import ua.training.model.exception.NoSuchResultFromDataBaseException;
 import ua.training.model.service.CheckService;
 import ua.training.model.service.EmployeeService;
-import ua.training.model.service.impl.CheckServiceImpl;
-import ua.training.model.service.impl.EmployeeServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -31,15 +31,22 @@ public class SaveCheck implements Command {
 //        TODO Get payments information
         HttpSession session = request.getSession();
         List<ProductInCheck> productsInCheck = getListOfProducts();
-        Employee employee = employeeService.getEmployee(String.valueOf(session.getAttribute("login")));
+        productsInCheck.forEach(System.out::println);
+        Employee employee = null;
+        try {
+            employee = employeeService.getEmployee(String.valueOf(session.getServletContext().getAttribute("login")));
+        } catch (NoSuchResultFromDataBaseException e) {
+            e.printStackTrace();
+        }
         checkService.saveCheck(Check.builder()
                                     .setCashlessPayment(BigInteger.valueOf(0))
                                     .setCashPayment(BigInteger.valueOf(0))
                                     .setEmployee(employee)
                                     .setProductsInCheck(productsInCheck)
+                                    .setCheckType((ProductsHolder.IsAltered()) ? CheckType.ALTERED : CheckType.NORMAL)
                                     .build());
         ProductsHolder.clear();
-        return Pages.REDIRECT + CommandNames.CREATE_CHECK_FORM;
+        return Locations.REDIRECT + Locations.CREATE_CHECK_FORM;
     }
 
     private List<ProductInCheck> getListOfProducts() {

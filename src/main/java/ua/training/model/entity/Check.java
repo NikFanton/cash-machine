@@ -83,8 +83,7 @@ public class Check implements Entity<Long> {
         if (this == o) return true;
         if (!(o instanceof Check)) return false;
         Check check = (Check) o;
-        return Objects.equals(getId(), check.getId()) &&
-                Objects.equals(getDateTime(), check.getDateTime()) &&
+        return Objects.equals(getDateTime(), check.getDateTime()) &&
                 Objects.equals(getCashPayment(), check.getCashPayment()) &&
                 Objects.equals(getCashlessPayment(), check.getCashlessPayment()) &&
                 Objects.equals(getEmployee(), check.getEmployee());
@@ -92,7 +91,7 @@ public class Check implements Entity<Long> {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getDateTime(), getCashPayment(), getCashlessPayment(), getEmployee());
+        return Objects.hash(getDateTime(), getCashPayment(), getCashlessPayment(), getEmployee());
     }
 
     @Override

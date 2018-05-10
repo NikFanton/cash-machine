@@ -14,14 +14,14 @@ public class ProductsHolder {
     private static final String REGEX_UNCOUNTABLE = "[0-9]{1,10}((\\.)[0-9]{1,10})?";
 
     private static Map<Long, Product> products = new ConcurrentHashMap<>();
-
+    private static boolean isAltered = false;
     public static Map<Long, Product> getProductsInCheck() {
         return products;
     }
 
     public static void removeProduct(Long id) {
-        System.out.println("REMOVE PRODUCT");
         products.remove(id);
+        isAltered = true;
     }
 
     public static void addProduct(Product product, String quantity) {
@@ -46,5 +46,10 @@ public class ProductsHolder {
 
     public static void clear() {
         products.clear();
+        isAltered = false;
+    }
+
+    public static boolean IsAltered() {
+        return ProductsHolder.isAltered;
     }
 }

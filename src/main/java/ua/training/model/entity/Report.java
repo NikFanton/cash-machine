@@ -2,6 +2,7 @@ package ua.training.model.entity;
 
 import java.math.BigInteger;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class Report implements Entity<Long> {
     private Long id;
@@ -157,5 +158,21 @@ public class Report implements Entity<Long> {
                 ", canceledChecksCount=" + canceledChecksCount +
                 ", dateTime=" + dateTime +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Report)) return false;
+        Report report = (Report) o;
+        return Objects.equals(getMoneyPutInCashMachine(), report.getMoneyPutInCashMachine()) &&
+                Objects.equals(getSeizedMoney(), report.getSeizedMoney()) &&
+                Objects.equals(getDateTime(), report.getDateTime());
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(getMoneyPutInCashMachine(), getSeizedMoney(), getDateTime());
     }
 }

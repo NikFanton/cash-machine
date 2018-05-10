@@ -1,6 +1,5 @@
 package ua.training.model.service;
 
-import ua.training.model.dao.ProductDAO;
 import ua.training.model.entity.Product;
 
 import java.util.List;

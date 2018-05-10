@@ -38,7 +38,7 @@
             <div class="form-group"><input class="form-control" type="text" name="login" placeholder="Price"></div>
             <div class="form-group"><select class="form-control" style="margin-left:10px;"><option value="countable" selected="">Countable</option><option value="uncountable">Uncountable</option></select></div>
             <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password"></div>
-            <div class="form-group"><button class="btn btn-primary btn-block btn-login" type="submit" style="background-color:#fcd85a;font-weight:normal;font-style:normal;font-size:16px;">SIGN UP</button></div>
+            <div class="form-group"><button class="btn btn-primary btn-block btn-login" type="submit" style="background-color:#fcd85a;font-weight:normal;font-style:normal;font-size:16px;">ADD PRODUCT</button></div>
         </form>
     </div>
 </div>

@@ -1,14 +1,9 @@
 package ua.training.model.service.impl;
 
 import ua.training.model.dao.CheckDAO;
-import ua.training.model.dao.datasource.ConnectionPoolHolder;
-import ua.training.model.dao.factory.DAOFactory;
 import ua.training.model.entity.Check;
 import ua.training.model.service.CheckService;
-import ua.training.model.service.Service;
 
-import java.math.BigInteger;
-import java.sql.Connection;
 import java.util.List;
 
 public class CheckServiceImpl implements CheckService {

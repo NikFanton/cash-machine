@@ -1,6 +1,6 @@
 package ua.training.controller.command;
 
-import ua.training.controller.constant.CommandNames;
+import ua.training.controller.constant.Locations;
 import ua.training.controller.constant.Pages;
 import ua.training.controller.util.ProductsHolder;
 
@@ -13,6 +13,6 @@ public class RemoveProductFromCheck implements Command {
         Long productId = Long.valueOf(request.getParameter("productId"));
         System.out.println("productId = [" + productId + "]");
         ProductsHolder.removeProduct(productId);
-        return Pages.REDIRECT + CommandNames.CREATE_CHECK_FORM;
+        return Locations.REDIRECT + Locations.CREATE_CHECK_FORM;
     }
 }

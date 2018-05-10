@@ -1,6 +1,6 @@
 package ua.training.controller.command;
 
-import ua.training.controller.constant.CommandNames;
+import ua.training.controller.constant.Locations;
 import ua.training.controller.constant.Pages;
 import ua.training.model.service.CheckService;
 
@@ -17,6 +17,6 @@ public class CancelCheck implements Command {
     public String execute(HttpServletRequest request) {
         Long id = Long.valueOf(request.getParameter("checkId"));
         checkService.cancelCheck(id);
-        return Pages.REDIRECT + CommandNames.CHECK_LIST;
+        return Locations.REDIRECT + Locations.CHECK_LIST;
     }
 }

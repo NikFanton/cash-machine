@@ -22,9 +22,7 @@
                             </form>
                         </label>
                     </li>
-                    <li class="nav-item" role="presentation">
-                        ${login}
-                    </li>
+                    <li class="nav-item" role="presentation"><div class="nav-link active" style="color:rgb(51,51,51);">${firstName}</div></li>
                     <li class="nav-item" role="presentation"><a class="nav-link active" href="api/logout" style="color:rgb(51,51,51);"><fmt:message key="nav.logout"/></a></li>
                 </ul>
             </div>

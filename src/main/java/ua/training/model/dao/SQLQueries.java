@@ -68,7 +68,7 @@ public interface SQLQueries {
 
     String ADD_EMPLOYEE = "INSERT INTO employee (first_name, last_name, login, password, role) VALUES (?, ?, ?, ?, ?)";
 
-    String ADD_CHECK = "INSERT INTO `check` (cash_payments, cashless_payments, employee_id) VALUES (?, ?, ?)";
+    String ADD_CHECK = "INSERT INTO `check` (cash_payments, cashless_payments, employee_id, check_type) VALUES (?, ?, ?, ?)";
 
     String ADD_PRODUCT_TO_LATEST_CHECK = "INSERT INTO check_product (check_id, product_id, quantity, price) VALUES (last_insert_id(), ?, ?, ?)";
 

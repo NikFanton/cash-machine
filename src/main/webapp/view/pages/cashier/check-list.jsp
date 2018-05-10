@@ -145,7 +145,12 @@
                                             </h6>
                                         </div>
                                         <p style="margin-bottom: 6px;font-size:16px;margin-top: 6px;" <c:out value="${check.checkType != 'CANCELED' ? 'hidden' : ''}"/>>Returned ${total}</p>
-                                        <a class="card-link" href="${pageContext.request.contextPath}cancel-check?checkId=${check.id}" style="font-size:16px;" <c:out value="${check.checkType == 'CANCELED' ? 'hidden' : ''}"/>>cancel check</a>
+                                        <c:if test="${role ne 'SENIOR_CASHIER'}">
+                                            <p style="margin-bottom: 6px;font-size:16px;margin-top: 6px;" <c:out value="${check.checkType == 'CANCELED' ? 'hidden' : ''}"/>>&#8203;</p>
+                                        </c:if>
+                                        <c:if test="${role eq 'SENIOR_CASHIER'}">
+                                            <a class="card-link" href="${pageContext.request.contextPath}cancel-check?checkId=${check.id}" style="font-size:16px;" <c:out value="${check.checkType == 'CANCELED' ? 'hidden' : ''}"/>>cancel check</a>
+                                        </c:if>
                                         <%--<div class="form-group" style="margin-left: 0px;margin-bottom: 0px;">--%>
                                             <%--<button class="btn btn-primary btn-block btn-login" type="submit" style="background-color:#fcd85a;font-weight:normal;font-style:normal;font-size:16px;margin-top: 0px;margin-bottom: 10px;padding-top: 5px;padding-bottom: 5px; border-color:#fcd85a;">cancel check</button>--%>
                                         <%--</div>--%>
