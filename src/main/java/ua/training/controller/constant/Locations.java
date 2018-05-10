@@ -1,7 +1,9 @@
 package ua.training.controller.constant;
 
 public interface CommandNames {
+    String LOGIN = "login";
     String LOGOUT = "logout";
+    String LOGIN_FORM = "";
     String CREATE_CHECK_FORM = "create-check";
     String FIND_PRODUCT_FORM = "find-product-form";
     String FIND_PRODUCT = "find-product";
@@ -11,4 +13,5 @@ public interface CommandNames {
     String REMOVE_PRODUCT_FROM_CHECK = "remove-from-check";
     String SAVE_CHECK = "save-check";
     String CANCEL_CHECK = "cancel-check";
+    String EMPLOYEE_REGISTRATION_FORM = "register-employee-form";
 }
