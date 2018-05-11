@@ -1,6 +1,7 @@
 package ua.training.model.service.impl;
 
 import ua.training.model.dao.ProductDAO;
+import ua.training.model.dao.factory.DAOFactory;
 import ua.training.model.entity.Product;
 import ua.training.model.service.ProductService;
 
@@ -24,5 +25,14 @@ public class ProductServiceImpl implements ProductService {
             e.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public void addProduct(Product product) {
+        try(ProductDAO dao = DAOFactory.getDaoFactory().getProductDAO()) {
+            dao.add(product);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

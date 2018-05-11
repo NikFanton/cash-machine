@@ -10,7 +10,6 @@ import ua.training.model.entity.Employee;
 import ua.training.model.entity.Product;
 import ua.training.model.entity.ProductInCheck;
 
-import java.math.BigInteger;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -137,6 +136,35 @@ public class JdbcCheckDAOImpl implements CheckDAO {
     }
 
     @Override
+    public List<Check> getPartOfAll(int numberOfEntries, int partNumber) {
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.GET_PART_OF_ALL_CHECKS)) {
+            preparedStatement.setInt(1, numberOfEntries);
+            preparedStatement.setInt(2, numberOfEntries * (partNumber - 1));
+            ResultSet resultSet = preparedStatement.executeQuery();
+            List<Check> result = new ArrayList<>();
+            Map<Long, Check> checks = extractCheckWithProducts(resultSet);
+            checks.keySet().forEach(key -> result.add(checks.get(key)));
+            return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public Integer getNumberOfChecks() {
+        try (Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(SQLQueries.GET_NUMBER_OF_CHECKS)) {
+            if (resultSet.first()) {
+                return resultSet.getInt("count");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public void close(){
         try {
             connection.close();
@@ -167,6 +195,7 @@ public class JdbcCheckDAOImpl implements CheckDAO {
 //        dao.add(check);
 //        Check check2 = dao.getById(1L);
 //        dao.addProductToCheck(check2.getId(), product2);
-        dao.getAll().forEach(System.out::println);
+//        dao.getAll().forEach(System.out::println);
+        dao.getPartOfAll(9, 1).forEach(System.out::println);
     }
 }

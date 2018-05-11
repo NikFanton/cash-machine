@@ -31,13 +31,14 @@
 <div class="register-photo" style="background-color:rgba(255,255,255,0.21);">
     <div class="form-container">
         <div class="product-image-holder"></div>
-        <form method="post" style="background-color:rgba(255,255,255,0.76);">
+        <form method="post" action="${pageContext.request.contextPath}/api/add-product-to-storage" style="background-color:rgba(255,255,255,0.76);">
             <h2 class="text-center"><strong>ADD NEW PRODUCT</strong></h2>
-            <div class="form-group"><input class="form-control" type="text" name="login" placeholder="Product name"></div>
-            <div class="form-group"><input class="form-control" type="text" name="login" placeholder="Quantity"></div>
-            <div class="form-group"><input class="form-control" type="text" name="login" placeholder="Price"></div>
-            <div class="form-group"><select class="form-control" style="margin-left:10px;"><option value="countable" selected="">Countable</option><option value="uncountable">Uncountable</option></select></div>
-            <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password"></div>
+            <div class="form-group"><input class="form-control" type="text" name="productName" placeholder="Product name" required></div>
+            <div class="form-group"><input class="form-control" type="text" name="productQuantity" placeholder="Quantity" required></div>
+            <div class="form-group"><input class="form-control" type="text" name="productPrice" placeholder="Price" required></div>
+            <div class="form-group"><select class="form-control" name="productType" style="margin-left:10px;" required>
+                <option value="COUNTABLE" selected>Countable</option>
+                <option value="UNCOUNTABLE">Uncountable</option></select></div>
             <div class="form-group"><button class="btn btn-primary btn-block btn-login" type="submit" style="background-color:#fcd85a;font-weight:normal;font-style:normal;font-size:16px;">ADD PRODUCT</button></div>
         </form>
     </div>

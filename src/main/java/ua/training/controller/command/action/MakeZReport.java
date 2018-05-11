@@ -6,17 +6,17 @@ import ua.training.model.service.ReportService;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class MakeReport implements Command {
+public class MakeZReport implements Command {
 
     ReportService reportService;
 
-    public MakeReport(ReportService reportService) {
+    public MakeZReport(ReportService reportService) {
         this.reportService = reportService;
     }
 
     @Override
     public String execute(HttpServletRequest request) {
-
+//        TODO make Z-Report
         return Locations.REDIRECT + Locations.REPORT;
     }
 }

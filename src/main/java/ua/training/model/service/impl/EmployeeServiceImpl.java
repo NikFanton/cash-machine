@@ -1,6 +1,7 @@
 package ua.training.model.service.impl;
 
 import ua.training.model.dao.EmployeeDAO;
+import ua.training.model.dao.factory.DAOFactory;
 import ua.training.model.entity.Employee;
 import ua.training.model.exception.NoSuchResultFromDataBaseException;
 import ua.training.model.service.EmployeeService;
@@ -36,6 +37,16 @@ public class EmployeeServiceImpl implements EmployeeService {
                     .orElseThrow(NoSuchResultFromDataBaseException::new);
         } catch (Exception e) {
             throw new NoSuchResultFromDataBaseException();
+        }
+    }
+
+    @Override
+    public void registerEmployee(Employee employee) {
+        try (EmployeeDAO dao = DAOFactory.getDaoFactory().getEmployeeDAO()) {
+            employee.setPassword(CryptoUtil.hashPassword(employee.getPassword()));
+            dao.add(employee);
+        } catch (Exception e) {
+            throw new RuntimeException();
         }
     }
 }

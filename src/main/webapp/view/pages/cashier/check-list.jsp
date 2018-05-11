@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="/view/assets/css/Login-Form-Clean.css">
     <link rel="stylesheet" href="/view/assets/css/styles.css">
     <link rel="stylesheet" href="/view/assets/css/Check.css">
+
 </head>
 
 <body>
@@ -34,7 +35,7 @@
 
 <div class="features-boxed" style="margin-top:35px;background-color:rgba(252,216,90,0);">
     <div class="container">
-        <div class="row justify-content-center features" style="padding-top: 10px;">
+        <div class="row justify-content-center features" style="padding-top: 10px; padding-bottom: 10px;">
 
             <jsp:useBean id="checks" scope="request" type="java.util.List"/>
             <c:set var="length" value="${fn:length(checks)}"/>
@@ -165,17 +166,23 @@
             </c:forEach>
 
         </div>
-        <nav>
-            <ul class="pagination">
-                <li class="page-item"><a class="page-link" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                <li class="page-item"><a class="page-link">1</a></li>
-                <li class="page-item"><a class="page-link">2</a></li>
-                <li class="page-item"><a class="page-link">3</a></li>
-                <li class="page-item"><a class="page-link">4</a></li>
-                <li class="page-item"><a class="page-link">5</a></li>
-                <li class="page-item"><a class="page-link" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-            </ul>
-        </nav>
+        <div style="align-content: center">
+            <nav>
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" aria-label="Previous" href="${pageContext.request.contextPath}/api/check-list?page=1"><span style="color: #222222;" aria-hidden="true">«</span></a></li>
+
+                    <c:set var="num_page_buttons" value="3"></c:set>
+
+                    <c:forEach var="i" begin="${(page - num_page_buttons < 1) ? 1 : page - num_page_buttons}" end="${(page + num_page_buttons > maxPageNumber) ? maxPageNumber : page + num_page_buttons}" step="1">
+                        <%--<li class="page-item active"><a class="page-link">1<></a></li>--%>
+                        <li class="page-item <c:out value="${i eq page ? 'active' : ''}"/>">
+                            <a class="page-link" style="<c:out value="${i eq page ? 'background-color: #fcd85a;border-color: #ffc107;' : 'color:  #000;'}"/>" href="${pageContext.request.contextPath}/api/check-list?page=${i}"> ${i} </a>
+                        </li>
+                    </c:forEach>
+                    <li class="page-item"><a class="page-link" aria-label="Next" href="${pageContext.request.contextPath}/api/check-list?page=${maxPageNumber}"><span style="color: #222222;" aria-hidden="true">»</span></a></li>
+                </ul>
+            </nav>
+        </div>
     </div>
 </div>
 <script src="../../assets/js/jquery.min.js"></script>

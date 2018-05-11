@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>cash-machine</title>
+    <title>Cash Machine</title>
     <link rel="stylesheet" href="/view/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/view/assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="/view/assets/fonts/ionicons.min.css">

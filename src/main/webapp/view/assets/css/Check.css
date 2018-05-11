@@ -1,5 +1,10 @@
 body {font-family: Arial, Helvetica, sans-serif;}
 
+.active-page-button {
+    background-color: #fcd85a;
+    border-color: #ffc107;
+}
+
 /* Full-width input fields */
 input[type=text], input[type=password] {
     width: 100%;

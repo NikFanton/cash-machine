@@ -10,6 +10,6 @@ public class CreateCheckForm implements Command {
     @Override
     public String execute(HttpServletRequest request) {
         request.setAttribute("products", ProductsHolder.getList());
-        return Pages.CREATE_CHECK;
+        return Pages.CREATE_CHECK_FORM;
     }
 }

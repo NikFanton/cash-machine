@@ -29,7 +29,7 @@ public class AccessFilter implements Filter {
         String action = req.getRequestURI().replaceAll(".*/api/", "");
         System.out.println("access role = [" + role + "]");
         System.out.println("access action = [" + action + "]");
-        if (role.getAccessibleActions().contains(action)) {
+        if (role.getAccessibleLocations().contains(action)) {
             System.out.println("access status = [YES]");
             chain.doFilter(request, response);
         } else {

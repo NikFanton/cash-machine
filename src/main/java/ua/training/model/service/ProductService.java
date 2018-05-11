@@ -7,4 +7,5 @@ import java.util.List;
 public interface ProductService extends Service {
     Product getProductById(Long id);
     List<Product> getProductsByName(String name);
+    void addProduct(Product product);
 }

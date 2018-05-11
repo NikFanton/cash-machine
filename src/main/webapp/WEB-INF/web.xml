@@ -8,18 +8,8 @@
          version="2.5">
   <display-name>Archetype Created Web Application</display-name>
 
-  <!--<filter>-->
-    <!--<filter-name>AuthorisationFilter</filter-name>-->
-    <!--<filter-class>ua.training.controller.filter.AuthorisationFilter</filter-class>-->
-  <!--</filter>-->
-
-  <!--<filter-mapping>-->
-    <!--<filter-name>AuthorisationFilter</filter-name>-->
-    <!--<url-pattern>/api/</url-pattern>-->
-  <!--</filter-mapping>-->
-
   <welcome-file-list>
-    <welcome-file>/view/pages/index.html</welcome-file>
+    <welcome-file>/view/pages/index.jsp</welcome-file>
   </welcome-file-list>
 
   <error-page>

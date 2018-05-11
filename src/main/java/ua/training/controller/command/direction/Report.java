@@ -1,4 +1,4 @@
-package ua.training.controller.command.action;
+package ua.training.controller.command.direction;
 
 import ua.training.controller.command.Command;
 import ua.training.controller.constant.Pages;

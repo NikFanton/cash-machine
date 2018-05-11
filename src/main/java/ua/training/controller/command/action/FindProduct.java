@@ -1,5 +1,6 @@
-package ua.training.controller.command;
+package ua.training.controller.command.action;
 
+import ua.training.controller.command.Command;
 import ua.training.controller.constant.Pages;
 import ua.training.model.entity.Product;
 import ua.training.model.service.ProductService;
@@ -19,6 +20,7 @@ public class FindProduct implements Command {
     @Override
     public String execute(HttpServletRequest request) {
         String name = request.getParameter("name");
+        System.out.println("name = [" + name + "]");
         if (name.matches(REGEX_NAME)) {
             List<Product> products = productService.getProductsByName(name);
             request.setAttribute("products", products);

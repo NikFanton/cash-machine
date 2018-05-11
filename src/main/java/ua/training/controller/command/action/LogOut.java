@@ -1,5 +1,6 @@
-package ua.training.controller.command;
+package ua.training.controller.command.action;
 
+import ua.training.controller.command.Command;
 import ua.training.controller.constant.Locations;
 import ua.training.controller.constant.Pages;
 

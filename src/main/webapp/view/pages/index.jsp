@@ -5,7 +5,6 @@
     <title>Cash Machine</title>
 </head>
 <body>
-    <a class="nav-link active" href="/api/" style="color:rgb(51,51,51);">Go to</a>
-    <script>window.location.replace('http://localhost:8084/api/');</script>
+    <script>window.location.replace('${pageContext.request.contextPath}/api/');</script>
 </body>
 </html>

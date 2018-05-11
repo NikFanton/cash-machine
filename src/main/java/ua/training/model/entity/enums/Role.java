@@ -14,39 +14,48 @@ public enum Role {
 
     ADMIN(Locations.REDIRECT + Locations.EMPLOYEE_REGISTRATION_FORM, Arrays.asList(new String[]{
                     Locations.EMPLOYEE_REGISTRATION_FORM,
+                    Locations.EMPLOYEE_REGISTRATION,
+                    Locations.ADMIN_INFO,
                     Locations.LOGOUT})),
 
     CASHIER(Locations.REDIRECT + Locations.CREATE_CHECK_FORM, Arrays.asList(new String[]{
                     Locations.CREATE_CHECK_FORM,
-                    Locations.SAVE_CHECK,
+                    Locations.CREATE_CHECK,
                     Locations.ADD_PRODUCT,
                     Locations.CHECK_LIST,
                     Locations.FIND_PRODUCT_FORM,
                     Locations.FIND_PRODUCT,
                     Locations.REPORT,
+                    Locations.MAKE_X_REPORT,
+                    Locations.MAKE_Z_REPORT,
                     Locations.LOGOUT})),
 
     SENIOR_CASHIER(Locations.REDIRECT + Locations.CREATE_CHECK_FORM, Arrays.asList(new String[]{
                     Locations.CREATE_CHECK_FORM,
-                    Locations.SAVE_CHECK,
+                    Locations.CREATE_CHECK,
                     Locations.ADD_PRODUCT,
                     Locations.CHECK_LIST,
                     Locations.FIND_PRODUCT_FORM,
                     Locations.FIND_PRODUCT,
                     Locations.REPORT,
+                    Locations.MAKE_X_REPORT,
+                    Locations.MAKE_Z_REPORT,
                     Locations.REMOVE_PRODUCT_FROM_CHECK,
                     Locations.CANCEL_CHECK,
                     Locations.LOGOUT})),
 
-    MERCHANT(Pages.ADD_PRODUCT_TO_STORAGE,Arrays.asList(new String[]{
+    MERCHANT(Locations.REDIRECT + Locations.ADD_PRODUCT_TO_STORAGE_FORM,Arrays.asList(new String[]{
+                    Locations.ADD_PRODUCT_TO_STORAGE_FORM,
+                    Locations.ADD_PRODUCT_TO_STORAGE,
+                    Locations.MERCHANT_INFO,
                     Locations.LOGOUT}));
 
     private String startPage;
-    private List<String> accessibleActions;
+    private List<String> accessibleLocations;
 
-    Role(String startPage, List<String> accessibleActions) {
+    Role(String startPage, List<String> accessibleLocations) {
         this.startPage = startPage;
-        this.accessibleActions = accessibleActions;
+        this.accessibleLocations = accessibleLocations;
     }
 
     public String getStartPage() {
@@ -57,11 +66,11 @@ public enum Role {
         this.startPage = startPage;
     }
 
-    public List<String> getAccessibleActions() {
-        return accessibleActions;
+    public List<String> getAccessibleLocations() {
+        return accessibleLocations;
     }
 
-    public void setAccessibleActions(List<String> accessibleActions) {
-        this.accessibleActions = accessibleActions;
+    public void setAccessibleLocations(List<String> accessibleLocations) {
+        this.accessibleLocations = accessibleLocations;
     }
 }
