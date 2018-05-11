@@ -17,11 +17,11 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SaveCheck implements Command {
+public class CreateCheck implements Command {
     private CheckService checkService;
     private EmployeeService employeeService;
 
-    public SaveCheck(CheckService checkService, EmployeeService employeeService) {
+    public CreateCheck(CheckService checkService, EmployeeService employeeService) {
         this.checkService = checkService;
         this.employeeService = employeeService;
     }
