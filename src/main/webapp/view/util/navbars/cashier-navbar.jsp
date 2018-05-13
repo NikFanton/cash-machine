@@ -1,4 +1,4 @@
-<%@include file="../init.jsp"%>
+<%@include file="init.jsp"%>
 
 <section id="hero">
     <nav class="navbar navbar-light navbar-expand-md fixed-top" style="background-color:#fcd85a;">

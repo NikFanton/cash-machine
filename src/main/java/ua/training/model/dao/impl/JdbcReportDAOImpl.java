@@ -7,7 +7,6 @@ import ua.training.model.dao.mapper.ReportMapper;
 import ua.training.model.entity.Report;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,19 +21,7 @@ public class JdbcReportDAOImpl implements ReportDAO {
 
     @Override
     public void add(Report report) {
-        try (PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.ADD_REPORT)) {
-            preparedStatement.setLong(1, report.getMoneyPutInCashMachine().longValue());
-            preparedStatement.setLong(2, report.getSeizedMoney().longValue());
-            preparedStatement.setLong(3, report.getCashPayments().longValue());
-            preparedStatement.setLong(4, report.getCashlessPayments().longValue());
-            preparedStatement.setLong(5, report.getCanceledCashPayments().longValue());
-            preparedStatement.setLong(6, report.getCanceledCashlessPayments().longValue());
-            preparedStatement.setInt(7, report.getCanceledChecksCount());
-            preparedStatement.setInt(8, report.getChecksCount());
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+
     }
 
     @Override

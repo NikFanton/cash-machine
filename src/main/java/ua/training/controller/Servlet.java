@@ -2,12 +2,12 @@ package ua.training.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.eclipse.jdt.internal.compiler.lookup.SourceTypeBinding;
 import ua.training.controller.command.*;
 import ua.training.controller.command.action.*;
 import ua.training.controller.command.direction.*;
 import ua.training.controller.constant.Locations;
 import ua.training.controller.constant.Pages;
+import ua.training.model.dao.factory.DAOFactory;
 import ua.training.model.service.impl.CheckServiceImpl;
 import ua.training.model.service.impl.EmployeeServiceImpl;
 import ua.training.model.service.impl.ProductServiceImpl;
@@ -19,8 +19,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -35,8 +33,8 @@ public class Servlet extends HttpServlet {
         commands.put(Locations.LOGOUT, new LogOut());
         commands.put(Locations.CREATE_CHECK_FORM, new CreateCheckForm());
         commands.put(Locations.CHECK_LIST, new CheckList(new CheckServiceImpl()));
-        commands.put(Locations.REPORT, new MakeReport(new ReportServiceImpl()));
-        commands.put(Locations.MAKE_X_REPORT, new MakeXReport(new ReportServiceImpl()));
+        commands.put(Locations.REPORT, new Report());
+        commands.put(Locations.MAKE_X_REPORT, new MakeXReport());
         commands.put(Locations.MAKE_Z_REPORT, new MakeZReport(new ReportServiceImpl()));
         commands.put(Locations.ADD_PRODUCT, new AddProduct(new ProductServiceImpl()));
         commands.put(Locations.REMOVE_PRODUCT_FROM_CHECK, new RemoveProductFromCheck());
@@ -65,7 +63,6 @@ public class Servlet extends HttpServlet {
     private void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         System.out.println("SERVLET");
-        logger.info("INIT");
         String path = request.getRequestURI();
         System.out.println(path);
         path = path.replaceAll(".*/api/", "");

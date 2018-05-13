@@ -39,10 +39,9 @@ public class CreateCheck implements Command {
         } catch (NoSuchResultFromDataBaseException e) {
             e.printStackTrace();
         }
-//        TODO make able to pay
         checkService.saveCheck(Check.builder()
-                                    .setCashlessPayment(BigInteger.valueOf(2000))
-                                    .setCashPayment(BigInteger.valueOf(10000))
+                                    .setCashlessPayment(BigInteger.valueOf(0))
+                                    .setCashPayment(BigInteger.valueOf(0))
                                     .setEmployee(employee)
                                     .setProductsInCheck(productsInCheck)
                                     .setCheckType((ProductsHolder.IsAltered()) ? CheckType.ALTERED : CheckType.NORMAL)

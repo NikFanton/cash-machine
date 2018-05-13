@@ -8,15 +8,6 @@
          version="2.5">
   <display-name>Archetype Created Web Application</display-name>
 
-  <!--<servlet>-->
-    <!--<servlet-name>Servlet</servlet-name>-->
-    <!--<servlet-class>ua.training.controller.Servlet</servlet-class>-->
-  <!--</servlet>-->
-  <!--<servlet-mapping>-->
-    <!--<servlet-name>Servlet</servlet-name>-->
-    <!--<url-pattern>/api/*</url-pattern>-->
-  <!--</servlet-mapping>-->
-
   <welcome-file-list>
     <welcome-file>/view/pages/index.jsp</welcome-file>
   </welcome-file-list>

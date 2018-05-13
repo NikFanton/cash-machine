@@ -11,8 +11,10 @@ import ua.training.model.entity.Product;
 import ua.training.model.entity.ProductInCheck;
 
 import java.sql.*;
-import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class JdbcCheckDAOImpl implements CheckDAO {
     private Connection connection;
@@ -142,7 +144,6 @@ public class JdbcCheckDAOImpl implements CheckDAO {
             List<Check> result = new ArrayList<>();
             Map<Long, Check> checks = extractCheckWithProducts(resultSet);
             checks.keySet().forEach(key -> result.add(checks.get(key)));
-            result.sort(Comparator.comparingLong(Check::getId));
             return result;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -157,21 +158,6 @@ public class JdbcCheckDAOImpl implements CheckDAO {
             if (resultSet.first()) {
                 return resultSet.getInt("count");
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    @Override
-    public List<Check> getAllFromCertainDate(LocalDateTime dateTime) {
-        try (PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.GET_ALL_CHECKS_FROM_CERTAIN_DATE)) {
-            preparedStatement.setString(1, String.valueOf(dateTime));
-            ResultSet resultSet = preparedStatement.executeQuery();
-            List<Check> result = new ArrayList<>();
-            Map<Long, Check> checks = extractCheckWithProducts(resultSet);
-            checks.keySet().forEach(key -> result.add(checks.get(key)));
-            return result;
         } catch (SQLException e) {
             e.printStackTrace();
         }

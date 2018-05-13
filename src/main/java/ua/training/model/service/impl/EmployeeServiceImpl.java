@@ -42,7 +42,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public void registerEmployee(Employee employee) {
-        try (EmployeeDAO dao = daoFactory.getEmployeeDAO()) {
+        try (EmployeeDAO dao = DAOFactory.getDaoFactory().getEmployeeDAO()) {
             employee.setPassword(CryptoUtil.hashPassword(employee.getPassword()));
             dao.add(employee);
         } catch (Exception e) {

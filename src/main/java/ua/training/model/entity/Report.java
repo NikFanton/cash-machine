@@ -10,10 +10,8 @@ public class Report implements Entity<Long> {
     private BigInteger seizedMoney;
     private BigInteger cashPayments;
     private BigInteger cashlessPayments;
-    private BigInteger canceledCashPayments;
-    private BigInteger canceledCashlessPayments;
+    private BigInteger canceledPayments;
     private int canceledChecksCount = 0;
-    private int checksCount = 0;
     private LocalDateTime dateTime;
 
     public Long getId() {
@@ -56,6 +54,14 @@ public class Report implements Entity<Long> {
         this.cashlessPayments = cashlessPayments;
     }
 
+    public BigInteger getCanceledPayments() {
+        return canceledPayments;
+    }
+
+    public void setCanceledPayments(BigInteger canceledPayments) {
+        this.canceledPayments = canceledPayments;
+    }
+
     public int getCanceledChecksCount() {
         return canceledChecksCount;
     }
@@ -76,49 +82,18 @@ public class Report implements Entity<Long> {
         return new ReportBuilder();
     }
 
-    public BigInteger getCanceledCashPayments() {
-        return canceledCashPayments;
-    }
-
-    public void setCanceledCashPayments(BigInteger canceledCashPayments) {
-        this.canceledCashPayments = canceledCashPayments;
-    }
-
-    public BigInteger getCanceledCashlessPayments() {
-        return canceledCashlessPayments;
-    }
-
-    public void setCanceledCashlessPayments(BigInteger canceledCashlessPayments) {
-        this.canceledCashlessPayments = canceledCashlessPayments;
-    }
-
-    public int getChecksCount() {
-        return checksCount;
-    }
-
-    public void setChecksCount(int checksCount) {
-        this.checksCount = checksCount;
-    }
-
     public static final class ReportBuilder {
         private Long id;
         private BigInteger moneyPutInCashMachine;
         private BigInteger seizedMoney;
         private BigInteger cashPayments;
         private BigInteger cashlessPayments;
-        private BigInteger canceledCashPayments;
-        private BigInteger canceledCashlessPayments;
-        private int checksCount = 0;
+        private BigInteger canceledPayments;
         private int canceledChecksCount = 0;
         private LocalDateTime dateTime;
 
         public ReportBuilder setId(Long id) {
             this.id = id;
-            return this;
-        }
-
-        public ReportBuilder setChecksCount(int checksCount) {
-            this.checksCount = checksCount;
             return this;
         }
 
@@ -142,13 +117,8 @@ public class Report implements Entity<Long> {
             return this;
         }
 
-        public ReportBuilder setCanceledCashPayments(BigInteger canceledCashPayments) {
-            this.canceledCashPayments = canceledCashPayments;
-            return this;
-        }
-
-        public ReportBuilder setCanceledCashlessPayments(BigInteger canceledCashlessPayments) {
-            this.canceledCashlessPayments = canceledCashlessPayments;
+        public ReportBuilder setCanceledPayments(BigInteger canceledPayments) {
+            this.canceledPayments = canceledPayments;
             return this;
         }
 
@@ -169,10 +139,8 @@ public class Report implements Entity<Long> {
             report.setSeizedMoney(seizedMoney);
             report.setCashPayments(cashPayments);
             report.setCashlessPayments(cashlessPayments);
-            report.setCanceledCashPayments(canceledCashPayments);
-            report.setCanceledCashlessPayments(canceledCashlessPayments);
+            report.setCanceledPayments(canceledPayments);
             report.setCanceledChecksCount(canceledChecksCount);
-            report.setChecksCount(checksCount);
             report.setDateTime(dateTime);
             return report;
         }
@@ -186,9 +154,7 @@ public class Report implements Entity<Long> {
                 ", seizedMoney=" + seizedMoney +
                 ", cashPayments=" + cashPayments +
                 ", cashlessPayments=" + cashlessPayments +
-                ", canceledCashPayments=" + canceledCashPayments +
-                ", canceledCashlessPayments=" + canceledCashlessPayments +
-                ", checksCount=" + checksCount +
+                ", canceledPayments=" + canceledPayments +
                 ", canceledChecksCount=" + canceledChecksCount +
                 ", dateTime=" + dateTime +
                 '}';

@@ -27,7 +27,7 @@
 
 <body>
 
-<jsp:include page="../../util/navbars/cashier-navbar.jsp"/>
+<jsp:include page="../../util/cashier-navbar.jsp"/>
 
 <c:set var="green" value="#bae860;"/>
 <c:set var="yellow" value="#fcd85a;"/>
@@ -60,9 +60,6 @@
                                                         </tr>
                                                         <tr class="align-center">
                                                             <td colspan="3">Магазин "Продукти-234"</td>
-                                                        </tr>
-                                                        <tr class="align-center">
-                                                            <td colspan="3">м.Київ, вул. Хрещатик, 36</td>
                                                         </tr>
                                                         <tr class="align-center">
                                                             <td colspan="3">Вітаємо</td>

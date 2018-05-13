@@ -32,9 +32,6 @@ public class CheckList implements Command {
         }
         else {
             List<Check> checks = checkService.getPartOffAllChecks(CHECKS_PER_PAGE, pageNumber);
-//            System.out.println("------------------");
-//            checks.forEach(System.out::println);
-//            System.out.println("------------------");
             request.setAttribute("checks", checks);
             request.setAttribute("page", pageNumber);
             return Pages.CHECK_LIST;

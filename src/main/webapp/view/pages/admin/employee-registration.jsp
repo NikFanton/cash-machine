@@ -41,7 +41,7 @@
 
 <body style="background-color:rgba(252,216,90,0.31);">
 
-<jsp:include page="../../util/navbars/admin-navbar.jsp"/>
+<jsp:include page="../../util/admin-navbar.jsp"/>
 
 <div class="register-photo" style="background-color:rgba(255,255,255,0.21);">
     <div class="form-container">
