@@ -79,36 +79,48 @@
           <version>2.2</version>
       </dependency>
 
-      <dependency>
-          <groupId>org.apache.tomcat</groupId>
-          <artifactId>tomcat-catalina</artifactId>
-          <version>7.0.47</version>
-          <scope>provided</scope>
-      </dependency>
+      <!--<dependency>-->
+          <!--<groupId>org.apache.tomcat</groupId>-->
+          <!--<artifactId>tomcat-catalina</artifactId>-->
+          <!--<version>7.0.47</version>-->
+          <!--<scope>provided</scope>-->
+      <!--</dependency>-->
   </dependencies>
 
   <build>
-    <finalName>CashMachine</finalName>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.tomcat.maven</groupId>
-        <artifactId>tomcat7-maven-plugin</artifactId>
-        <version>2.2</version>
-        <configuration>
-          <server>TomcatServer</server>
-          <path>/</path>
-          <port>8084</port>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-        </configuration>
-      </plugin>
+      <finalName>CashMachine</finalName>
+      <plugins>
+          <plugin>
+              <groupId>org.apache.tomcat.maven</groupId>
+              <artifactId>tomcat7-maven-plugin</artifactId>
+              <version>2.2</version>
+              <configuration>
+                  <url>http://localhost:8084/</url>
+                  <server>TomcatServer</server>
+                  <path>/</path>
+              </configuration>
+          </plugin>
+
+      <!--<plugin>-->
+        <!--<groupId>org.apache.tomcat.maven</groupId>-->
+        <!--<artifactId>tomcat7-maven-plugin</artifactId>-->
+        <!--<version>2.2</version>-->
+        <!--<configuration>-->
+          <!--<server>TomcatServer</server>-->
+          <!--<path>/</path>-->
+          <!--<port>8084</port>-->
+        <!--</configuration>-->
+      <!--</plugin>-->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+                <source>1.8</source>
+                <target>1.8</target>
+            </configuration>
+        </plugin>
     </plugins>
+
     <resources>
       <resource>
         <filtering>true</filtering>

@@ -23,7 +23,7 @@
 
 <body style="background-color:rgba(252,216,90,0.31);">
 
-<jsp:include page="../../util/cashier-navbar.jsp"/>
+<jsp:include page="../../util/navbars/cashier-navbar.jsp"/>
 
 <div class="container" id="content" style="background-color:#fffcf3;">
     <div class="row d-flex input-panel">

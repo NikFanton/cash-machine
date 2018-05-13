@@ -22,7 +22,7 @@ public class CheckServiceImpl implements CheckService {
 
     @Override
     public List<Check> getPartOffAllChecks(int numberOfChecks, int pageNumber) {
-        try (CheckDAO dao = DAOFactory.getDaoFactory().getCheckDAO()) {
+        try (CheckDAO dao = daoFactory.getCheckDAO()) {
             return Optional.ofNullable(dao.getPartOfAll(numberOfChecks, pageNumber))
                     .orElseThrow(NoSuchResultFromDataBaseException::new);
         } catch (Exception e) {

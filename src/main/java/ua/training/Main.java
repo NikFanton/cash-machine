@@ -7,7 +7,7 @@ import ua.training.model.util.CryptoUtil;
 public class Main {
     public static void main(String[] args) {
         Logger logger = LogManager.getLogger(Main.class);
-        logger.info("Logger is started");
+        logger.info("INIT");
         System.out.println(CryptoUtil.hashPassword("1"));
         System.out.println(CryptoUtil.hashPassword("111"));
         System.out.println(CryptoUtil.hashPassword("3"));
