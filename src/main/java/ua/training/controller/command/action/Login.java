@@ -34,16 +34,10 @@ public class Login implements Command {
         }
 
         if (CryptoUtil.checkPassword(password, employee.getPassword())) {
-            @SuppressWarnings(value = "unchecked")
-            Map<String, Employee> authorizedUsers = (HashMap<String, Employee>) request.getSession()
-                            .getServletContext().getAttribute("authorizedUsers");
-            employee.setPassword(null);
-            employee.setId(null);
-            authorizedUsers.put(login, employee);
-//            request.getSession().getServletContext().setAttribute("login", login);
-//            request.getSession().getServletContext().setAttribute("role", employee.getRole());
-//            request.getSession().getServletContext().setAttribute("firstName", employee.getFirstName());
-//            request.getSession().getServletContext().setAttribute("lastName", employee.getLastName());
+            request.getSession().getServletContext().setAttribute("login", login);
+            request.getSession().getServletContext().setAttribute("role", employee.getRole());
+            request.getSession().getServletContext().setAttribute("firstName", employee.getFirstName());
+            request.getSession().getServletContext().setAttribute("lastName", employee.getLastName());
             return employee.getRole().getStartPage();
         } else {
             return Locations.REDIRECT + Locations.LOGIN_FORM;
