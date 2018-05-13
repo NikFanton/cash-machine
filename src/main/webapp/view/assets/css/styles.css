@@ -1,0 +1,39 @@
+body {
+  background-color:rgba(252,216,90,0.31);
+  padding-top:51px;
+}
+
+.navbar-light .navbar-brand {
+  font-family:Montserrat, sans-serif;
+  font-weight:bold;
+}
+
+.nav.navbar-nav.mx-auto {
+  text-transform:uppercase;
+  font-size:17px;
+}
+
+.navbar-expand-md .navbar-nav {
+  text-transform:uppercase;
+}
+
+.container {
+  margin-top:-13px;
+  background-color:rgba(255,255,255,0.21);
+}
+
+button, input {
+  margin-left:11px;
+  font-family:Montserrat, sans-serif;
+}
+
+div {
+  margin-top:auto;
+  margin-bottom:auto;
+}
+
+#input-product {
+  margin-top:10px;
+  margin-bottom:10px;
+}
+
