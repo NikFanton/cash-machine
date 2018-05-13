@@ -3,6 +3,7 @@ package ua.training.model.dao;
 import ua.training.model.entity.Check;
 import ua.training.model.entity.Product;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface CheckDAO extends GenericDAO<Check, Long> {
@@ -17,4 +18,6 @@ public interface CheckDAO extends GenericDAO<Check, Long> {
     List<Check> getPartOfAll(int numberOfEntries, int partNumber);
 
     Integer getNumberOfChecks();
+
+    List<Check> getAllFromCertainDate(LocalDateTime dateTime);
 }

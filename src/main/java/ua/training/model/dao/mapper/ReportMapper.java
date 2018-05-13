@@ -19,20 +19,24 @@ public class ReportMapper implements BaseMapper<Report> {
         BigInteger seizedMoney = BigInteger.valueOf(resultSet.getInt(prefix + "seized_money"));
         BigInteger cashPayments = BigInteger.valueOf(resultSet.getInt(prefix + "cash_payments"));
         BigInteger cashlessPayments = BigInteger.valueOf(resultSet.getInt(prefix + "cashless_payments"));
-        BigInteger canceledPayments = BigInteger.valueOf(resultSet.getInt(prefix + "canceled_payments"));
+        BigInteger canceledCashPayments = BigInteger.valueOf(resultSet.getInt(prefix + "canceled_cash_payments"));
+        BigInteger canceledCashlessPayments = BigInteger.valueOf(resultSet.getInt(prefix + "canceled_cashless_payments"));
         LocalTime time = resultSet.getTime(prefix + "date_time").toLocalTime();
         LocalDate date = resultSet.getDate(prefix + "date_time").toLocalDate();
         LocalDateTime dateTime = LocalDateTime.of(date, time);
-        Integer canceledChecks = resultSet.getInt(prefix + "canceled_checks");
+        Integer canceledChecksCount = resultSet.getInt(prefix + "canceled_checks_count");
+        Integer checksCount = resultSet.getInt(prefix + "checks_count");
         return Report.getBuilder()
                 .setId(id)
                 .setMoneyPutInCashMachine(moneyPutInCashMachine)
                 .setSeizedMoney(seizedMoney)
                 .setCashPayments(cashPayments)
                 .setCashlessPayments(cashlessPayments)
-                .setCanceledPayments(canceledPayments)
+                .setCanceledCashPayments(canceledCashPayments)
+                .setCanceledCashlessPayments(canceledCashlessPayments)
                 .setDateTime(dateTime)
-                .setCanceledChecksCount(canceledChecks)
+                .setCanceledChecksCount(canceledChecksCount)
+                .setChecksCount(checksCount)
                 .build();
     }
 }

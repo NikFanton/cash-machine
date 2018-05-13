@@ -16,6 +16,16 @@ public interface SQLQueries {
             "  LEFT JOIN employee e ON employee_id = e.id\n" +
             "ORDER BY c.id DESC";
 
+    String GET_ALL_CHECKS_FROM_CERTAIN_DATE = "SELECT  c.id, c.date_time, c.cash_payments, c.cashless_payments, c.check_type,\n" +
+            "  a.quantity p_quantity, a.product_in_check_type p_product_in_check_type, a.price p_price,\n" +
+            "  p.id p_id, p.name p_name, p.product_type p_product_type,\n" +
+            "  e.id e_id, e.first_name e_first_name, e.last_name e_last_name, e.role e_role\n" +
+            "FROM `check` c\n" +
+            "  LEFT JOIN check_product a ON c.`id` = a.`check_id`\n" +
+            "  LEFT JOIN product p ON `product_id` = p.id\n" +
+            "  LEFT JOIN employee e ON employee_id = e.id\n" +
+            "WHERE c.date_time > ?";
+
     String GET_PART_OF_ALL_CHECKS = "SELECT c.id, c.date_time, c.cash_payments, c.cashless_payments, c.check_type,\n" +
             "  a.quantity p_quantity, a.product_in_check_type p_product_in_check_type, a.price p_price,\n" +
             "  p.id p_id, p.name p_name, p.product_type p_product_type,\n" +
@@ -27,7 +37,7 @@ public interface SQLQueries {
 
     String GET_NUMBER_OF_CHECKS = "SELECT count(id) count FROM `check`";
 
-    String GET_ALL_REPORTS = "SELECT * FROM z_report";
+    String GET_ALL_REPORTS = "SELECT * FROM z_report ORDER BY id DESC";
 
     String GET_PRODUCT_BY_ID = "SELECT * FROM product WHERE id = ?";
 
@@ -76,6 +86,8 @@ public interface SQLQueries {
     String GET_LATEST_REPORT = "SELECT * FROM z_report ORDER BY id DESC LIMIT 1";
 
     String ADD_PRODUCT = "INSERT INTO product (name, quantity, price, product_type) VALUES (?, ?, ?, ?)";
+
+    String ADD_REPORT = "INSERT INTO z_report (money_put_in_cash_machine, seized_money, cash_payments, cashless_payments, canceled_cash_payments, canceled_cashless_payments, canceled_checks_count, checks_count) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
     String ADD_EMPLOYEE = "INSERT INTO employee (first_name, last_name, login, password, role) VALUES (?, ?, ?, ?, ?)";
 

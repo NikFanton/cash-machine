@@ -2,12 +2,24 @@ package ua.training.controller.command.direction;
 
 import ua.training.controller.command.Command;
 import ua.training.controller.constant.Pages;
+import ua.training.model.entity.Report;
+import ua.training.model.service.ReportService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
-public class Report implements Command {
+public class MakeReport implements Command {
+
+    private ReportService reportService;
+
+    public MakeReport(ReportService reportService) {
+        this.reportService = reportService;
+    }
+
     @Override
     public String execute(HttpServletRequest request) {
-        return Pages.REPORT;
+        List<Report> reports = reportService.getAllReports();
+        request.setAttribute("reports", reports);
+        return Pages.MAKE_REPORT;
     }
 }

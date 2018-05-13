@@ -29,7 +29,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void addProduct(Product product) {
-        try(ProductDAO dao = DAOFactory.getDaoFactory().getProductDAO()) {
+        try(ProductDAO dao = daoFactory.getProductDAO()) {
             dao.add(product);
         } catch (Exception e) {
             e.printStackTrace();

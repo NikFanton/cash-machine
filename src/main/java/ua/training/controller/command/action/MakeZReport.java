@@ -2,6 +2,7 @@ package ua.training.controller.command.action;
 
 import ua.training.controller.command.Command;
 import ua.training.controller.constant.Locations;
+import ua.training.model.entity.Report;
 import ua.training.model.service.ReportService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +17,8 @@ public class MakeZReport implements Command {
 
     @Override
     public String execute(HttpServletRequest request) {
-//        TODO make Z-Report
+        Report report = reportService.makeReport();
+        reportService.saveReport(report);
         return Locations.REDIRECT + Locations.REPORT;
     }
 }
