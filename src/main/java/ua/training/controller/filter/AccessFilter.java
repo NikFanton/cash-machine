@@ -24,6 +24,11 @@ public class AccessFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         HttpSession session = req.getSession();
+
+        @SuppressWarnings(value = "unchecked")
+        Map<String, Employee> authorizedUsers = (HashMap<String, Employee>) session.getServletContext()
+                    .getAttribute("authorizedUsers");
+
         Role role = (Role) session.getServletContext().getAttribute("role");
         role = Optional.ofNullable(role).orElse(Role.UNKNOWN);
         String action = req.getRequestURI().replaceAll(".*/api/", "");
