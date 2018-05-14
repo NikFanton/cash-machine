@@ -1,4 +1,7 @@
 package ua.training.controller.util;
 
-public class PaymentType {
+public enum PaymentType {
+    CASH,
+    
+    CASHLESS
 }

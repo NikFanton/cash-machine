@@ -49,7 +49,11 @@ public class ProductsHolder {
         isAltered = false;
     }
 
-    public static boolean IsAltered() {
+    public static boolean isAltered() {
         return ProductsHolder.isAltered;
+    }
+
+    public static boolean notIsEmpty() {
+        return !products.isEmpty();
     }
 }

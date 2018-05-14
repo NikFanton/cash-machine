@@ -90,23 +90,28 @@ public class JdbcCheckDAOImpl implements CheckDAO {
         return null;
     }
 
-    private void addProductToCheck(Check check, ProductInCheck product) {
-        List<ProductInCheck> productsInCheck = check.getProductsInCheck();
-        if (productsInCheck == null) {
-            productsInCheck = new ArrayList<>();
-        }
-        productsInCheck.add(product);
-        check.setProductsInCheck(productsInCheck);
-    }
-
     @Override
     public void update(Check check) {
-
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.UPDATE_CHECK)) {
+            preparedStatement.setInt(1, check.getCashPayment().intValue());
+            preparedStatement.setInt(2, check.getCashlessPayment().intValue());
+            preparedStatement.setLong(3, check.getEmployee().getId());
+            preparedStatement.setString(4, String.valueOf(check.getCheckType()));
+            preparedStatement.setLong(5, check.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void delete(Long id) {
-
+        try (PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.DELETE_CHECK)) {
+            preparedStatement.setLong(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

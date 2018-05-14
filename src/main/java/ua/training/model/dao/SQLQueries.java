@@ -101,9 +101,13 @@ public interface SQLQueries {
 
     String UPDATE_EMPLOYEE = "UPDATE employee SET first_name = ?, last_name = ?, login = ?, password = ?, role = ? WHERE id = ?";
 
+    String UPDATE_CHECK = "UPDATE product SET name = ?, quantity = ?, price = ?, product_type = ? WHERE id = ?";
+
     String DELETE_PRODUCT = "DELETE FROM product WHERE product.id = ?";
 
     String DELETE_EMPLOYEE = "DELETE FROM employee WHERE employee.id = ?";
+
+    String DELETE_CHECK = "DELETE FROM product WHERE product.id = ?";
 
     String CANCEL_PRODUCT_FROM_CHECK = "UPDATE `check_product` cp" +
             "    SET cp.`product_in_check_type` = 'CANCELED'" +
@@ -112,5 +116,4 @@ public interface SQLQueries {
     String CANCEL_CHECK = "UPDATE `check`" +
             "    SET `check`.`check_type` = 'CANCELED'" +
             "    WHERE `check`.`id` = ?";
-
 }

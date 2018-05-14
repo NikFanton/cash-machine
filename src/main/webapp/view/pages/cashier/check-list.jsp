@@ -91,7 +91,7 @@
                                                             <tr>
                                                                 <td>${product.name}</td>
                                                                 <c:set var="total" value="${total + product.quantity * product.price/100.}"/>
-                                                                <td class="align-right">${product.quantity * product.price/100}</td>
+                                                                <td class="align-right">${product.quantity * product.price/100.}</td>
                                                                 <td class="align-right">A</td>
                                                             </tr>
                                                         </c:forEach>
@@ -104,14 +104,6 @@
                                                         </tr>
                                                         <tr>
                                                             <td colspan="3">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>ГОТІВКА</td>
-                                                            <td colspan="2" class="align-right">${check.cashPayment/100}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>КАРТКА</td>
-                                                            <td colspan="2" class="align-right">${check.cashlessPayment/100}</td>
                                                         </tr>
                                                         <tr class="align-center">
                                                             <td colspan="3">ДЯКУЄМО ЗА ПОКУПКУ!</td>

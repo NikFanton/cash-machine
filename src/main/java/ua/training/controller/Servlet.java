@@ -8,6 +8,7 @@ import ua.training.controller.command.action.*;
 import ua.training.controller.command.direction.*;
 import ua.training.controller.constant.Locations;
 import ua.training.controller.constant.Pages;
+import ua.training.model.dao.factory.DAOFactory;
 import ua.training.model.service.impl.CheckServiceImpl;
 import ua.training.model.service.impl.EmployeeServiceImpl;
 import ua.training.model.service.impl.ProductServiceImpl;
@@ -31,6 +32,7 @@ public class Servlet extends HttpServlet {
 
     @Override
     public void init() {
+//        DAOFactory.getDaoFactory().getCheckDAO().delete();
         commands.put(Locations.LOGIN, new Login(new EmployeeServiceImpl()));
         commands.put(Locations.LOGOUT, new LogOut());
         commands.put(Locations.CREATE_CHECK_FORM, new CreateCheckForm());

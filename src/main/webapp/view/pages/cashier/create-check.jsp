@@ -83,6 +83,10 @@
         </div>
 
         <div style="height:50px;">
+            <select name="paymentType" style="margin-left: 30px;">
+                <option value="CASH" selected>CASH</option>
+                <option value="CASHLESS">CASHLESS</option>
+            </select>
             <button class="btn btn-primary btn-sm float-right" type="submit" style="background-color:#fcd85a;color:rgb(34,34,34);font-style:normal;font-weight:bold;">DONE</button>
             <p class="float-left" style="color:rgb(34,34,34);font-style:normal;">TOTAL ${total}</p>
         </div>

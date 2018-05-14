@@ -2,12 +2,11 @@ package ua.training.model.entity.enums;
 
 import edu.emory.mathcs.backport.java.util.Arrays;
 import ua.training.controller.constant.Locations;
-import ua.training.controller.constant.Pages;
 
 import java.util.List;
 
 public enum Role {
-    UNKNOWN(Pages.LOGIN, Arrays.asList(new String[]{
+    UNKNOWN(Locations.REDIRECT + Locations.LOGIN_FORM, Arrays.asList(new String[]{
                     Locations.LOGIN,
                     Locations.LOGIN_FORM,
                     Locations.LOGOUT })),
@@ -62,15 +61,7 @@ public enum Role {
         return startPage;
     }
 
-    public void setStartPage(String startPage) {
-        this.startPage = startPage;
-    }
-
     public List<String> getAccessibleLocations() {
         return accessibleLocations;
-    }
-
-    public void setAccessibleLocations(List<String> accessibleLocations) {
-        this.accessibleLocations = accessibleLocations;
     }
 }
