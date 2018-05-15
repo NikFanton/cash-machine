@@ -1,6 +1,6 @@
 package ua.training.constant.database;
 
-public interface CheckFieldNames {
+public interface CheckFieldsNames {
     String COUNT_OF_CHECKS = "count";
     String ID = "id";
     String DATE_TIME = "date_time";

@@ -1,4 +1,5 @@
 package ua.training.constant;
 
-public class ExceptionMessages {
+public interface ExceptionMessages {
+    String INVALID_QUANTITY_EXCEPTION = "exception.bad.quantity";
 }

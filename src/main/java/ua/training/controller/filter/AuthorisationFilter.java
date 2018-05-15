@@ -2,7 +2,8 @@ package ua.training.controller.filter;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ua.training.controller.constant.Pages;
+import ua.training.constant.AttributeAndParameterNames;
+import ua.training.constant.Pages;
 import ua.training.model.entity.enums.Role;
 
 import javax.servlet.*;
@@ -32,8 +33,8 @@ public class AuthorisationFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpSession session = request.getSession();
         ServletContext context = session.getServletContext();
-        Role role = (Role) context.getAttribute("role");
-        String login = (String) context.getAttribute("login");
+        Role role = (Role) context.getAttribute(AttributeAndParameterNames.ROLE);
+        String login = (String) context.getAttribute(AttributeAndParameterNames.LOGIN);
         System.out.println("role = [" + role + "]");
 
 //        TODO Catch role here if already in system

@@ -1,5 +1,6 @@
 <%--@elvariable id="CryptoUtil" type="ua.training.model.util.CryptoUtil"--%>
 <%@ include file="../../util/init.jsp"%>
+<%@taglib uri="/WEB-INF/numberformat.tld" prefix="formatvalue" %>
 <!DOCTYPE html>
 <html>
 
@@ -29,7 +30,8 @@
     <div class="row d-flex input-panel">
         <form method="post" action="/api/add-product">
             <div class="col-md-4 d-inline" style="min-width:276px;">
-                <label class="col-form-label" style="font-family:Roboto, sans-serif;">Search</label>
+                <c:set var="number" value="12.3"/>
+                <label class="col-form-label" style="font-family:Roboto, sans-serif;">Search <formatvalue:formatNumber number="${number}" format="#,###.00"/> </label>
                 <input class="align-items-baseline search-field" name="id" type="text" placeholder=" id" style="font-family:Roboto, sans-serif;">
             </div>
             <div class="col d-inline">
@@ -88,7 +90,7 @@
                 <option value="CASHLESS">CASHLESS</option>
             </select>
             <button class="btn btn-primary btn-sm float-right" type="submit" style="background-color:#fcd85a;color:rgb(34,34,34);font-style:normal;font-weight:bold;">DONE</button>
-            <p class="float-left" style="color:rgb(34,34,34);font-style:normal;">TOTAL ${total}</p>
+            <p class="float-left" style="color:rgb(34,34,34);font-style:normal;">TOTAL <formatvalue:formatNumber number="${total}" format="###0.00"/></p>
         </div>
     </form>
 </div>

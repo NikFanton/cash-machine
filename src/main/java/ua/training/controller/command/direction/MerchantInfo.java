@@ -1,7 +1,7 @@
 package ua.training.controller.command.direction;
 
 import ua.training.controller.command.Command;
-import ua.training.controller.constant.Pages;
+import ua.training.constant.Pages;
 
 import javax.servlet.http.HttpServletRequest;
 

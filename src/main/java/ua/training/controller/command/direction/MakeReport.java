@@ -1,7 +1,8 @@
 package ua.training.controller.command.direction;
 
 import ua.training.controller.command.Command;
-import ua.training.controller.constant.Pages;
+import ua.training.constant.AttributeAndParameterNames;
+import ua.training.constant.Pages;
 import ua.training.model.entity.Report;
 import ua.training.model.service.ReportService;
 
@@ -19,7 +20,7 @@ public class MakeReport implements Command {
     @Override
     public String execute(HttpServletRequest request) {
         List<Report> reports = reportService.getAllReports();
-        request.setAttribute("reports", reports);
+        request.setAttribute(AttributeAndParameterNames.REPORTS, reports);
         return Pages.MAKE_REPORT;
     }
 }

@@ -1,7 +1,8 @@
 package ua.training.controller.command.action;
 
 import ua.training.controller.command.Command;
-import ua.training.controller.constant.Locations;
+import ua.training.constant.AttributeAndParameterNames;
+import ua.training.constant.Locations;
 import ua.training.controller.util.PaymentType;
 import ua.training.controller.util.ProductUtil;
 import ua.training.controller.util.ProductsHolder;
@@ -34,12 +35,12 @@ public class CreateCheck implements Command {
             List<ProductInCheck> productsInCheck = ProductUtil.getListOfProducts();
             Employee employee = null;
             try {
-                String login = String.valueOf(session.getServletContext().getAttribute("login"));
+                String login = String.valueOf(session.getServletContext().getAttribute(AttributeAndParameterNames.LOGIN));
                 employee = employeeService.getEmployee(login);
             } catch (NoSuchResultFromDataBaseException e) {
                 e.printStackTrace();
             }
-            PaymentType paymentType = PaymentType.valueOf(request.getParameter("paymentType"));
+            PaymentType paymentType = PaymentType.valueOf(request.getParameter(AttributeAndParameterNames.PAYMENT_TYPE));
             BigInteger total = BigInteger.ZERO;
             for (ProductInCheck product : productsInCheck) {
                 total = total.add(BigInteger.valueOf((long) (product.getPrice() * product.getQuantity())));

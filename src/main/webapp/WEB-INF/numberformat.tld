@@ -16,6 +16,7 @@
         <attribute>
             <name>number</name>
             <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
         </attribute>
         <attribute>
             <name>format</name>

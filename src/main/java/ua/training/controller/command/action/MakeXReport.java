@@ -1,8 +1,9 @@
 package ua.training.controller.command.action;
 
 import ua.training.controller.command.Command;
-import ua.training.controller.constant.Locations;
-import ua.training.controller.constant.Pages;
+import ua.training.constant.AttributeAndParameterNames;
+import ua.training.constant.Locations;
+import ua.training.constant.Pages;
 import ua.training.model.entity.Report;
 import ua.training.model.service.ReportService;
 
@@ -18,7 +19,7 @@ public class MakeXReport implements Command {
     @Override
     public String execute(HttpServletRequest request) {
         Report report = reportService.makeReport();
-        request.setAttribute("xreport", report);
+        request.setAttribute(AttributeAndParameterNames.X_REPORT, report);
         System.out.println(report);
         return Pages.X_REPORT;
     }

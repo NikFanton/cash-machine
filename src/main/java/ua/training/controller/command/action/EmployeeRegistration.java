@@ -1,7 +1,8 @@
 package ua.training.controller.command.action;
 
 import ua.training.controller.command.Command;
-import ua.training.controller.constant.Locations;
+import ua.training.constant.AttributeAndParameterNames;
+import ua.training.constant.Locations;
 import ua.training.model.entity.Employee;
 import ua.training.model.entity.enums.Role;
 import ua.training.model.service.EmployeeService;
@@ -18,11 +19,11 @@ public class EmployeeRegistration implements Command {
 
     @Override
     public String execute(HttpServletRequest request) {
-            String firstName = request.getParameter("newFirstName");
-        String lastName = request.getParameter("newLastName");
-        String login = request.getParameter("newLogin");
-        String password = request.getParameter("newPassword");
-        Role role = Role.valueOf(request.getParameter("newRole"));
+            String firstName = request.getParameter(AttributeAndParameterNames.NEW_FIRST_NAME);
+        String lastName = request.getParameter(AttributeAndParameterNames.NEW_LAST_NAME);
+        String login = request.getParameter(AttributeAndParameterNames.NEW_LOGIN);
+        String password = request.getParameter(AttributeAndParameterNames.NEW_PASSWORD);
+        Role role = Role.valueOf(request.getParameter(AttributeAndParameterNames.NEW_ROLE));
         employeeService.registerEmployee(Employee.builder()
                 .firstName(firstName)
                 .lastName(lastName)

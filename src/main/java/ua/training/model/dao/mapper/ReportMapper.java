@@ -1,5 +1,6 @@
 package ua.training.model.dao.mapper;
 
+import ua.training.constant.database.ReportFieldsNames;
 import ua.training.model.entity.Report;
 
 import java.math.BigInteger;
@@ -11,21 +12,20 @@ import java.time.LocalTime;
 import java.util.Map;
 
 public class ReportMapper implements BaseMapper<Report> {
-
     @Override
     public Report extractFromResultSet(ResultSet resultSet, String prefix) throws SQLException {
-        Long id = resultSet.getLong("id");
-        BigInteger moneyPutInCashMachine = BigInteger.valueOf(resultSet.getInt(prefix + "money_put_in_cash_machine"));
-        BigInteger seizedMoney = BigInteger.valueOf(resultSet.getInt(prefix + "seized_money"));
-        BigInteger cashPayments = BigInteger.valueOf(resultSet.getInt(prefix + "cash_payments"));
-        BigInteger cashlessPayments = BigInteger.valueOf(resultSet.getInt(prefix + "cashless_payments"));
-        BigInteger canceledCashPayments = BigInteger.valueOf(resultSet.getInt(prefix + "canceled_cash_payments"));
-        BigInteger canceledCashlessPayments = BigInteger.valueOf(resultSet.getInt(prefix + "canceled_cashless_payments"));
-        LocalTime time = resultSet.getTime(prefix + "date_time").toLocalTime();
-        LocalDate date = resultSet.getDate(prefix + "date_time").toLocalDate();
+        Long id = resultSet.getLong(ReportFieldsNames.ID);
+        BigInteger moneyPutInCashMachine = BigInteger.valueOf(resultSet.getInt(prefix + ReportFieldsNames.MONEY_PUT_IN_CASH_MACHINE));
+        BigInteger seizedMoney = BigInteger.valueOf(resultSet.getInt(prefix + ReportFieldsNames.SEIZED_MONEY));
+        BigInteger cashPayments = BigInteger.valueOf(resultSet.getInt(prefix + ReportFieldsNames.CASH_PAYMENTS));
+        BigInteger cashlessPayments = BigInteger.valueOf(resultSet.getInt(prefix + ReportFieldsNames.CASHLESS_PAYMENTS));
+        BigInteger canceledCashPayments = BigInteger.valueOf(resultSet.getInt(prefix + ReportFieldsNames.CANCELED_CASH_PAYMENTS));
+        BigInteger canceledCashlessPayments = BigInteger.valueOf(resultSet.getInt(prefix + ReportFieldsNames.CANCELED_CASHLESS_PAYMENTS));
+        LocalTime time = resultSet.getTime(prefix + ReportFieldsNames.DATE_TIME).toLocalTime();
+        LocalDate date = resultSet.getDate(prefix + ReportFieldsNames.DATE_TIME).toLocalDate();
         LocalDateTime dateTime = LocalDateTime.of(date, time);
-        Integer canceledChecksCount = resultSet.getInt(prefix + "canceled_checks_count");
-        Integer checksCount = resultSet.getInt(prefix + "checks_count");
+        Integer canceledChecksCount = resultSet.getInt(prefix + ReportFieldsNames.CANCELED_CHECKS_COUNT);
+        Integer checksCount = resultSet.getInt(prefix + ReportFieldsNames.CHECKS_COUNT);
         return Report.getBuilder()
                 .setId(id)
                 .setMoneyPutInCashMachine(moneyPutInCashMachine)

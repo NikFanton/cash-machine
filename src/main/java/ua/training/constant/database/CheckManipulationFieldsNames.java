@@ -1,6 +1,6 @@
 package ua.training.constant.database;
 
-public interface CheckManipulationFieldNames {
+public interface CheckManipulationFieldsNames {
     String ID = "id";
     String CHECK_MANIPULATION_TYPE = "check_manipulation_type";
     String DATE_TIME_OF_OPERATION = "date_time_of_operation";

@@ -2,13 +2,11 @@ package ua.training.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.eclipse.jdt.internal.compiler.lookup.SourceTypeBinding;
 import ua.training.controller.command.*;
 import ua.training.controller.command.action.*;
 import ua.training.controller.command.direction.*;
-import ua.training.controller.constant.Locations;
-import ua.training.controller.constant.Pages;
-import ua.training.model.dao.factory.DAOFactory;
+import ua.training.constant.Locations;
+import ua.training.constant.Pages;
 import ua.training.model.service.impl.CheckServiceImpl;
 import ua.training.model.service.impl.EmployeeServiceImpl;
 import ua.training.model.service.impl.ProductServiceImpl;
@@ -20,8 +18,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 

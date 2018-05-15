@@ -1,4 +1,4 @@
-package ua.training.model.util;
+package ua.training;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
@@ -6,10 +6,10 @@ import java.io.IOException;
 import java.text.DecimalFormat;
 
 public class NumberFormatTag extends SimpleTagSupport {
-    private String number;
+    private Double number;
     private String format;
 
-    public void setNumber(String number) {
+    public void setNumber(Double number) {
         this.number = number;
     }
 
@@ -19,7 +19,7 @@ public class NumberFormatTag extends SimpleTagSupport {
 
     @Override
     public void doTag() throws JspException, IOException {
-        double amount = Double.parseDouble(number);
+        double amount = number;
         DecimalFormat formatter = new DecimalFormat(format);
         String formattedNumber = formatter.format(amount);
         getJspContext().getOut().write(formattedNumber);

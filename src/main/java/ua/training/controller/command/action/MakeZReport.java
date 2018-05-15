@@ -1,7 +1,7 @@
 package ua.training.controller.command.action;
 
 import ua.training.controller.command.Command;
-import ua.training.controller.constant.Locations;
+import ua.training.constant.Locations;
 import ua.training.model.entity.Report;
 import ua.training.model.service.ReportService;
 
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class MakeZReport implements Command {
 
-    ReportService reportService;
+    private ReportService reportService;
 
     public MakeZReport(ReportService reportService) {
         this.reportService = reportService;

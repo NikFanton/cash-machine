@@ -15,7 +15,8 @@ import java.util.Optional;
 
 public class ReportServiceImpl implements ReportService {
 
-    public static final BigInteger DEFAULT_MONEY_IN_CASH_MACHINE = BigInteger.valueOf(2250);
+//    TODO Move DEFAULT_MONEY_IN_CASH_MACHINE from this class to constant interface
+    private static final BigInteger DEFAULT_MONEY_IN_CASH_MACHINE = BigInteger.valueOf(2250);
 
     @Override
     public List<Report> getAllReports() {

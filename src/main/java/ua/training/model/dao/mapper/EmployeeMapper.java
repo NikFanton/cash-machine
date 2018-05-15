@@ -1,18 +1,13 @@
 package ua.training.model.dao.mapper;
 
+import ua.training.constant.database.EmployeeFieldsNames;
 import ua.training.model.entity.Employee;
 import ua.training.model.entity.enums.Role;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Map;
 
 public class EmployeeMapper implements BaseMapper<Employee> {
-    @Override
-    public Employee extractFromResultSet(ResultSet resultSet) throws SQLException {
-        return extractFromResultSet(resultSet, "");
-    }
-
     public Employee extractFromResultSetWithoutAccount(ResultSet resultSet) throws SQLException {
         return extractFromResultSetWithoutAccount(resultSet, "");
     }
@@ -20,18 +15,18 @@ public class EmployeeMapper implements BaseMapper<Employee> {
     @Override
     public Employee extractFromResultSet(ResultSet resultSet, String prefix) throws SQLException {
         Employee employee = extractFromResultSetWithoutAccount(resultSet, prefix);
-        String login = resultSet.getString(prefix + "login");
-        String password = resultSet.getString(prefix + "password");
+        String login = resultSet.getString(prefix + EmployeeFieldsNames.LOGIN);
+        String password = resultSet.getString(prefix + EmployeeFieldsNames.PASSWORD);
         employee.setLogin(login);
         employee.setPassword(password);
         return employee;
     }
 
     public Employee extractFromResultSetWithoutAccount(ResultSet resultSet, String prefix) throws SQLException {
-        Long id = resultSet.getLong(prefix + "id");
-        String firstName = resultSet.getString(prefix + "first_name");
-        String lastName = resultSet.getString(prefix + "last_name");
-        String roleName = resultSet.getString(prefix + "role");
+        Long id = resultSet.getLong(prefix + EmployeeFieldsNames.ID);
+        String firstName = resultSet.getString(prefix + EmployeeFieldsNames.FIRST_NAME);
+        String lastName = resultSet.getString(prefix + EmployeeFieldsNames.LAST_NAME);
+        String roleName = resultSet.getString(prefix + EmployeeFieldsNames.ROLE);
         Role role = Role.valueOf(roleName);
         return new Employee(id, firstName, lastName, role);
     }

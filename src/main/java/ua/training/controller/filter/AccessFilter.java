@@ -1,6 +1,6 @@
 package ua.training.controller.filter;
 
-import ua.training.model.entity.Employee;
+import ua.training.constant.AttributeAndParameterNames;
 import ua.training.model.entity.enums.Role;
 
 import javax.servlet.*;
@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 @WebFilter(urlPatterns = "/api/*")
@@ -27,7 +25,7 @@ public class AccessFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         HttpSession session = req.getSession();
-        Role role = (Role) session.getServletContext().getAttribute("role");
+        Role role = (Role) session.getServletContext().getAttribute(AttributeAndParameterNames.ROLE);
         role = Optional.ofNullable(role).orElse(Role.UNKNOWN);
         String action = req.getRequestURI().replaceAll(".*/api/", "");
         System.out.println("access role = [" + role + "]");

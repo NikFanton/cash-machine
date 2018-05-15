@@ -10,6 +10,7 @@ public class ConfigurationUtil {
 
     public String getProperty(String propertyName) {
         try {
+//            TODO Move path to constant interface
             InputStream inputStream = new FileInputStream("src/main/resources/config/config.properties");
             properties.load(inputStream);
         } catch (IOException e) {

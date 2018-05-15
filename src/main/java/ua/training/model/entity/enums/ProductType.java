@@ -7,7 +7,7 @@ public enum ProductType {
     COUNTABLE,
 
     /*
-     * UNCOUNTABLE - means that product price is per 100 g.
+     * UNCOUNTABLE - means that product price is per 1 kg.
      */
     UNCOUNTABLE
 }

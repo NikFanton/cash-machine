@@ -1,5 +1,6 @@
 package ua.training.model.dao.impl;
 
+import ua.training.constant.database.CheckFieldsNames;
 import ua.training.model.dao.CheckDAO;
 import ua.training.model.dao.SQLQueries;
 import ua.training.model.dao.factory.DAOFactory;
@@ -160,7 +161,7 @@ public class JdbcCheckDAOImpl implements CheckDAO {
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(SQLQueries.GET_NUMBER_OF_CHECKS)) {
             if (resultSet.first()) {
-                return resultSet.getInt("count");
+                return resultSet.getInt(CheckFieldsNames.COUNT_OF_CHECKS);
             }
         } catch (SQLException e) {
             e.printStackTrace();

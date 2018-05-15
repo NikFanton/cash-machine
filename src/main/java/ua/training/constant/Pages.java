@@ -1,4 +1,4 @@
-package ua.training.controller.constant;
+package ua.training.constant;
 
 public interface Pages {
     String LOGIN = "/view/pages/login.jsp";

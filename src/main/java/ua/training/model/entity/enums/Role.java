@@ -1,7 +1,7 @@
 package ua.training.model.entity.enums;
 
 import edu.emory.mathcs.backport.java.util.Arrays;
-import ua.training.controller.constant.Locations;
+import ua.training.constant.Locations;
 
 import java.util.List;
 
@@ -24,9 +24,6 @@ public enum Role {
                     Locations.CHECK_LIST,
                     Locations.FIND_PRODUCT_FORM,
                     Locations.FIND_PRODUCT,
-                    Locations.REPORT,
-                    Locations.MAKE_X_REPORT,
-                    Locations.MAKE_Z_REPORT,
                     Locations.LOGOUT})),
 
     SENIOR_CASHIER(Locations.REDIRECT + Locations.CREATE_CHECK_FORM, Arrays.asList(new String[]{
