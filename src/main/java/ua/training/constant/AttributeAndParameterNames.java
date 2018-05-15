@@ -28,4 +28,5 @@ public interface AttributeAndParameterNames {
     String PRODUCTS = "products";
     String X_REPORT = "xreport";
     String REPORTS = "reports";
+    String AUTHORIZED_USERS = "authorizedUsers";
 }

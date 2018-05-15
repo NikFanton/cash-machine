@@ -56,7 +56,7 @@
                                                 <div class="bill">
                                                     <table>
                                                         <tr class="align-center">
-                                                            <td colspan="3">ТОВ "SuperMarket"</td>
+                                                            <td colspan="3">Вітаємо</td>
                                                         </tr>
                                                         <tr class="align-center">
                                                             <td colspan="3">Магазин "Продукти-234"</td>
@@ -65,7 +65,7 @@
                                                             <td colspan="3">м.Київ, вул. Хрещатик, 36</td>
                                                         </tr>
                                                         <tr class="align-center">
-                                                            <td colspan="3">Вітаємо</td>
+                                                            <td colspan="3">ТОВ "SuperMarket"</td>
                                                         </tr>
                                                         <tr class="align-center">
                                                             <td colspan="3">ГАРЯЧА ЛІНІЯ 0 800 230 412</td>

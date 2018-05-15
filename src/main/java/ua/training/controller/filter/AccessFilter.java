@@ -25,7 +25,7 @@ public class AccessFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         HttpSession session = req.getSession();
-        Role role = (Role) session.getServletContext().getAttribute(AttributeAndParameterNames.ROLE);
+        Role role = (Role) session.getAttribute(AttributeAndParameterNames.ROLE);
         role = Optional.ofNullable(role).orElse(Role.UNKNOWN);
         String action = req.getRequestURI().replaceAll(".*/api/", "");
         System.out.println("access role = [" + role + "]");

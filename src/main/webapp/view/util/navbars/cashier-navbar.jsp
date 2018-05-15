@@ -19,7 +19,7 @@
                             <form>
                                 <select class="form-control" id="language" name="language" onchange="submit()">
                                     <option value="en_US" ${language == 'en_US' ? 'selected' : ''}>ENG</option>
-                                    <option value="ru_RU" ${language == 'ru_RU' ? 'selected' : ''}>RUS</option>
+                                    <option value="uk_UA" ${language == 'uk_UA' ? 'selected' : ''}>UKR</option>
                                 </select>
                             </form>
                         </label>

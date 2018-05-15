@@ -15,7 +15,8 @@ import java.io.IOException;
 
 import static java.util.Objects.nonNull;
 
-@WebFilter(urlPatterns = "/api/login")
+//@WebFilter(urlPatterns = "/api/login")
+@Deprecated
 public class AuthorisationFilter implements Filter {
 
     final static Logger logger = LogManager.getLogger();
@@ -33,8 +34,9 @@ public class AuthorisationFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpSession session = request.getSession();
         ServletContext context = session.getServletContext();
-        Role role = (Role) context.getAttribute(AttributeAndParameterNames.ROLE);
-        String login = (String) context.getAttribute(AttributeAndParameterNames.LOGIN);
+        Role role = (Role) session.getAttribute(AttributeAndParameterNames.ROLE);
+        String login = (String) session.getAttribute(AttributeAndParameterNames.LOGIN);
+        System.out.println("login = [" + login + "]");
         System.out.println("role = [" + role + "]");
 
 //        TODO Catch role here if already in system

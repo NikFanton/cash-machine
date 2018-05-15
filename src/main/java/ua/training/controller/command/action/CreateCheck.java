@@ -35,7 +35,8 @@ public class CreateCheck implements Command {
             List<ProductInCheck> productsInCheck = ProductUtil.getListOfProducts();
             Employee employee = null;
             try {
-                String login = String.valueOf(session.getServletContext().getAttribute(AttributeAndParameterNames.LOGIN));
+                String login = String.valueOf(session.getAttribute(AttributeAndParameterNames.LOGIN));
+                System.out.println("login = [" + login + "]");
                 employee = employeeService.getEmployee(login);
             } catch (NoSuchResultFromDataBaseException e) {
                 e.printStackTrace();

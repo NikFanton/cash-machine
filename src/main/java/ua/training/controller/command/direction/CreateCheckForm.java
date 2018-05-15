@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 public class CreateCheckForm implements Command {
     @Override
     public String execute(HttpServletRequest request) {
+        System.out.println("loginAfter = [" + request.getSession().getAttribute(AttributeAndParameterNames.LOGIN)+ "]");
         request.setAttribute(AttributeAndParameterNames.PRODUCTS, ProductsHolder.getList());
         return Pages.CREATE_CHECK_FORM;
     }
