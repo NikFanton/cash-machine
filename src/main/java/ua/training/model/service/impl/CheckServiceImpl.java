@@ -1,7 +1,7 @@
 package ua.training.model.service.impl;
 
+import ua.training.constant.LogMessages;
 import ua.training.model.dao.CheckDAO;
-import ua.training.model.dao.factory.DAOFactory;
 import ua.training.model.entity.Check;
 import ua.training.model.exception.NoSuchResultFromDataBaseException;
 import ua.training.model.service.CheckService;
@@ -15,9 +15,9 @@ public class CheckServiceImpl implements CheckService {
         try (CheckDAO dao = daoFactory.getCheckDAO()) {
             return dao.getAll();
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage() + " " + LogMessages.GET_ALL_CHECKS_ERROR);
+            return null;
         }
-        return null;
     }
 
     @Override
@@ -26,9 +26,9 @@ public class CheckServiceImpl implements CheckService {
             return Optional.ofNullable(dao.getPartOfAll(numberOfChecks, pageNumber))
                     .orElseThrow(NoSuchResultFromDataBaseException::new);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage() + " " + LogMessages.GET_PART_OF_ALL_CHECKS_ERROR);
+            return null;
         }
-        return null;
     }
 
     @Override
@@ -36,7 +36,7 @@ public class CheckServiceImpl implements CheckService {
         try (CheckDAO dao = daoFactory.getCheckDAO()) {
             dao.add(check);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage() + " " + LogMessages.CREATE_CHECK_ERROR);
         }
     }
 
@@ -45,7 +45,7 @@ public class CheckServiceImpl implements CheckService {
         try (CheckDAO dao = daoFactory.getCheckDAO()) {
             dao.markCheckAsCanceled(id);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage() + " " + LogMessages.MARK_CHECK_AS_CANCELED_ERROR);
         }
     }
 
@@ -54,8 +54,8 @@ public class CheckServiceImpl implements CheckService {
         try (CheckDAO dao = daoFactory.getCheckDAO()) {
             return Optional.ofNullable(dao.getNumberOfChecks()).orElseThrow(NoSuchResultFromDataBaseException::new);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage() + " " + LogMessages.GET_NUMBER_OF_CHECKS_ERROR);
+            return null;
         }
-        return null;
     }
 }

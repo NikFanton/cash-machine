@@ -2,6 +2,7 @@ package ua.training.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ua.training.controller.annotation.CommandWithLocation;
 import ua.training.controller.command.*;
 import ua.training.controller.command.action.*;
 import ua.training.controller.command.direction.*;
@@ -28,26 +29,32 @@ public class Servlet extends HttpServlet {
 
     @Override
     public void init() {
-//        DAOFactory.getDaoFactory().getCheckDAO().delete();
-        commands.put(Locations.LOGIN, new Login(new EmployeeServiceImpl()));
-        commands.put(Locations.LOGOUT, new LogOut());
-        commands.put(Locations.CREATE_CHECK_FORM, new CreateCheckForm());
-        commands.put(Locations.CHECK_LIST, new CheckList(new CheckServiceImpl()));
-        commands.put(Locations.REPORT, new MakeReport(new ReportServiceImpl()));
-        commands.put(Locations.MAKE_X_REPORT, new MakeXReport(new ReportServiceImpl()));
-        commands.put(Locations.MAKE_Z_REPORT, new MakeZReport(new ReportServiceImpl()));
-        commands.put(Locations.ADD_PRODUCT, new AddProduct(new ProductServiceImpl()));
-        commands.put(Locations.REMOVE_PRODUCT_FROM_CHECK, new RemoveProductFromCheck());
-        commands.put(Locations.CREATE_CHECK, new CreateCheck(new CheckServiceImpl(), new EmployeeServiceImpl()));
-        commands.put(Locations.CANCEL_CHECK, new CancelCheck(new CheckServiceImpl()));
-        commands.put(Locations.FIND_PRODUCT_FORM, new FindProductForm());
-        commands.put(Locations.FIND_PRODUCT, new FindProduct(new ProductServiceImpl()));
-        commands.put(Locations.EMPLOYEE_REGISTRATION_FORM, new EmployeeRegistrationForm());
-        commands.put(Locations.EMPLOYEE_REGISTRATION, new EmployeeRegistration(new EmployeeServiceImpl()));
-        commands.put(Locations.ADMIN_INFO, new AdminInfo());
-        commands.put(Locations.ADD_PRODUCT_TO_STORAGE_FORM, new AddProductToStorageForm());
-        commands.put(Locations.ADD_PRODUCT_TO_STORAGE, new AddProductToStorage(new ProductServiceImpl()));
-        commands.put(Locations.MERCHANT_INFO, new MerchantInfo());
+        initCommand(new Login(new EmployeeServiceImpl()));
+        initCommand(new LogOut());
+        initCommand(new CreateCheckForm());
+        initCommand(new CheckList(new CheckServiceImpl()));
+        initCommand(new MakeReport(new ReportServiceImpl()));
+        initCommand(new MakeXReport(new ReportServiceImpl()));
+        initCommand(new MakeZReport(new ReportServiceImpl()));
+        initCommand(new AddProduct(new ProductServiceImpl()));
+        initCommand(new RemoveProductFromCheck());
+        initCommand(new CreateCheck(new CheckServiceImpl(), new EmployeeServiceImpl()));
+        initCommand(new CancelCheck(new CheckServiceImpl()));
+        initCommand(new FindProductForm());
+        initCommand(new FindProduct(new ProductServiceImpl()));
+        initCommand(new EmployeeRegistrationForm());
+        initCommand(new EmployeeRegistration(new EmployeeServiceImpl()));
+        initCommand(new AdminInfo());
+        initCommand(new AddProductToStorageForm());
+        initCommand(new AddProductToStorage(new ProductServiceImpl()));
+        initCommand(new MerchantInfo());
+    }
+
+    private void initCommand(Command command) {
+        Class clazz = command.getClass();
+        CommandWithLocation annotation = (CommandWithLocation) clazz.getAnnotation(CommandWithLocation.class);
+        String location = annotation.location();
+        commands.put(location, command);
     }
 
     @Override
@@ -62,11 +69,7 @@ public class Servlet extends HttpServlet {
 
     private void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        System.out.println("SERVLET");
-        logger.info("INIT");
-        String path = request.getRequestURI();
-        System.out.println(path);
-        path = path.replaceAll(".*/api/", "");
+        String path = request.getRequestURI().replaceAll(".*/api/", "");;
         Command command = commands.getOrDefault(path, r -> Pages.LOGIN);
         String page = command.execute(request);
         if (page.contains(Locations.REDIRECT)) {

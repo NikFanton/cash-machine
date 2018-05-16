@@ -1,5 +1,6 @@
-package ua.training.model.dao.mapper;
+package ua.training.model.dao.mapper.impl;
 
+import ua.training.model.dao.mapper.BaseMapper;
 import ua.training.model.entity.ProductInCheck;
 import ua.training.model.entity.enums.ProductInCheckType;
 import ua.training.model.entity.enums.ProductType;

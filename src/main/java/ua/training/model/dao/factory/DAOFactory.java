@@ -1,8 +1,14 @@
 package ua.training.model.dao.factory;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import ua.training.model.dao.*;
 
+/**
+ * @see JdbcDAOFactory
+ */
 public abstract class DAOFactory  {
+    public static final Logger logger = LogManager.getLogger(DAOFactory.class);
     private static volatile DAOFactory daoFactory = null;
 
     public abstract EmployeeDAO getEmployeeDAO();

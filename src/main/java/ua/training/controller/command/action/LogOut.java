@@ -1,13 +1,12 @@
 package ua.training.controller.command.action;
 
+import ua.training.controller.annotation.CommandWithLocation;
 import ua.training.controller.command.Command;
-import ua.training.constant.AttributeAndParameterNames;
 import ua.training.constant.Locations;
-import ua.training.constant.Pages;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
+@CommandWithLocation(location = Locations.LOGOUT)
 public class LogOut implements Command {
     @Override
     public String execute(HttpServletRequest request) {

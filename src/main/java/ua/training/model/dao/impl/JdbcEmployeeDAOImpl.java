@@ -1,12 +1,10 @@
 package ua.training.model.dao.impl;
 
-import ua.training.model.dao.datasource.ConnectionConstants;
-import ua.training.model.dao.factory.DAOFactory;
+import ua.training.constant.LogMessages;
 import ua.training.model.dao.EmployeeDAO;
 import ua.training.model.dao.SQLQueries;
-import ua.training.model.dao.mapper.EmployeeMapper;
+import ua.training.model.dao.mapper.impl.EmployeeMapper;
 import ua.training.model.entity.Employee;
-import ua.training.model.entity.enums.Role;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -29,7 +27,8 @@ public class JdbcEmployeeDAOImpl implements EmployeeDAO {
             preparedStatement.setString(5, employee.getRole().name());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            logger.error(e.getMessage() + " " + LogMessages.CREATE_EMPLOYEE_ERROR);
+            throw new RuntimeException();
         }
     }
 
@@ -48,7 +47,8 @@ public class JdbcEmployeeDAOImpl implements EmployeeDAO {
                 users.add(mapper.extractFromResultSet(resultSet));
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            logger.error(e.getMessage() + " " + LogMessages.GET_ALL_EMPLOYEES_ERROR);
+            throw new RuntimeException();
         }
         return users;
     }
@@ -77,7 +77,8 @@ public class JdbcEmployeeDAOImpl implements EmployeeDAO {
                 return extractEmployeeFromResultSet(resultSet);
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            logger.error(e.getMessage() + " " + LogMessages.GET_EMPLOYEE_BY_LOGIN_AND_PASSWORD_ERROR);
+            throw new RuntimeException();
         }
     }
 
@@ -89,7 +90,8 @@ public class JdbcEmployeeDAOImpl implements EmployeeDAO {
                 return extractEmployeeFromResultSet(resultSet);
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            logger.error(e.getMessage() + " " + LogMessages.GET_EMPLOYEE_BY_LOGIN_ERROR);
+            throw new RuntimeException();
         }
     }
 
@@ -100,13 +102,5 @@ public class JdbcEmployeeDAOImpl implements EmployeeDAO {
             employee = mapper.extractFromResultSet(resultSet);
         }
         return employee;
-    }
-
-    public static void main(String[] args) {
-        EmployeeDAO dao = DAOFactory.getDaoFactory().getEmployeeDAO();
-        Employee employee = new Employee("Jack", "Linden", "jlin", "abc123", Role.CASHIER);
-//        dao.add(employee);
-        dao.getAll().forEach(System.out::println);
-        System.out.println(dao.getByLoginAndPassword("jlin", "abc123"));
     }
 }

@@ -47,19 +47,19 @@
     <div class="form-container">
         <div class="image-holder"></div>
         <form method="post" action="${pageContext.request.contextPath}/api/register-employee" style="background-color:rgba(255,255,255,0.76);">
-            <h2 class="text-center"><strong>CREATE NEW ACCOUNT</strong></h2>
-            <div class="form-group"><input class="form-control" type="text" name="newFirstName" placeholder="First name"required></div>
-            <div class="form-group"><input class="form-control" type="text" name="newLastName" placeholder="Last name" required></div>
+            <h2 class="text-center" style="text-transform: uppercase;"><strong><fmt:message key="create.new.account"/> </strong></h2>
+            <div class="form-group"><input class="form-control" type="text" name="newFirstName" placeholder="<fmt:message key="first.name"/>"required></div>
+            <div class="form-group"><input class="form-control" type="text" name="newLastName" placeholder="<fmt:message key="last.name"/>" required></div>
             <div class="form-group">
                 <select class="form-control" style="margin-left:10px;" name="newRole" required>
-                    <option value="CASHIER" selected="">Cashier</option>
-                    <option value="SENIOR_CASHIER">Senior cashier</option>
-                    <option value="MERCHANT">Merchant</option>
+                    <option value="CASHIER" selected=""><fmt:message key="cashier"/></option>
+                    <option value="SENIOR_CASHIER"><fmt:message key="senior.cashier"/></option>
+                    <option value="MERCHANT"><fmt:message key="merchant"/></option>
                 </select>
             </div>
-            <div class="form-group"><input class="form-control" type="text" name="newLogin" placeholder="Login" required></div>
-            <div class="form-group"><input class="form-control" type="password" name="newPassword" placeholder="Password" required></div>
-            <div class="form-group"><button class="btn btn-primary btn-block btn-login" type="submit" style="background-color:#fcd85a;font-weight:normal;font-style:normal;font-size:16px;">SIGN UP</button></div>
+            <div class="form-group"><input class="form-control" type="text" name="newLogin" placeholder="<fmt:message key="login"/>" required></div>
+            <div class="form-group"><input class="form-control" type="password" name="newPassword" placeholder="<fmt:message key="password"/>" required></div>
+            <div class="form-group"><button class="btn btn-primary btn-block btn-login" type="submit" style="background-color:#fcd85a;font-weight:normal;font-style:normal;font-size:16px; text-transform: uppercase;"><fmt:message key="register"/></button></div>
         </form>
     </div>
 </div>

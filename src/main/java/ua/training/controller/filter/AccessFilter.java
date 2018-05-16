@@ -1,5 +1,7 @@
 package ua.training.controller.filter;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import ua.training.constant.AttributeAndParameterNames;
 import ua.training.model.entity.enums.Role;
 
@@ -13,6 +15,8 @@ import java.util.Optional;
 
 @WebFilter(urlPatterns = "/api/*")
 public class AccessFilter implements Filter {
+    public static final Logger logger = LogManager.getLogger(AccessFilter.class);
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -21,20 +25,18 @@ public class AccessFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        System.out.println("ACCESS FILTER");
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
         HttpSession session = req.getSession();
         Role role = (Role) session.getAttribute(AttributeAndParameterNames.ROLE);
         role = Optional.ofNullable(role).orElse(Role.UNKNOWN);
         String action = req.getRequestURI().replaceAll(".*/api/", "");
-        System.out.println("access role = [" + role + "]");
-        System.out.println("access action = [" + action + "]");
+        String logInfo = "role: " + role + " | action: [" + action + "] | access status: ";
         if (role.getAccessibleLocations().contains(action)) {
-            System.out.println("access status = [YES]");
+            logger.info(logInfo + "YES");
             chain.doFilter(request, response);
         } else {
-            System.out.println("access status = [NO]");
+            logger.info(logInfo + "NO");
             resp.sendRedirect(role.getStartPage());
         }
     }

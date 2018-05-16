@@ -21,7 +21,6 @@ public class SessionListener implements HttpSessionListener {
 
     @Override
     public void sessionDestroyed(HttpSessionEvent session) {
-        System.out.println("SESSION DESTROYED");
         ServletContext context = session.getSession().getServletContext();
         @SuppressWarnings("unchecked")
         Set<String> authorizedUsers = (Set<String>) context.getAttribute(AttributeAndParameterNames.AUTHORIZED_USERS);

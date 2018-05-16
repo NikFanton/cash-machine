@@ -34,8 +34,8 @@ public class ProductsHolder {
     }
 
     private static boolean isQuantityValueValid(Product product, String quantity) {
-        return product.getProductType().equals(ProductType.COUNTABLE) && quantity.matches(REGEX_COUNTABLE) ||
-                product.getProductType().equals(ProductType.UNCOUNTABLE) && quantity.matches(REGEX_UNCOUNTABLE);
+        return product.getProductType() == ProductType.COUNTABLE && quantity.matches(REGEX_COUNTABLE) ||
+                product.getProductType() == ProductType.UNCOUNTABLE && quantity.matches(REGEX_UNCOUNTABLE);
     }
 
     public static List<Product> getList() {

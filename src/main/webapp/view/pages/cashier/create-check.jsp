@@ -30,16 +30,15 @@
     <div class="row d-flex input-panel">
         <form method="post" action="/api/add-product">
             <div class="col-md-4 d-inline" style="min-width:276px;">
-                <c:set var="number" value="12.3"/>
-                <label class="col-form-label" style="font-family:Roboto, sans-serif;">Search <formatvalue:formatNumber number="${number}" format="#,###.00"/> </label>
+                <label class="col-form-label" style="text-transform: capitalize; font-family:Roboto, sans-serif;"><fmt:message key="search"/></label>
                 <input class="align-items-baseline search-field" name="id" type="text" placeholder=" id" style="font-family:Roboto, sans-serif;">
             </div>
             <div class="col d-inline">
-                <label class="col-form-label" style="font-family:Roboto, sans-serif;">Quantity</label>
-                <input class="align-items-baseline quantity-field" name="quantity" type="text" placeholder=" number / weight" inputmode="numeric" style="font-family:Roboto, sans-serif;">
+                <label class="col-form-label" style="text-transform: capitalize; font-family:Roboto, sans-serif;"><fmt:message key="quantity"/></label>
+                <input class="align-items-baseline quantity-field" name="quantity" type="text" placeholder=" <fmt:message key="number.weight"/>" inputmode="numeric" style="font-family:Roboto, sans-serif;">
             </div>
             <div class="col-2 d-inline" style="width:178px;min-width:0px;">
-                <button class="btn btn-primary btn-sm float-right add-prod-btn" type="submit" style="background-color:#fcd85a;color:rgb(34,34,34);margin-top: 4px;" onchange="submit()">ADD</button>
+                <button class="btn btn-primary btn-sm float-right add-prod-btn" type="submit" style="text-transform: uppercase; background-color:#fcd85a;color:rgb(34,34,34);margin-top: 4px;" onchange="submit()"><fmt:message key="add"/></button>
             </div>
         </form>
     </div>
@@ -49,10 +48,10 @@
                 <thead>
                 <tr>
                     <th style="font-family:Roboto, sans-serif;">#</th>
-                    <th>serial number</th>
-                    <th>name</th>
-                    <th>quantity</th>
-                    <th>price</th>
+                    <th><fmt:message key="serial.number"/> </th>
+                    <th><fmt:message key="name"/></th>
+                    <th><fmt:message key="quantity"/></th>
+                    <th><fmt:message key="price"/></th>
                     <c:if test="${role eq 'SENIOR_CASHIER'}">
                         <th></th>
                     </c:if>
@@ -73,7 +72,7 @@
                                     <td><c:out value="${product.price/100.}"/></td>
                                     <c:if test="${role eq 'SENIOR_CASHIER'}">
                                         <%--<td><div class="btn btn-primary btn-sm float-right add-prod-btn"><a href="/api/remove-from-check?productId=${product.id}">delete</a></div> </td>--%>
-                                        <td style="width: 32px;"><button class="btn btn-primary btn-sm float-right add-prod-btn" type="button" style="background-color:#fcd85a;color:rgb(34,34,34);" onclick="location.href='${pageContext.request.contextPath}/api/remove-from-check?productId=${product.id}'" ">REMOVE</button></td>
+                                        <td style="width: 32px;"><button class="btn btn-primary btn-sm float-right add-prod-btn" type="button" style="text-transform: uppercase; background-color:#fcd85a;color:rgb(34,34,34);" onclick="location.href='${pageContext.request.contextPath}/api/remove-from-check?productId=${product.id}'"><fmt:message key="remove"/></button></td>
                                     </c:if>
                                 </div>
                             <%--</form>--%>
@@ -85,12 +84,12 @@
         </div>
 
         <div style="height:50px;">
-            <select name="paymentType" style="margin-left: 30px;">
-                <option value="CASH" selected>CASH</option>
-                <option value="CASHLESS">CASHLESS</option>
+            <select name="paymentType" style="text-transform: uppercase; margin-left: 30px;">
+                <option value="CASH" style="text-transform: uppercase;" selected><fmt:message key="cash"/></option>
+                <option value="CASHLESS" style="text-transform: uppercase;"><fmt:message key="cashless"/></option>
             </select>
-            <button class="btn btn-primary btn-sm float-right" type="submit" style="background-color:#fcd85a;color:rgb(34,34,34);font-style:normal;font-weight:bold;">DONE</button>
-            <p class="float-left" style="color:rgb(34,34,34);font-style:normal;">TOTAL <formatvalue:formatNumber number="${total}" format="###0.00"/></p>
+            <button class="btn btn-primary btn-sm float-right" type="submit" style="text-transform: uppercase; background-color:#fcd85a;color:rgb(34,34,34);font-style:normal;font-weight:bold;"><fmt:message key="done"/></button>
+            <p class="float-left" style="color:rgb(34,34,34);font-style:normal; text-transform: uppercase;"><fmt:message key="total"/> <formatvalue:formatNumber number="${total}" format="###0.00"/></p>
         </div>
     </form>
 </div>

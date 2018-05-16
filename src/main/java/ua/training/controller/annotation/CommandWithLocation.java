@@ -1,4 +1,4 @@
-package ua.training.controller;
+package ua.training.controller.annotation;
 
 import java.lang.annotation.*;
 

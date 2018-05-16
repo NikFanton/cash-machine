@@ -6,10 +6,10 @@
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav mx-auto" style="font-family:Montserrat, sans-serif;font-weight:normal;">
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="${pageContext.request.contextPath}register-employee-form" style="color:rgb(34,34,34);font-size:17px;">add employee</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}register-employee-form" style="color:rgb(34,34,34);font-size:17px;"><fmt:message key="nav.admin.add.employee"/></a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" href="${pageContext.request.contextPath}admin-info" style="color:rgb(34,34,34);font-size:17px;">info</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}admin-info" style="color:rgb(34,34,34);font-size:17px;"><fmt:message key="nav.info"/> </a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav" style="font-family:Montserrat, sans-serif;">
@@ -23,7 +23,7 @@
                         </label>
                     </li>
                     <li class="nav-item" role="presentation"><div class="nav-link active" style="color:rgb(51,51,51);">${firstName}</div></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="logout" style="color:rgb(51,51,51);">Log Out</a></li>
+                    <li class="nav-item" role="presentation"><a class="nav-link active" href="logout" style="color:rgb(51,51,51);"><fmt:message key="logout"/> </a></li>
                 </ul>
             </div>
         </div>

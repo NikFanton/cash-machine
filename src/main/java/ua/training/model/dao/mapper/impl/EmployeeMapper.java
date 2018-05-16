@@ -1,6 +1,7 @@
-package ua.training.model.dao.mapper;
+package ua.training.model.dao.mapper.impl;
 
 import ua.training.constant.database.EmployeeFieldsNames;
+import ua.training.model.dao.mapper.UserMapper;
 import ua.training.model.entity.Employee;
 import ua.training.model.entity.enums.Role;
 

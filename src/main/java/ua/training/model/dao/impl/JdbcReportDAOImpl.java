@@ -1,9 +1,9 @@
 package ua.training.model.dao.impl;
 
+import ua.training.constant.LogMessages;
 import ua.training.model.dao.ReportDAO;
 import ua.training.model.dao.SQLQueries;
-import ua.training.model.dao.factory.DAOFactory;
-import ua.training.model.dao.mapper.ReportMapper;
+import ua.training.model.dao.mapper.impl.ReportMapper;
 import ua.training.model.entity.Report;
 
 import java.sql.Connection;
@@ -33,7 +33,8 @@ public class JdbcReportDAOImpl implements ReportDAO {
             preparedStatement.setInt(8, report.getChecksCount());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage() + " " + LogMessages.ADD_REPORT_ERROR);
+            throw new RuntimeException();
         }
     }
 
@@ -53,9 +54,9 @@ public class JdbcReportDAOImpl implements ReportDAO {
             }
             return reports;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage() + " " + LogMessages.GET_ALL_REPORTS_ERROR);
+            throw new RuntimeException();
         }
-        return null;
     }
 
     @Override
@@ -69,11 +70,6 @@ public class JdbcReportDAOImpl implements ReportDAO {
     }
 
     @Override
-    public void close() throws Exception {
-        connection.close();
-    }
-
-    @Override
     public Report getLatestReport() {
         try (ResultSet resultSet = connection.createStatement().executeQuery(SQLQueries.GET_LATEST_REPORT)) {
             ReportMapper mapper = new ReportMapper();
@@ -81,13 +77,14 @@ public class JdbcReportDAOImpl implements ReportDAO {
                 return mapper.extractFromResultSet(resultSet);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage() + " " + LogMessages.GET_LATEST_REPORT_ERROR);
+            throw new RuntimeException();
         }
         return null;
     }
 
-    public static void main(String[] args) {
-        ReportDAO dao = DAOFactory.getDaoFactory().getReportDAO();
-        System.out.println(dao.getLatestReport());
+    @Override
+    public void close() throws Exception {
+        connection.close();
     }
 }

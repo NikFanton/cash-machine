@@ -1,7 +1,7 @@
 package ua.training.model.service.impl;
 
+import ua.training.constant.LogMessages;
 import ua.training.model.dao.ProductDAO;
-import ua.training.model.dao.factory.DAOFactory;
 import ua.training.model.entity.Product;
 import ua.training.model.service.ProductService;
 
@@ -12,9 +12,9 @@ public class ProductServiceImpl implements ProductService {
         try (ProductDAO dao = daoFactory.getProductDAO()) {
             return dao.getById(id);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage() + " " + LogMessages.GET_PRODUCT_BY_ID_ERROR);
+            return null;
         }
-        return null;
     }
 
     @Override
@@ -22,9 +22,9 @@ public class ProductServiceImpl implements ProductService {
         try (ProductDAO dao = daoFactory.getProductDAO()) {
             return dao.getProductsByName(name);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage() + " " + LogMessages.GET_PRODUCTS_BY_NAME_ERROR);
+            return null;
         }
-        return null;
     }
 
     @Override
@@ -32,7 +32,7 @@ public class ProductServiceImpl implements ProductService {
         try(ProductDAO dao = daoFactory.getProductDAO()) {
             dao.add(product);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage() + " " + LogMessages.CREATE_PRODUCT_ERROR);
         }
     }
 }

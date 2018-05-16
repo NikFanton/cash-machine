@@ -28,9 +28,9 @@
     <div class="row d-flex input-panel">
         <form method="post" action="/api/find-product">
             <div class="col-md-4 d-inline" style="min-width:276px;">
-                <label class="col-form-label" style="font-family:Roboto, sans-serif;">Search</label>
-                <input class="align-items-baseline search-field" name="name" type="text" placeholder=" name" style="font-family:Roboto, sans-serif;">
-                <button class="btn btn-primary btn-sm float-right add-prod-btn" type="submit" style="background-color:#fcd85a;color:rgb(34,34,34);" onchange="submit()">Find</button>
+                <label class="col-form-label" style="text-transform: capitalize; font-family:Roboto, sans-serif;"><fmt:message key="search"/> </label>
+                <input class="align-items-baseline search-field" name="name" type="text" placeholder=" <fmt:message key="name"/>" style="font-family:Roboto, sans-serif;">
+                <button class="btn btn-primary btn-sm float-right add-prod-btn" type="submit" style="text-transform: capitalize; background-color:#fcd85a;color:rgb(34,34,34);" onchange="submit()"><fmt:message key="find"/></button>
             </div>
             <div class="col-2" style="width:178px;min-width:0px;">
 
@@ -42,9 +42,9 @@
                 <thead>
                 <tr>
                     <th style="font-family:Roboto, sans-serif;">#</th>
-                    <th>serial number</th>
-                    <th>name</th>
-                    <th>price</th>
+                    <th><fmt:message key="serial.number"/> </th>
+                    <th><fmt:message key="name"/></th>
+                    <th><fmt:message key="price"/></th>
                 </tr>
                 </thead>
                 <tbody>

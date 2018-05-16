@@ -29,15 +29,12 @@ public class AuthorisationFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain)
             throws IOException, ServletException {
-        System.out.println("FILTER");
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpSession session = request.getSession();
         ServletContext context = session.getServletContext();
         Role role = (Role) session.getAttribute(AttributeAndParameterNames.ROLE);
         String login = (String) session.getAttribute(AttributeAndParameterNames.LOGIN);
-        System.out.println("login = [" + login + "]");
-        System.out.println("role = [" + role + "]");
 
 //        TODO Catch role here if already in system
         if (nonNull(role) && nonNull(login)) {

@@ -1,5 +1,7 @@
 package ua.training.controller.command.direction;
 
+import ua.training.constant.Locations;
+import ua.training.controller.annotation.CommandWithLocation;
 import ua.training.controller.command.Command;
 import ua.training.constant.AttributeAndParameterNames;
 import ua.training.constant.Pages;
@@ -9,8 +11,8 @@ import ua.training.model.service.ReportService;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+@CommandWithLocation(location = Locations.REPORT)
 public class MakeReport implements Command {
-
     private ReportService reportService;
 
     public MakeReport(ReportService reportService) {

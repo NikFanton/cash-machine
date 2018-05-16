@@ -1,5 +1,6 @@
 package ua.training.controller.command.action;
 
+import ua.training.controller.annotation.CommandWithLocation;
 import ua.training.controller.command.Command;
 import ua.training.constant.Locations;
 import ua.training.model.entity.Report;
@@ -7,8 +8,8 @@ import ua.training.model.service.ReportService;
 
 import javax.servlet.http.HttpServletRequest;
 
+@CommandWithLocation(location = Locations.MAKE_Z_REPORT)
 public class MakeZReport implements Command {
-
     private ReportService reportService;
 
     public MakeZReport(ReportService reportService) {

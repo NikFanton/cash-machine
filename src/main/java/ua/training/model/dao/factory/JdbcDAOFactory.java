@@ -40,6 +40,7 @@ public class JdbcDAOFactory extends DAOFactory {
         try {
             return dataSource.getConnection();
         } catch (SQLException e) {
+            logger.error(e.getMessage() + " " + "can't close connection");
             throw new RuntimeException(e);
         }
     }

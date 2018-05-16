@@ -1,5 +1,6 @@
 package ua.training.controller.command.action;
 
+import ua.training.controller.annotation.CommandWithLocation;
 import ua.training.controller.command.Command;
 import ua.training.constant.AttributeAndParameterNames;
 import ua.training.constant.Locations;
@@ -9,6 +10,7 @@ import ua.training.model.service.ProductService;
 
 import javax.servlet.http.HttpServletRequest;
 
+@CommandWithLocation(location = Locations.ADD_PRODUCT)
 public class AddProduct implements Command {
     private static final String REGEX_ID = "[0-9]{1,18}";
 

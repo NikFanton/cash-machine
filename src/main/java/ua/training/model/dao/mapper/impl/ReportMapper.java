@@ -1,6 +1,7 @@
-package ua.training.model.dao.mapper;
+package ua.training.model.dao.mapper.impl;
 
 import ua.training.constant.database.ReportFieldsNames;
+import ua.training.model.dao.mapper.BaseMapper;
 import ua.training.model.entity.Report;
 
 import java.math.BigInteger;

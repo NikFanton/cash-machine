@@ -1,7 +1,8 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="../../util/init.jsp"%>
 <!DOCTYPE html>
 <html>
 
@@ -32,7 +33,6 @@
 <c:set var="green" value="#bae860;"/>
 <c:set var="yellow" value="#fcd85a;"/>
 <c:set var="red" value="rgba(255,90,79,0.83);"/>
-
 <div class="features-boxed" style="margin-top:35px;background-color:rgba(252,216,90,0);">
     <div class="container">
         <div class="row justify-content-center features" style="padding-top: 10px; padding-bottom: 10px;">
@@ -51,7 +51,7 @@
                                         <form style="padding-top: 30px;">
                                             <div class="illustration modal-content animate" style="margin: 0; padding:0;text-align:left;">
                                                 <div class="form-group" style="margin-left: 0px;margin-bottom: 0px;">
-                                                    <button class="btn btn-primary btn-block btn-login" type="submit" style="background-color:#fcd85a;font-weight:normal;font-style:normal;font-size:16px;margin-top: 0px;margin-bottom: 10px;padding-top: 5px;padding-bottom: 5px;" onchange="document.getElementById('check-card-${check.id}').style.display = "none";">CLOSE</button>
+                                                    <button class="btn btn-primary btn-block btn-login" type="submit" style="text-transform: uppercase; background-color:#fcd85a;font-weight:normal;font-style:normal;font-size:16px;margin-top: 0px;margin-bottom: 10px;padding-top: 5px;padding-bottom: 5px;" onchange="document.getElementById('check-card-${check.id}').style.display = "none";"><fmt:message key="close"/> </button>
                                                 </div>
                                                 <div class="bill">
                                                     <table>
@@ -130,26 +130,25 @@
                                                                                                         : red}"></i>
                                             <h4 class="card-title" style="font-size:18px;">
                                                 <strong>
-                                                    Check #<c:out value="${check.id}"/>
+                                                    <fmt:message key="check"/> #<c:out value="${check.id}"/>
                                                 </strong><br>
                                             </h4>
                                             <h6 class="text-muted card-subtitle mb-2" style="font-size:16px;">
-                                                <c:out value="${check.dateTime.toLocalDate()}"/>
+                                                <fmt:parseDate var="date" pattern="yyyy-MM-dd" value="${check.dateTime.toLocalDate()}"/>
+                                                <fmt:message var="dateFormatPattern" key="date.format"/>
+                                                <fmt:formatDate pattern = "${dateFormatPattern}" value = "${date}"/>
                                                 <c:out value="${check.dateTime.toLocalTime()}"/>
                                                     <%--03.05.2018 - 14:25--%>
                                                 <br>
                                             </h6>
                                         </div>
-                                        <p style="margin-bottom: 6px;font-size:16px;margin-top: 6px;" <c:out value="${check.checkType != 'CANCELED' ? 'hidden' : ''}"/>>Returned ${total}</p>
+                                        <p style="margin-bottom: 6px;font-size:16px;margin-top: 6px;" <c:out value="${check.checkType != 'CANCELED' ? 'hidden' : ''}"/>><fmt:message key="returned"/> ${total}</p>
                                         <c:if test="${role ne 'SENIOR_CASHIER'}">
                                             <p style="margin-bottom: 6px;font-size:16px;margin-top: 6px;" <c:out value="${check.checkType == 'CANCELED' ? 'hidden' : ''}"/>>&#8203;</p>
                                         </c:if>
                                         <c:if test="${role eq 'SENIOR_CASHIER'}">
-                                            <a class="card-link" href="${pageContext.request.contextPath}cancel-check?checkId=${check.id}" style="font-size:16px;" <c:out value="${check.checkType == 'CANCELED' ? 'hidden' : ''}"/>>cancel check</a>
+                                            <a class="card-link" href="${pageContext.request.contextPath}cancel-check?checkId=${check.id}" style="font-size:16px;" <c:out value="${check.checkType == 'CANCELED' ? 'hidden' : ''}"/>><fmt:message key="cancel.check"/></a>
                                         </c:if>
-                                        <%--<div class="form-group" style="margin-left: 0px;margin-bottom: 0px;">--%>
-                                            <%--<button class="btn btn-primary btn-block btn-login" type="submit" style="background-color:#fcd85a;font-weight:normal;font-style:normal;font-size:16px;margin-top: 0px;margin-bottom: 10px;padding-top: 5px;padding-bottom: 5px; border-color:#fcd85a;">cancel check</button>--%>
-                                        <%--</div>--%>
                                     </div>
                                 </div>
 

@@ -1,12 +1,15 @@
 package ua.training.model.dao.impl;
 
+import ua.training.constant.LogMessages;
 import ua.training.model.dao.ProductDAO;
 import ua.training.model.dao.SQLQueries;
-import ua.training.model.dao.factory.DAOFactory;
-import ua.training.model.dao.mapper.ProductMapper;
+import ua.training.model.dao.mapper.impl.ProductMapper;
 import ua.training.model.entity.Product;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +29,8 @@ public class JdbcProductDAOImpl implements ProductDAO {
             preparedStatement.setString(4, product.getProductType().name());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage() + " " + LogMessages.CREATE_PRODUCT_ERROR);
+            throw new RuntimeException();
         }
     }
 
@@ -40,7 +44,8 @@ public class JdbcProductDAOImpl implements ProductDAO {
                 return mapper.extractFromResultSet(resultSet);
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            logger.error(e.getMessage() + " " + LogMessages.GET_PRODUCT_BY_ID_ERROR);
+            throw new RuntimeException();
         }
         return null;
     }
@@ -54,7 +59,8 @@ public class JdbcProductDAOImpl implements ProductDAO {
                 users.add(mapper.extractFromResultSet(resultSet));
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            logger.error(e.getMessage() + " " + LogMessages.GET_ALL_PRODUCTS_ERROR);
+            throw new RuntimeException();
         }
         return users;
     }
@@ -70,16 +76,6 @@ public class JdbcProductDAOImpl implements ProductDAO {
     }
 
     @Override
-    public void close() throws Exception {
-        connection.close();
-    }
-
-    public static void main(String[] args) {
-        ProductDAO dao = DAOFactory.getDaoFactory().getProductDAO();
-        dao.getAll().forEach(System.out::println);
-    }
-
-    @Override
     public List<Product> getProductsByName(String name) {
         List<Product> users = new ArrayList<>();
         try (PreparedStatement preparedStatement = connection.prepareStatement(SQLQueries.GET_PRODUCTS_BY_NAME)) {
@@ -90,8 +86,14 @@ public class JdbcProductDAOImpl implements ProductDAO {
                 users.add(mapper.extractFromResultSet(resultSet));
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            logger.error(e.getMessage() + " " + LogMessages.GET_PRODUCTS_BY_NAME_ERROR);
+            throw new RuntimeException();
         }
         return users;
+    }
+
+    @Override
+    public void close() throws Exception {
+        connection.close();
     }
 }

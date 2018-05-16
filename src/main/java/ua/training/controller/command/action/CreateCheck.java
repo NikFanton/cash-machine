@@ -1,5 +1,6 @@
 package ua.training.controller.command.action;
 
+import ua.training.controller.annotation.CommandWithLocation;
 import ua.training.controller.command.Command;
 import ua.training.constant.AttributeAndParameterNames;
 import ua.training.constant.Locations;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import java.math.BigInteger;
 import java.util.List;
 
+@CommandWithLocation(location = Locations.CREATE_CHECK)
 public class CreateCheck implements Command {
     private CheckService checkService;
     private EmployeeService employeeService;
@@ -36,7 +38,6 @@ public class CreateCheck implements Command {
             Employee employee = null;
             try {
                 String login = String.valueOf(session.getAttribute(AttributeAndParameterNames.LOGIN));
-                System.out.println("login = [" + login + "]");
                 employee = employeeService.getEmployee(login);
             } catch (NoSuchResultFromDataBaseException e) {
                 e.printStackTrace();

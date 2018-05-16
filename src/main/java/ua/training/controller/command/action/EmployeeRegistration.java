@@ -1,5 +1,6 @@
 package ua.training.controller.command.action;
 
+import ua.training.controller.annotation.CommandWithLocation;
 import ua.training.controller.command.Command;
 import ua.training.constant.AttributeAndParameterNames;
 import ua.training.constant.Locations;
@@ -9,8 +10,8 @@ import ua.training.model.service.EmployeeService;
 
 import javax.servlet.http.HttpServletRequest;
 
+@CommandWithLocation(location = Locations.EMPLOYEE_REGISTRATION)
 public class EmployeeRegistration implements Command {
-
     private EmployeeService employeeService;
 
     public EmployeeRegistration(EmployeeService employeeService) {

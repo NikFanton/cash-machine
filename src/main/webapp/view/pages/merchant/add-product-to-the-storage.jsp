@@ -1,7 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="../../util/init.jsp"%>
 <!DOCTYPE html>
 <html>
 
@@ -32,14 +29,14 @@
     <div class="form-container">
         <div class="product-image-holder"></div>
         <form method="post" action="${pageContext.request.contextPath}/api/add-product-to-storage" style="background-color:rgba(255,255,255,0.76);">
-            <h2 class="text-center"><strong>ADD NEW PRODUCT</strong></h2>
-            <div class="form-group"><input class="form-control" type="text" name="productName" placeholder="Product name" required></div>
-            <div class="form-group"><input class="form-control" type="text" name="productQuantity" placeholder="Quantity" required></div>
-            <div class="form-group"><input class="form-control" type="text" name="productPrice" placeholder="Price" required></div>
+            <h2 class="text-center" style="text-transform: uppercase;"><strong><fmt:message key="title.add.new.product"/></strong></h2>
+            <div class="form-group"><input class="form-control" type="text" name="productName" style="text-transform: capitalize;" placeholder="<fmt:message key="product.name"/>" required></div>
+            <div class="form-group"><input class="form-control" type="text" name="productQuantity" style="text-transform:capitalize;" placeholder="<fmt:message key="quantity"/>" required></div>
+            <div class="form-group"><input class="form-control" type="text" name="productPrice" style="text-transform:capitalize;" placeholder="<fmt:message key="price"/>" required></div>
             <div class="form-group"><select class="form-control" name="productType" style="margin-left:10px;" required>
-                <option value="COUNTABLE" selected>Countable</option>
-                <option value="UNCOUNTABLE">Uncountable</option></select></div>
-            <div class="form-group"><button class="btn btn-primary btn-block btn-login" type="submit" style="background-color:#fcd85a;font-weight:normal;font-style:normal;font-size:16px;">ADD PRODUCT</button></div>
+                <option value="COUNTABLE" selected><fmt:message key="countable"/></option>
+                <option value="UNCOUNTABLE"><fmt:message key="uncountable"/></option></select></div>
+            <div class="form-group"><button class="btn btn-primary btn-block btn-login" type="submit" style="text-transform:uppercase; background-color:#fcd85a;font-weight:normal;font-style:normal;font-size:16px;"><fmt:message key="add.product"/></button></div>
         </form>
     </div>
 </div>

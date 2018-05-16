@@ -8,7 +8,5 @@ public interface EmployeeService extends Service {
 
     Employee getEmployee(String login) throws NoSuchResultFromDataBaseException;
 
-    Employee getEmployee(String login, String pass) throws NoSuchResultFromDataBaseException;
-
     void registerEmployee(Employee employee);
 }

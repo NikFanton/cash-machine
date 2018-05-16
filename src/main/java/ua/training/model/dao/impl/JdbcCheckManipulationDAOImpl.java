@@ -1,9 +1,9 @@
 package ua.training.model.dao.impl;
 
+import ua.training.constant.LogMessages;
 import ua.training.model.dao.CheckManipulationDAO;
 import ua.training.model.dao.SQLQueries;
-import ua.training.model.dao.factory.DAOFactory;
-import ua.training.model.dao.mapper.CheckManipulationMapper;
+import ua.training.model.dao.mapper.impl.CheckManipulationMapper;
 import ua.training.model.entity.CheckManipulation;
 
 import java.sql.Connection;
@@ -34,7 +34,8 @@ public class JdbcCheckManipulationDAOImpl implements CheckManipulationDAO {
                 return manipulationMapper.extractFromResultSet(resultSet);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage() + " " + LogMessages.GET_CHECK_MANIPULATION_ERROR);
+            throw new RuntimeException();
         }
         return null;
     }
@@ -62,10 +63,5 @@ public class JdbcCheckManipulationDAOImpl implements CheckManipulationDAO {
     @Override
     public List<CheckManipulation> getCheckManipulationsBuCheckId(Long checkId) {
         return null;
-    }
-
-    public static void main(String[] args) {
-        CheckManipulationDAO dao = DAOFactory.getDaoFactory().getCheckManipulationDAO();
-        System.out.println(dao.getById(1L));
     }
 }

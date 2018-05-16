@@ -1,5 +1,6 @@
 package ua.training.model.service.impl;
 
+import ua.training.constant.LogMessages;
 import ua.training.model.dao.CheckDAO;
 import ua.training.model.dao.ReportDAO;
 import ua.training.model.entity.Check;
@@ -14,8 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class ReportServiceImpl implements ReportService {
-
-//    TODO Move DEFAULT_MONEY_IN_CASH_MACHINE from this class to constant interface
+    //    TODO Move DEFAULT_MONEY_IN_CASH_MACHINE from this class to constant interface
     private static final BigInteger DEFAULT_MONEY_IN_CASH_MACHINE = BigInteger.valueOf(2250);
 
     @Override
@@ -23,9 +23,9 @@ public class ReportServiceImpl implements ReportService {
         try (ReportDAO dao = daoFactory.getReportDAO()) {
             return Optional.ofNullable(dao.getAll()).orElseThrow(NoSuchResultFromDataBaseException::new);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage() + " " + LogMessages.GET_ALL_REPORTS_ERROR);
+            return null;
         }
-        return null;
     }
 
     @Override
@@ -38,9 +38,9 @@ public class ReportServiceImpl implements ReportService {
                     .orElseThrow(NoSuchResultFromDataBaseException::new);
             return makeReport(checks);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage() + " " + LogMessages.MAKE_REPORT_ERROR);
+            return null;
         }
-        return null;
     }
 
     @Override
@@ -48,7 +48,7 @@ public class ReportServiceImpl implements ReportService {
         try (ReportDAO dao = daoFactory.getReportDAO()) {
             dao.add(report);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage() + " " + LogMessages.ADD_REPORT_ERROR);
         }
     }
 

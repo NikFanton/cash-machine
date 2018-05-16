@@ -1,6 +1,7 @@
-package ua.training.model.dao.mapper;
+package ua.training.model.dao.mapper.impl;
 
 import ua.training.constant.database.CheckFieldsNames;
+import ua.training.model.dao.mapper.BaseMapper;
 import ua.training.model.entity.Check;
 import ua.training.model.entity.Employee;
 import ua.training.model.entity.enums.CheckType;

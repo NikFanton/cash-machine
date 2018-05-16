@@ -1,5 +1,6 @@
 package ua.training.controller.command.action;
 
+import ua.training.controller.annotation.CommandWithLocation;
 import ua.training.controller.command.Command;
 import ua.training.constant.AttributeAndParameterNames;
 import ua.training.constant.Locations;
@@ -11,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
+@CommandWithLocation(location = Locations.CHECK_LIST)
 public class CheckList implements Command {
+//    TODO Move constant CHECKS_PER_PAGE to Constant interface
     private static final Integer CHECKS_PER_PAGE = 9;
 
     private CheckService checkService;

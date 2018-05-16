@@ -1,7 +1,7 @@
 package ua.training.model.service.impl;
 
+import ua.training.constant.LogMessages;
 import ua.training.model.dao.EmployeeDAO;
-import ua.training.model.dao.factory.DAOFactory;
 import ua.training.model.entity.Employee;
 import ua.training.model.exception.NoSuchResultFromDataBaseException;
 import ua.training.model.service.EmployeeService;
@@ -17,7 +17,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         try {
             employee = getEmployee(login);
         } catch (NoSuchResultFromDataBaseException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage() + " " + LogMessages.GET_EMPLOYEE_BY_LOGIN_AND_PASSWORD_ERROR);
         }
         return nonNull(employee) && CryptoUtil.checkPassword(pass, employee.getPassword());
     }
@@ -27,25 +27,17 @@ public class EmployeeServiceImpl implements EmployeeService {
             return Optional.ofNullable(dao.getByLogin(login))
                     .orElseThrow(NoSuchResultFromDataBaseException::new);
         } catch (Exception e) {
+            logger.error(e.getMessage() + " " + LogMessages.GET_EMPLOYEE_BY_LOGIN_ERROR);
             throw new NoSuchResultFromDataBaseException();
         }
     }
 
-    public Employee getEmployee(String login, String pass) throws NoSuchResultFromDataBaseException {
-        try (EmployeeDAO dao = daoFactory.getEmployeeDAO()) {
-            return Optional.ofNullable(dao.getByLoginAndPassword(login, pass))
-                    .orElseThrow(NoSuchResultFromDataBaseException::new);
-        } catch (Exception e) {
-            throw new NoSuchResultFromDataBaseException();
-        }
-    }
-
-    @Override
     public void registerEmployee(Employee employee) {
         try (EmployeeDAO dao = daoFactory.getEmployeeDAO()) {
             employee.setPassword(CryptoUtil.hashPassword(employee.getPassword()));
             dao.add(employee);
         } catch (Exception e) {
+            logger.error(e.getMessage() + " " + LogMessages.REGISTER_EMPLOYEE_ERROR);
             throw new RuntimeException();
         }
     }

@@ -54,14 +54,14 @@ public interface SQLQueries {
     String GET_EMPLOYEE_BY_LOGIN_AND_PASSWORD = "SELECT * FROM employee WHERE login = ? AND password = ?";
 
     String GET_CHECK_MANIPULATION_BY_ID = "SELECT cmh.id, cmh.date_time_of_operation, cmh.check_manipulation_type, cmh.check_id, cmh.product_id,\n" +
-            "              e.id e_id, e.first_name e_first_name, e.last_name e_last_name, e.role e_role,\n" +
-            "              cp.quantity p_quantity, cp.product_in_check_type p_product_in_check_type, cp.price p_price,\n" +
-            "              p.id p_id, p.name p_name, p.product_type p_product_type" +
-            "            FROM check_manipulation_history cmh\n" +
-            "              LEFT JOIN employee e ON cmh.employee_id = e.id\n" +
-            "              LEFT JOIN `check_product` cp ON cmh.check_id = cp.check_id AND cmh.product_id = cp.product_id\n" +
-            "              LEFT JOIN `product` p ON cmh.product_id = p.id\n" +
-            "            WHERE cmh.id = ?";
+            "   e.id e_id, e.first_name e_first_name, e.last_name e_last_name, e.role e_role,\n" +
+            "   cp.quantity p_quantity, cp.product_in_check_type p_product_in_check_type, cp.price p_price,\n" +
+            "   p.id p_id, p.name p_name, p.product_type p_product_type" +
+            " FROM check_manipulation_history cmh\n" +
+            "   LEFT JOIN employee e ON cmh.employee_id = e.id\n" +
+            "   LEFT JOIN `check_product` cp ON cmh.check_id = cp.check_id AND cmh.product_id = cp.product_id\n" +
+            "   LEFT JOIN `product` p ON cmh.product_id = p.id\n" +
+            " WHERE cmh.id = ?";
 
     String GET_CHECK_BY_ID = "SELECT  c.id, c.date_time, c.cash_payments, c.cashless_payments, c.check_type,\n" +
             "  a.quantity p_quantity, a.product_in_check_type p_product_in_check_type, a.price p_price,\n" +

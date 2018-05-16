@@ -1,13 +1,12 @@
 package ua.training.model.dao.impl;
 
+import ua.training.constant.LogMessages;
 import ua.training.constant.database.CheckFieldsNames;
 import ua.training.model.dao.CheckDAO;
 import ua.training.model.dao.SQLQueries;
-import ua.training.model.dao.factory.DAOFactory;
-import ua.training.model.dao.mapper.CheckMapper;
-import ua.training.model.dao.mapper.ProductInCheckMapper;
+import ua.training.model.dao.mapper.impl.CheckMapper;
+import ua.training.model.dao.mapper.impl.ProductInCheckMapper;
 import ua.training.model.entity.Check;
-import ua.training.model.entity.Employee;
 import ua.training.model.entity.Product;
 import ua.training.model.entity.ProductInCheck;
 
@@ -40,7 +39,8 @@ public class JdbcCheckDAOImpl implements CheckDAO {
             }
             connection.commit();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage() + " " + LogMessages.CREATE_CHECK_ERROR);
+            throw new RuntimeException();
         }
     }
 
@@ -52,15 +52,13 @@ public class JdbcCheckDAOImpl implements CheckDAO {
             Map<Long, Check> checks = extractCheckWithProducts(resultSet);
             return checks.get(id);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage() + " " + LogMessages.GET_CHECK_BY_ID_ERROR);
+            throw new RuntimeException();
         }
-
-        return null;
     }
 
     /**
-     *
-     * @param resultSet
+     * @param resultSet contains data from database
      * @return map of checks with products
      * @throws SQLException
      */
@@ -86,9 +84,9 @@ public class JdbcCheckDAOImpl implements CheckDAO {
             checks.keySet().forEach(key -> result.add(checks.get(key)));
             return result;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage() + " " + LogMessages.GET_ALL_CHECKS_ERROR);
+            throw new RuntimeException();
         }
-        return null;
     }
 
     @Override
@@ -101,7 +99,8 @@ public class JdbcCheckDAOImpl implements CheckDAO {
             preparedStatement.setLong(5, check.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage() + " " + LogMessages.UPDATE_CHECK_ERROR);
+            throw new RuntimeException();
         }
     }
 
@@ -111,7 +110,8 @@ public class JdbcCheckDAOImpl implements CheckDAO {
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage() + " " + LogMessages.DELETE_CHECK_ERROR);
+            throw new RuntimeException();
         }
     }
 
@@ -124,8 +124,8 @@ public class JdbcCheckDAOImpl implements CheckDAO {
             preparedStatement.setInt(4, product.getPrice().intValue());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
-
+            logger.error(e.getMessage() + " " + LogMessages.ADD_PRODUCT_TO_CHECK_ERROR);
+            throw new RuntimeException();
         }
     }
 
@@ -135,7 +135,8 @@ public class JdbcCheckDAOImpl implements CheckDAO {
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage() + " " + LogMessages.MARK_CHECK_AS_CANCELED_ERROR);
+            throw new RuntimeException();
         }
     }
 
@@ -151,22 +152,24 @@ public class JdbcCheckDAOImpl implements CheckDAO {
             result.sort(Comparator.comparingLong(Check::getId));
             return result;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage() + " " + LogMessages.GET_PART_OF_ALL_CHECKS_ERROR);
+            throw new RuntimeException();
         }
-        return null;
     }
 
     @Override
     public Integer getNumberOfChecks() {
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(SQLQueries.GET_NUMBER_OF_CHECKS)) {
+            Integer result = 0;
             if (resultSet.first()) {
-                return resultSet.getInt(CheckFieldsNames.COUNT_OF_CHECKS);
+                result = resultSet.getInt(CheckFieldsNames.COUNT_OF_CHECKS);
             }
+            return result;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage() + " " + LogMessages.GET_NUMBER_OF_CHECKS_ERROR);
+            throw new RuntimeException();
         }
-        return null;
     }
 
     @Override
@@ -179,43 +182,13 @@ public class JdbcCheckDAOImpl implements CheckDAO {
             checks.keySet().forEach(key -> result.add(checks.get(key)));
             return result;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage() + " " + LogMessages.GET_ALL_CHECKS_FROM_DATE_ERROR + " " + dateTime);
+            throw new RuntimeException();
         }
-        return null;
     }
 
     @Override
-    public void close(){
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void main(String[] args) {
-        CheckDAO dao = DAOFactory.getDaoFactory().getCheckDAO();
-        Employee employee = new Employee();
-        employee.setId(5L);
-        List<ProductInCheck> products = new ArrayList<>();
-        ProductInCheck product1 = new ProductInCheck();
-        ProductInCheck product2 = new ProductInCheck();
-        ProductInCheck product3 = new ProductInCheck();
-        product1.setId(3L);
-        product2.setId(9L);
-        product3.setId(5L);
-        product1.setPrice(20.);
-        product2.setPrice(20.);
-        product3.setPrice(20.);
-        products.add(product1);
-        products.add(product2);
-        products.add(product3);
-
-//        Check check = new Check(BigInteger.valueOf(0), BigInteger.valueOf(20000), employee, products);
-//        dao.add(check);
-//        Check check2 = dao.getById(1L);
-//        dao.addProductToCheck(check2.getId(), product2);
-//        dao.getAll().forEach(System.out::println);
-        dao.getPartOfAll(9, 1).forEach(System.out::println);
+    public void close() throws SQLException {
+        connection.close();
     }
 }
