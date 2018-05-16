@@ -4,10 +4,8 @@ import ua.training.model.entity.ProductInCheck;
 import ua.training.model.entity.enums.ProductInCheckType;
 import ua.training.model.entity.enums.ProductType;
 
-import java.math.BigInteger;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Map;
 
 public class ProductInCheckMapper implements BaseMapper<ProductInCheck> {
     @Override

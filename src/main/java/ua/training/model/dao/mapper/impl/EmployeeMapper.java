@@ -7,11 +7,7 @@ import ua.training.model.entity.enums.Role;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class EmployeeMapper implements BaseMapper<Employee> {
-    public Employee extractFromResultSetWithoutAccount(ResultSet resultSet) throws SQLException {
-        return extractFromResultSetWithoutAccount(resultSet, "");
-    }
-
+public class EmployeeMapper implements UserMapper {
     @Override
     public Employee extractFromResultSet(ResultSet resultSet, String prefix) throws SQLException {
         Employee employee = extractFromResultSetWithoutAccount(resultSet, prefix);
@@ -22,6 +18,7 @@ public class EmployeeMapper implements BaseMapper<Employee> {
         return employee;
     }
 
+    @Override
     public Employee extractFromResultSetWithoutAccount(ResultSet resultSet, String prefix) throws SQLException {
         Long id = resultSet.getLong(prefix + EmployeeFieldsNames.ID);
         String firstName = resultSet.getString(prefix + EmployeeFieldsNames.FIRST_NAME);
