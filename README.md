@@ -18,4 +18,4 @@ Make *X and Z reports*.
 2. In project directory open PowerShell
 3. Enter command "mvn tomcat7:run"
 4. Open browser and follow the link http://localhost:8084/
-End with an example of getting some data out of the system or using it for a little demo
+End with an example  of getting some data out of the system or using it for a little demo
