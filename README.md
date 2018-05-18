@@ -1,5 +1,4 @@
 # cash-machine
-## Project description
 Cash-Machine is the cash register system. 
 
 ***Cashier*** can open the check, add selected products by code from the database (parsley = 234, bread = 222) or by name, enter number of products or weight. Close check. 
