@@ -1,4 +1,4 @@
-package ua.training.model.dao.datasource;
+package ua.training.constant.database;
 
 public interface ConnectionConstants {
     String DATABASE_DRIVER = "db.driver";
