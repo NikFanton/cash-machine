@@ -14,6 +14,5 @@ Make *X and Z reports*.
 # Run project
 
 1. Istall maven http://www.apache-maven.ru/install.html
-2. In project directory open PowerShell
-3. Enter command "mvn tomcat7:run"
-4. Open browser and follow the link http://localhost:8084/
+2. Enter command "mvn tomcat7:run"
+3. Open browser and follow the link http://localhost:8084/
