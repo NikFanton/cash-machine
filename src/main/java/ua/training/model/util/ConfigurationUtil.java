@@ -1,21 +1,30 @@
 package ua.training.model.util;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import ua.training.constant.database.Configuration;
+
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.Properties;
 
 public class ConfigurationUtil {
+    private static final Logger logger = LogManager.getLogger(ConfigurationUtil.class);
     private static Properties properties = new Properties();
 
-    public String getProperty(String propertyName) {
+    static {
         try {
-//            TODO Move path to constant interface
-            InputStream inputStream = new FileInputStream("src/main/resources/config/config.properties");
-            properties.load(inputStream);
+            properties.load(new FileInputStream(Configuration.CONFIG_FILE_PATH));
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage() + " " + "can't load config file");
         }
-        return properties.getProperty(propertyName);
+    }
+
+    public static String getString(String key) {
+        return properties.getProperty(key);
+    }
+
+    public static Integer getInt(String key) {
+        return Integer.valueOf(getString(key));
     }
 }
