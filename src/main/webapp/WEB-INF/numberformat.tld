@@ -11,7 +11,7 @@
     <uri>http://www.cashmachine.com/custlib</uri>
     <tag>
         <name>formatNumber</name>
-        <tag-class>ua.training.NumberFormatTag</tag-class>
+        <tag-class>ua.training.view.NumberFormatTag</tag-class>
         <body-content>empty</body-content>
         <attribute>
             <name>number</name>

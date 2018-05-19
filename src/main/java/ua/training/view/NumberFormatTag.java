@@ -1,4 +1,4 @@
-package ua.training;
+package ua.training.view;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.SimpleTagSupport;

@@ -1,33 +1,29 @@
 package ua.training.model.entity.enums;
 
-import edu.emory.mathcs.backport.java.util.Arrays;
 import ua.training.constant.Locations;
 
+import java.util.Arrays;
 import java.util.List;
 
 public enum Role {
-    UNKNOWN(Locations.REDIRECT + Locations.LOGIN_FORM, Arrays.asList(new String[]{
-                    Locations.LOGIN,
+    UNKNOWN(Locations.REDIRECT + Locations.LOGIN_FORM, Arrays.asList(Locations.LOGIN,
                     Locations.LOGIN_FORM,
-                    Locations.LOGOUT })),
+                    Locations.LOGOUT)),
 
-    ADMIN(Locations.REDIRECT + Locations.EMPLOYEE_REGISTRATION_FORM, Arrays.asList(new String[]{
-                    Locations.EMPLOYEE_REGISTRATION_FORM,
+    ADMIN(Locations.REDIRECT + Locations.EMPLOYEE_REGISTRATION_FORM, Arrays.asList(Locations.EMPLOYEE_REGISTRATION_FORM,
                     Locations.EMPLOYEE_REGISTRATION,
                     Locations.ADMIN_INFO,
-                    Locations.LOGOUT})),
+                    Locations.LOGOUT)),
 
-    CASHIER(Locations.REDIRECT + Locations.CREATE_CHECK_FORM, Arrays.asList(new String[]{
-                    Locations.CREATE_CHECK_FORM,
+    CASHIER(Locations.REDIRECT + Locations.CREATE_CHECK_FORM, Arrays.asList(Locations.CREATE_CHECK_FORM,
                     Locations.CREATE_CHECK,
                     Locations.ADD_PRODUCT,
                     Locations.CHECK_LIST,
                     Locations.FIND_PRODUCT_FORM,
                     Locations.FIND_PRODUCT,
-                    Locations.LOGOUT})),
+                    Locations.LOGOUT)),
 
-    SENIOR_CASHIER(Locations.REDIRECT + Locations.CREATE_CHECK_FORM, Arrays.asList(new String[]{
-                    Locations.CREATE_CHECK_FORM,
+    SENIOR_CASHIER(Locations.REDIRECT + Locations.CREATE_CHECK_FORM, Arrays.asList(Locations.CREATE_CHECK_FORM,
                     Locations.CREATE_CHECK,
                     Locations.ADD_PRODUCT,
                     Locations.CHECK_LIST,
@@ -38,13 +34,12 @@ public enum Role {
                     Locations.MAKE_Z_REPORT,
                     Locations.REMOVE_PRODUCT_FROM_CHECK,
                     Locations.CANCEL_CHECK,
-                    Locations.LOGOUT})),
+                    Locations.LOGOUT)),
 
-    MERCHANT(Locations.REDIRECT + Locations.ADD_PRODUCT_TO_STORAGE_FORM,Arrays.asList(new String[]{
-                    Locations.ADD_PRODUCT_TO_STORAGE_FORM,
+    MERCHANT(Locations.REDIRECT + Locations.ADD_PRODUCT_TO_STORAGE_FORM,Arrays.asList(Locations.ADD_PRODUCT_TO_STORAGE_FORM,
                     Locations.ADD_PRODUCT_TO_STORAGE,
                     Locations.MERCHANT_INFO,
-                    Locations.LOGOUT}));
+                    Locations.LOGOUT));
 
     private String startPage;
     private List<String> accessibleLocations;

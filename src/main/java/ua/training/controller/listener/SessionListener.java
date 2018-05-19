@@ -31,6 +31,6 @@ public class SessionListener implements HttpSessionListener {
         session.getSession().getServletContext().removeAttribute(AttributeAndParameterNames.ROLE);
         session.getSession().getServletContext().removeAttribute(AttributeAndParameterNames.FIRST_NAME);
         session.getSession().getServletContext().removeAttribute(AttributeAndParameterNames.LAST_NAME);
-        session.getSession().invalidate();
+//        session.getSession().invalidate();
     }
 }
