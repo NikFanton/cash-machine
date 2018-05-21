@@ -39,127 +39,128 @@
         <div class="row justify-content-center features" style="padding-top: 10px; padding-bottom: 10px;">
 
             <jsp:useBean id="checks" scope="request" type="java.util.List"/>
-            <c:set var="length" value="${fn:length(checks)}"/>
-            <c:forEach var="i" begin="1" end="${length}" step="1">
-                <c:set var="check" value="${checks[length-i]}"/>
+            <c:if test="${not empty checks}">
+                <c:set var="length" value="${fn:length(checks)}"/>
+                <c:forEach var="i" begin="1" end="${length}" step="1">
+                    <c:set var="check" value="${checks[length-i]}"/>
 
-                <div class="col-sm-6 col-md-5 col-lg-4 item">
-                    <div class="box">
-                        <div class="row">
-                            <div class="col">
-                                <div id="check-card-${check.id}" class="modal" style="padding-top: 70px;">
-                                    <div class="login-clean" style="background-color:rgba(252,216,90,0);padding-top: 30px;">
-                                        <form style="padding-top: 30px;">
-                                            <div class="illustration modal-content animate" style="margin: 0; padding:0;text-align:left;">
-                                                <div class="form-group" style="margin-left: 0px;margin-bottom: 0px;">
-                                                    <button class="btn btn-primary btn-block btn-login" type="submit" style="text-transform: uppercase; background-color:#fcd85a;font-weight:normal;font-style:normal;font-size:16px;margin-top: 0px;margin-bottom: 10px;padding-top: 5px;padding-bottom: 5px;" onchange="document.getElementById('check-card-${check.id}').style.display = "none";"><fmt:message key="close"/> </button>
-                                                </div>
-                                                <div class="bill">
-                                                    <table>
-                                                        <tr class="align-center">
-                                                            <td colspan="3">Вітаємо</td>
-                                                        </tr>
-                                                        <tr class="align-center">
-                                                            <td colspan="3">Магазин "Продукти-234"</td>
-                                                        </tr>
-                                                        <tr class="align-center">
-                                                            <td colspan="3">м.Київ, вул. Хрещатик, 36</td>
-                                                        </tr>
-                                                        <tr class="align-center">
-                                                            <td colspan="3">ТОВ "SuperMarket"</td>
-                                                        </tr>
-                                                        <tr class="align-center">
-                                                            <td colspan="3">ГАРЯЧА ЛІНІЯ 0 800 230 412</td>
-                                                        </tr>
-                                                        <tr class="align-center">
-                                                            <td colspan="3">email in@supermarket.com</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td colspan="3">${check.employee.firstName} ${check.employee.lastName}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td colspan="2">Чек ${check.id}</td>
-                                                            <td class="align-right">#</td>
-                                                        </tr>
-
-                                                        <c:set var="total" value="${0}"/>
-                                                        <c:forEach var="product" items="${check.productsInCheck}">
-                                                            <tr>
-                                                                <td>${product.quantity}${product.productType == 'UNCOUNTABLE' ? 'kg' : ''} x</td>
-                                                                <td class="align-right">${product.price/100 }</td>
-                                                                <td></td>
+                    <div class="col-sm-6 col-md-5 col-lg-4 item">
+                        <div class="box">
+                            <div class="row">
+                                <div class="col">
+                                    <div id="check-card-${check.id}" class="modal" style="padding-top: 70px;">
+                                        <div class="login-clean" style="background-color:rgba(252,216,90,0);padding-top: 30px;">
+                                            <form style="padding-top: 30px;">
+                                                <div class="illustration modal-content animate" style="margin: 0; padding:0;text-align:left;">
+                                                    <div class="form-group" style="margin-left: 0px;margin-bottom: 0px;">
+                                                        <button class="btn btn-primary btn-block btn-login" type="submit" style="text-transform: uppercase; background-color:#fcd85a;font-weight:normal;font-style:normal;font-size:16px;margin-top: 0px;margin-bottom: 10px;padding-top: 5px;padding-bottom: 5px;" onchange="document.getElementById('check-card-${check.id}').style.display = "none";"><fmt:message key="close"/> </button>
+                                                    </div>
+                                                    <div class="bill">
+                                                        <table>
+                                                            <tr class="align-center">
+                                                                <td colspan="3">Вітаємо</td>
+                                                            </tr>
+                                                            <tr class="align-center">
+                                                                <td colspan="3">Магазин "Продукти-234"</td>
+                                                            </tr>
+                                                            <tr class="align-center">
+                                                                <td colspan="3">м.Київ, вул. Хрещатик, 36</td>
+                                                            </tr>
+                                                            <tr class="align-center">
+                                                                <td colspan="3">ТОВ "SuperMarket"</td>
+                                                            </tr>
+                                                            <tr class="align-center">
+                                                                <td colspan="3">ГАРЯЧА ЛІНІЯ 0 800 230 412</td>
+                                                            </tr>
+                                                            <tr class="align-center">
+                                                                <td colspan="3">email in@supermarket.com</td>
                                                             </tr>
                                                             <tr>
-                                                                <td>${product.name}</td>
-                                                                <c:set var="total" value="${total + product.quantity * product.price/100.}"/>
-                                                                <td class="align-right">${product.quantity * product.price/100.}</td>
-                                                                <td class="align-right">A</td>
+                                                                <td colspan="3">${check.employee.firstName} ${check.employee.lastName}</td>
                                                             </tr>
-                                                        </c:forEach>
-                                                        <tr>
-                                                            <td colspan="3">-----------------------------------------------------------</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>СУМА</td>
-                                                            <td colspan="2" class="align-right">${total}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td colspan="3">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</td>
-                                                        </tr>
-                                                        <tr class="align-center">
-                                                            <td colspan="3">ДЯКУЄМО ЗА ПОКУПКУ!</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td><c:out value="${check.dateTime.toLocalDate()}"/></td>
-                                                            <td colspan="2" class="align-right"><c:out value="${check.dateTime.toLocalTime()}"/></td>
-                                                        </tr>
-                                                        <tr class="align-center">
-                                                            <td colspan="3">ФІСКАЛЬНИЙ ЧЕК</td>
-                                                        </tr>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
+                                                            <tr>
+                                                                <td colspan="2">Чек ${check.id}</td>
+                                                                <td class="align-right">#</td>
+                                                            </tr>
 
-                                <div class="card" style="cursor: pointer;">
-                                    <div class="card-body">
-                                        <div onclick="document.getElementById('check-card-${check.id}').style.display='block'">
-                                            <i class="fa fa-circle icon" style="color:${check.checkType == 'NORMAL' ? green
-                                                                                                        : check.checkType == 'ALTERED' ? yellow
-                                                                                                        : red}"></i>
-                                            <h4 class="card-title" style="font-size:18px;">
-                                                <strong>
-                                                    <fmt:message key="check"/> #<c:out value="${check.id}"/>
-                                                </strong><br>
-                                            </h4>
-                                            <h6 class="text-muted card-subtitle mb-2" style="font-size:16px;">
-                                                <fmt:parseDate var="date" pattern="yyyy-MM-dd" value="${check.dateTime.toLocalDate()}"/>
-                                                <fmt:message var="dateFormatPattern" key="date.format"/>
-                                                <fmt:formatDate pattern = "${dateFormatPattern}" value = "${date}"/>
-                                                <c:out value="${check.dateTime.toLocalTime()}"/>
-                                                    <%--03.05.2018 - 14:25--%>
-                                                <br>
-                                            </h6>
+                                                            <c:set var="total" value="${0}"/>
+                                                            <c:forEach var="product" items="${check.productsInCheck}">
+                                                                <tr>
+                                                                    <td>${product.quantity}${product.productType == 'UNCOUNTABLE' ? 'kg' : ''} x</td>
+                                                                    <td class="align-right">${product.price/100 }</td>
+                                                                    <td></td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>${product.name}</td>
+                                                                    <c:set var="total" value="${total + product.quantity * product.price/100.}"/>
+                                                                    <td class="align-right" style="vertical-align: initial;">${product.quantity * product.price/100.}</td>
+                                                                    <td class="align-right" style="vertical-align: initial;">A</td>
+                                                                </tr>
+                                                            </c:forEach>
+                                                            <tr>
+                                                                <td colspan="3">-----------------------------------------------------------</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>СУМА</td>
+                                                                <td colspan="2" class="align-right">${total}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td colspan="3">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</td>
+                                                            </tr>
+                                                            <tr class="align-center">
+                                                                <td colspan="3">ДЯКУЄМО ЗА ПОКУПКУ!</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td><c:out value="${check.dateTime.toLocalDate()}"/></td>
+                                                                <td colspan="2" class="align-right"><c:out value="${check.dateTime.toLocalTime()}"/></td>
+                                                            </tr>
+                                                            <tr class="align-center">
+                                                                <td colspan="3">ФІСКАЛЬНИЙ ЧЕК</td>
+                                                            </tr>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </form>
                                         </div>
-                                        <p style="margin-bottom: 6px;font-size:16px;margin-top: 6px;" <c:out value="${check.checkType != 'CANCELED' ? 'hidden' : ''}"/>><fmt:message key="returned"/> ${total}</p>
-                                        <c:if test="${role ne 'SENIOR_CASHIER'}">
-                                            <p style="margin-bottom: 6px;font-size:16px;margin-top: 6px;" <c:out value="${check.checkType == 'CANCELED' ? 'hidden' : ''}"/>>&#8203;</p>
-                                        </c:if>
-                                        <c:if test="${role eq 'SENIOR_CASHIER'}">
-                                            <a class="card-link" href="${pageContext.request.contextPath}cancel-check?checkId=${check.id}" style="font-size:16px;" <c:out value="${check.checkType == 'CANCELED' ? 'hidden' : ''}"/>><fmt:message key="cancel.check"/></a>
-                                        </c:if>
                                     </div>
+
+                                    <div class="card" style="cursor: pointer;">
+                                        <div class="card-body">
+                                            <div onclick="document.getElementById('check-card-${check.id}').style.display='block'">
+                                                <i class="fa fa-circle icon" style="color:${check.checkType == 'NORMAL' ? green
+                                                                                                            : check.checkType == 'ALTERED' ? yellow
+                                                                                                            : red}"></i>
+                                                <h4 class="card-title" style="font-size:18px;">
+                                                    <strong>
+                                                        <fmt:message key="check"/> #<c:out value="${check.id}"/>
+                                                    </strong><br>
+                                                </h4>
+                                                <h6 class="text-muted card-subtitle mb-2" style="font-size:16px;">
+                                                    <fmt:parseDate var="date" pattern="yyyy-MM-dd" value="${check.dateTime.toLocalDate()}"/>
+                                                    <fmt:message var="dateFormatPattern" key="date.format"/>
+                                                    <fmt:formatDate pattern = "${dateFormatPattern}" value = "${date}"/>
+                                                    <c:out value="${check.dateTime.toLocalTime()}"/>
+                                                        <%--03.05.2018 - 14:25--%>
+                                                    <br>
+                                                </h6>
+                                            </div>
+                                            <p style="margin-bottom: 6px;font-size:16px;margin-top: 6px;" <c:out value="${check.checkType != 'CANCELED' ? 'hidden' : ''}"/>><fmt:message key="returned"/> ${total}</p>
+                                            <c:if test="${role ne 'SENIOR_CASHIER'}">
+                                                <p style="margin-bottom: 6px;font-size:16px;margin-top: 6px;" <c:out value="${check.checkType == 'CANCELED' ? 'hidden' : ''}"/>>&#8203;</p>
+                                            </c:if>
+                                            <c:if test="${role eq 'SENIOR_CASHIER'}">
+                                                <a class="card-link" href="${pageContext.request.contextPath}cancel-check?checkId=${check.id}" style="font-size:16px;" <c:out value="${check.checkType == 'CANCELED' ? 'hidden' : ''}"/>><fmt:message key="cancel.check"/></a>
+                                            </c:if>
+                                        </div>
+                                    </div>
+
+
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
-                </div>
-            </c:forEach>
-
+                </c:forEach>
+            </c:if>
         </div>
         <div style="align-content: center">
             <nav>

@@ -31,19 +31,4 @@ public class ProductInCheck extends Product {
         this.productInCheckType = productInCheckType;
         return this;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ProductInCheck)) return false;
-        ProductInCheck product = (ProductInCheck) o;
-        return Objects.equals(getName(), product.getName()) &&
-                getProductType() == product.getProductType() &&
-                getProductInCheckType() == product.getProductInCheckType();
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getName(), getProductType());
-    }
 }

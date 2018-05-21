@@ -21,7 +21,8 @@ public class ConnectionPoolHolder {
                     dSource.setMinIdle(ConfigurationUtil.getInt(Configuration.DATABASE_MIN_IDLE));
                     dSource.setMaxIdle(ConfigurationUtil.getInt(Configuration.DATABASE_MAX_IDLE));
                     dSource.setMaxActive(ConfigurationUtil.getInt(Configuration.DATABASE_MAX_ACTIVE));
-                    dSource.setMaxOpenPreparedStatements(ConfigurationUtil.getInt(Configuration.DATABASE_MAX_OPEN_PREPARED_STATEMENTS));
+                    dSource.setMaxOpenPreparedStatements(ConfigurationUtil
+                            .getInt(Configuration.DATABASE_MAX_OPEN_PREPARED_STATEMENTS));
                     dataSource = dSource;
                 }
             }

@@ -72,7 +72,7 @@ public class ReportServiceImpl implements ReportService {
                 .setMoneyPutInCashMachine(DEFAULT_MONEY_IN_CASH_MACHINE)
                 .setSeizedMoney(((totalCanceledCashPayments.compareTo(DEFAULT_MONEY_IN_CASH_MACHINE) > 0)
                                     ? totalCashPayments.subtract(DEFAULT_MONEY_IN_CASH_MACHINE)
-                                    : BigInteger.ZERO))
+                                    : totalCashPayments))
                 .setCashPayments(totalCashPayments)
                 .setCashlessPayments(totalCashlessPayments)
                 .setCanceledCashPayments(totalCanceledCashPayments)
