@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ include file="../../util/init.jsp"%>
+<%@ taglib uri="/WEB-INF/numberformat.tld" prefix="formatvalue" %>
 <!DOCTYPE html>
 <html>
 
@@ -114,7 +115,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td colspan="2">ПРОДАЖІ</td>
-                                                                <td class="align-right">${report.checksCount}</td>
+                                                                <td class="align-right"><formatvalue:formatNumber number="${report.checksCount}" format="###0.00"/></td>
                                                             </tr>
                                                             <tr>
                                                                 <td colspan="2">АНУЛЬВАНО</td>
@@ -122,20 +123,20 @@
                                                             </tr>
                                                             <tr>
                                                                 <td colspan="2">ГОТІВКА</td>
-                                                                <td class="align-right">${report.cashPayments/100}</td>
+                                                                <td class="align-right"><formatvalue:formatNumber number="${report.cashPayments/100}" format="###0.00"/></td>
                                                             </tr>
                                                             <tr><td colspan="3">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</td></tr>
                                                             <tr>
                                                                 <td colspan="2">ОБІГ А</td>
-                                                                <td class="align-right">${report.cashPayments/100}</td>
+                                                                <td class="align-right"><formatvalue:formatNumber number="${report.cashPayments/100}" format="###0.00"/></td>
                                                             </tr>
                                                             <tr>
                                                                 <td colspan="2">ОБІГ Б</td>
-                                                                <td class="align-right">${report.cashlessPayments/100}</td>
+                                                                <td class="align-right"><formatvalue:formatNumber number="${report.cashlessPayments/100}" format="###0.00"/></td>
                                                             </tr>
                                                             <tr>
                                                                 <td colspan="2">ОБІГ</td>
-                                                                <td class="align-right">${report.cashPayments/100 + report.cashlessPayments/100}</td>
+                                                                <td class="align-right"><formatvalue:formatNumber number="${report.cashPayments/100 + report.cashlessPayments/100}" format="###0.00"/></td>
                                                             </tr>
                                                             <tr>
                                                                 <td colspan="3">ПДВ А=20.00%</td>
@@ -145,11 +146,11 @@
                                                             </tr>
                                                             <tr>
                                                                 <td colspan="2">ПОДАТОК</td>
-                                                                <td class="align-right">${report.cashPayments/500}</td>
+                                                                <td class="align-right"><formatvalue:formatNumber number="${report.cashPayments/500}" format="###0.00"/></td>
                                                             </tr>
                                                             <tr>
                                                                 <td colspan="2">ЗАГ. СУМА</td>
-                                                                <td class="align-right">${report.cashPayments/125 + report.cashlessPayments/100}</td>
+                                                                <td class="align-right"><formatvalue:formatNumber number="${report.cashPayments/125 + report.cashlessPayments/100}" format="###0.00"/></td>
                                                             </tr>
                                                             <tr><td colspan="3">-----------------------------------------------------------</td></tr>
                                                             <tr class="align-center">
@@ -161,20 +162,20 @@
                                                             </tr>
                                                             <tr>
                                                                 <td colspan="2">ГОТІВКА</td>
-                                                                <td class="align-right">${report.canceledCashPayments/100}</td>
+                                                                <td class="align-right"><formatvalue:formatNumber number="${report.canceledCashPayments/100}" format="###0.00"/></td>
                                                             </tr>
                                                             <tr><td colspan="3">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</td></tr>
                                                             <tr>
                                                                 <td colspan="2">СЛУЖБОВЕ ВНЕСЕННЯ</td>
-                                                                <td class="align-right">22.50</td>
+                                                                <td class="align-right">22,50</td>
                                                             </tr>
                                                             <tr>
                                                                 <td colspan="2">СЛУЖБОВА ВИДАЧА</td>
-                                                                <td class="align-right">${report.seizedMoney/100}</td>
+                                                                <td class="align-right"><formatvalue:formatNumber number="${report.seizedMoney/100}" format="###0.00"/></td>
                                                             </tr>
                                                             <tr>
                                                                 <td colspan="2">ГОТІВКА У СЕЙФІ</td>
-                                                                <td class="align-right">22.50</td>
+                                                                <td class="align-right">22,50</td>
                                                             </tr>
                                                             <tr><td colspan="3">-----------------------------------------------------------</td></tr>
                                                             <tr>

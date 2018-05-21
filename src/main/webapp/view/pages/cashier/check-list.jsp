@@ -87,13 +87,13 @@
                                                             <c:forEach var="product" items="${check.productsInCheck}">
                                                                 <tr>
                                                                     <td>${product.quantity}${product.productType == 'UNCOUNTABLE' ? 'kg' : ''} x</td>
-                                                                    <td class="align-right">${product.price/100 }</td>
+                                                                    <td class="align-right"><formatvalue:formatNumber number="${product.price/100 }" format="###0.00"/></td>
                                                                     <td></td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td>${product.name}</td>
                                                                     <c:set var="total" value="${total + product.quantity * product.price/100.}"/>
-                                                                    <td class="align-right" style="vertical-align: initial;">${product.quantity * product.price/100.}</td>
+                                                                    <td class="align-right" style="vertical-align: initial;"><formatvalue:formatNumber number="${product.quantity * product.price/100.}" format="###0.00"/></td>
                                                                     <td class="align-right" style="vertical-align: initial;">A</td>
                                                                 </tr>
                                                             </c:forEach>
@@ -102,7 +102,7 @@
                                                             </tr>
                                                             <tr>
                                                                 <td>СУМА</td>
-                                                                <td colspan="2" class="align-right">${total}</td>
+                                                                <td colspan="2" class="align-right"><formatvalue:formatNumber number="${total}" format="###0.00"/></td>
                                                             </tr>
                                                             <tr>
                                                                 <td colspan="3">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</td>
@@ -144,7 +144,7 @@
                                                     <br>
                                                 </h6>
                                             </div>
-                                            <p style="margin-bottom: 6px;font-size:16px;margin-top: 6px;" <c:out value="${check.checkType != 'CANCELED' ? 'hidden' : ''}"/>><fmt:message key="returned"/> ${total}</p>
+                                            <p style="margin-bottom: 6px;font-size:16px;margin-top: 6px;" <c:out value="${check.checkType != 'CANCELED' ? 'hidden' : ''}"/>><fmt:message key="returned"/> <formatvalue:formatNumber number="${total}" format="###0.00"/></p>
                                             <c:if test="${role ne 'SENIOR_CASHIER'}">
                                                 <p style="margin-bottom: 6px;font-size:16px;margin-top: 6px;" <c:out value="${check.checkType == 'CANCELED' ? 'hidden' : ''}"/>>&#8203;</p>
                                             </c:if>
