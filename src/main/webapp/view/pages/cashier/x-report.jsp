@@ -1,6 +1,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="/WEB-INF/numberformat.tld" prefix="formatvalue" %>
 <!DOCTYPE html>
 <html>
 
@@ -72,20 +73,20 @@
                         </tr>
                         <tr>
                             <td colspan="2">ГОТІВКА</td>
-                            <td class="align-right">${xreport.cashPayments/100}</td>
+                            <td class="align-right"><formatvalue:formatNumber number="${xreport.cashPayments/100}" format="###0.00"/></td>
                         </tr>
                         <tr><td colspan="3">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</td></tr>
                         <tr>
                             <td colspan="2">ОБІГ А</td>
-                            <td class="align-right">${xreport.cashPayments/100}</td>
+                            <td class="align-right"><formatvalue:formatNumber number="${xreport.cashPayments/100}" format="###0.00"/></td>
                         </tr>
                         <tr>
                             <td colspan="2">ОБІГ Б</td>
-                            <td class="align-right">${xreport.cashlessPayments/100}</td>
+                            <td class="align-right"><formatvalue:formatNumber number="${xreport.cashlessPayments/100}" format="###0.00"/></td>
                         </tr>
                         <tr>
                             <td colspan="2">ОБІГ</td>
-                            <td class="align-right">${xreport.cashPayments/100 + xreport.cashlessPayments/100}</td>
+                            <td class="align-right"><formatvalue:formatNumber number="${xreport.cashPayments/100 + xreport.cashlessPayments/100}" format="###0.00"/></td>
                         </tr>
                         <tr>
                             <td colspan="3">ПДВ А=20.00%</td>
@@ -95,11 +96,11 @@
                         </tr>
                         <tr>
                             <td colspan="2">ПОДАТОК</td>
-                            <td class="align-right">${xreport.cashPayments/500}</td>
+                            <td class="align-right"><formatvalue:formatNumber number="${xreport.cashPayments/500}" format="###0.00"/></td>
                         </tr>
                         <tr>
                             <td colspan="2">ЗАГ. СУМА</td>
-                            <td class="align-right">${xreport.cashPayments/125 + xreport.cashlessPayments/100}</td>
+                            <td class="align-right"><formatvalue:formatNumber number="${xreport.cashPayments/125 + xreport.cashlessPayments/100}" format="###0.00"/></td>
                         </tr>
                         <tr><td colspan="3">-----------------------------------------------------------</td></tr>
                         <tr class="align-center">
@@ -111,16 +112,16 @@
                         </tr>
                         <tr>
                             <td colspan="2">ГОТІВКА</td>
-                            <td class="align-right">${xreport.canceledCashPayments/100}</td>
+                            <td class="align-right"><formatvalue:formatNumber number="${xreport.canceledCashPayments/100}" format="###0.00"/></td>
                         </tr>
                         <tr><td colspan="3">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</td></tr>
                         <tr>
                             <td colspan="2">СЛУЖБОВЕ ВНЕСЕННЯ</td>
-                            <td class="align-right">22.50</td>
+                            <td class="align-right">22,50</td>
                         </tr>
                         <tr>
                             <td colspan="2">ГОТІВКА У СЕЙФІ</td>
-                            <td class="align-right">${xreport.cashPayments/100 + 22.50}</td>
+                            <td class="align-right"><formatvalue:formatNumber number="${xreport.cashPayments/100 + 22.50}" format="###0.00"/></td>
                         </tr>
                         <tr><td colspan="3">-----------------------------------------------------------</td></tr>
 
