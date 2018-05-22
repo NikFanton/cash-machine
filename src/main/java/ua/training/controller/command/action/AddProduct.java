@@ -31,13 +31,6 @@ public class AddProduct implements Command {
         } catch (NumberFormatException | NullPointerException e) {
             logger.debug(e.getMessage() + " " + " there are no product with id " + id);
         }
-//        if (id.matches(REGEX_ID)) {
-//            // TODO exclude null capability
-//            Product product = productService.getProductById(Long.valueOf(id));
-//            ProductsHolder.addProduct(product, quantity);
-//        } else {
-//            System.out.println("Not matches");
-//        }
         return Locations.REDIRECT + Locations.CREATE_CHECK_FORM;
     }
 }

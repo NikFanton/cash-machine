@@ -35,8 +35,7 @@ public class AuthorisationFilter implements Filter {
         ServletContext context = session.getServletContext();
         Role role = (Role) session.getAttribute(AttributeAndParameterNames.ROLE);
         String login = (String) session.getAttribute(AttributeAndParameterNames.LOGIN);
-
-//        TODO Catch role here if already in system
+        
         if (nonNull(role) && nonNull(login)) {
             request.getRequestDispatcher(Pages.LOGIN).forward(request, response);
         } else {

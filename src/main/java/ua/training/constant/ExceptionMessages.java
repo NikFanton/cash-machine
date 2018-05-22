@@ -1,5 +1,5 @@
 package ua.training.constant;
 
 public interface ExceptionMessages {
-    String INVALID_QUANTITY_EXCEPTION = "exception.bad.quantity";
+    public static final String DATA_FIND_ERROR = "can't find any data";
 }

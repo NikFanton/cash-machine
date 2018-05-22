@@ -1,5 +1,6 @@
 package ua.training.model.service.impl;
 
+import ua.training.constant.CommonConstants;
 import ua.training.constant.LogMessages;
 import ua.training.model.dao.CheckDAO;
 import ua.training.model.dao.ReportDAO;
@@ -15,9 +16,6 @@ import java.util.List;
 import java.util.Optional;
 
 public class ReportServiceImpl implements ReportService {
-    //    TODO Move DEFAULT_MONEY_IN_CASH_MACHINE from this class to constant interface
-    private static final BigInteger DEFAULT_MONEY_IN_CASH_MACHINE = BigInteger.valueOf(2250);
-
     @Override
     public List<Report> getAllReports() {
         try (ReportDAO dao = daoFactory.getReportDAO()) {
@@ -69,9 +67,9 @@ public class ReportServiceImpl implements ReportService {
             }
         }
         return Report.getBuilder()
-                .setMoneyPutInCashMachine(DEFAULT_MONEY_IN_CASH_MACHINE)
-                .setSeizedMoney(((totalCanceledCashPayments.compareTo(DEFAULT_MONEY_IN_CASH_MACHINE) > 0)
-                                    ? totalCashPayments.subtract(DEFAULT_MONEY_IN_CASH_MACHINE)
+                .setMoneyPutInCashMachine(CommonConstants.DEFAULT_MONEY_IN_CASH_MACHINE)
+                .setSeizedMoney(((totalCanceledCashPayments.compareTo(CommonConstants.DEFAULT_MONEY_IN_CASH_MACHINE) > 0)
+                                    ? totalCashPayments.subtract(CommonConstants.DEFAULT_MONEY_IN_CASH_MACHINE)
                                     : totalCashPayments))
                 .setCashPayments(totalCashPayments)
                 .setCashlessPayments(totalCashlessPayments)
