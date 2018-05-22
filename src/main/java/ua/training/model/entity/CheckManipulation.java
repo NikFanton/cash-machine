@@ -61,25 +61,4 @@ public class CheckManipulation implements Entity<Long> {
                 ", product=" + product +
                 '}';
     }
-
-    //    @Override
-//    public String toString() {
-//        return "CheckManipulation{" +
-//                "id=" + id +
-//                ", dateTime=" + dateTime +
-//                ", checkManipulationType=" + checkManipulationType +
-//                ", \nemployee=" + employee +
-//                ", \ncheck=Check{" + ((check != null) ?
-//                        "id=" + id +
-//                        ", dateTime=" + check.getDateTime() +
-//                        ", cashPayment=" + check.getCashPayment() +
-//                        ", cashlessPayment=" + check.getCashlessPayment() +
-//                        ", employee=" + check.getEmployee() +
-//                        ", productsInCheck=" + check.getProductsInCheck() +
-//                        ", checkType=" + check.getCheckType() +
-//                        '}'
-//                : "null") +
-//                ", \nproduct=" + product +
-//                '}';
-//    }
 }

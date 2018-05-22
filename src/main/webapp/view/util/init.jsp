@@ -6,4 +6,3 @@
                                         ? language : 'en_US'}" scope="session" />
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle basename="l10n"/>
-

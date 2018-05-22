@@ -99,28 +99,6 @@
           <version>6.0</version>
           <scope>provided</scope>
       </dependency>
-
-      <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.apache.tomcat.maven/tomcat7-maven-plugin &ndash;&gt;-->
-      <!--<dependency>-->
-          <!--<groupId>org.apache.tomcat.maven</groupId>-->
-          <!--<artifactId>tomcat7-maven-plugin</artifactId>-->
-          <!--<version>2.2</version>-->
-      <!--</dependency>-->
-
-      <!--<dependency>-->
-          <!--<groupId>org.apache.tomcat</groupId>-->
-          <!--<artifactId>tomcat-catalina</artifactId>-->
-          <!--<version>7.0.47</version>-->
-          <!--<scope>provided</scope>-->
-      <!--</dependency>-->
-
-      <!--&lt;!&ndash; https://mvnrepository.com/artifact/javax.servlet/jstl &ndash;&gt;-->
-      <!--<dependency>-->
-          <!--<groupId>javax.servlet</groupId>-->
-          <!--<artifactId>jstl</artifactId>-->
-          <!--<version>1.2</version>-->
-      <!--</dependency>-->
-      <!--Checked-->
   </dependencies>
 
   <build>
@@ -131,7 +109,6 @@
                   <artifactId>maven-clean-plugin</artifactId>
                   <version>3.0.0</version>
               </plugin>
-              <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
               <plugin>
                   <artifactId>maven-resources-plugin</artifactId>
                   <version>3.0.2</version>
@@ -166,14 +143,6 @@
                       <port>8084</port>
                   </configuration>
               </plugin>
-              <!--<plugin>-->
-                  <!--<groupId>org.apache.maven.plugins</groupId>-->
-                  <!--<artifactId>maven-compiler-plugin</artifactId>-->
-                  <!--<configuration>-->
-                      <!--<source>1.8</source>-->
-                      <!--<target>1.8</target>-->
-                  <!--</configuration>-->
-              <!--</plugin>-->
           </plugins>
       </pluginManagement>
       <plugins>
@@ -186,14 +155,5 @@
               </configuration>
           </plugin>
       </plugins>
-    <!--<resources>-->
-      <!--<resource>-->
-        <!--<filtering>true</filtering>-->
-        <!--<directory>src/main/resources/</directory>-->
-      <!--</resource>-->
-    <!--</resources>-->
   </build>
-
 </project>
-
-
