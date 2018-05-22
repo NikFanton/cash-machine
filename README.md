@@ -11,6 +11,11 @@ Make *X and Z reports*.
 # Author
 **Nikita Guchenko** - [NikFanton](https://github.com/NikFanton)
 
+# Database setup
+1. Create database with name.
+2. Set database properties in resource file ``database/config.properties``
+3. Initialize database using resource file [initdb.sql](https://github.com/NikFanton/cash-machine/blob/master/src/main/resources/database/initdb.sql) ``database/initdb.sql``
+
 # Run project
 
 1. Istall maven http://www.apache-maven.ru/install.html
