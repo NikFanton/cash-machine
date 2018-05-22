@@ -76,12 +76,12 @@ CREATE TABLE `z_report` (
   `money_put_in_cash_machine`   DOUBLE    NOT NULL,
   `seized_money`                BIGINT    NOT NULL,
   `date_time`                   DATETIME  NOT NULL DEFAULT now(),
-  `cash_payments`               BIGINT,
-  `cashless_payments`           BIGINT,
-  `canceled_cash_payments`      BIGINT,
-  `canceled_cashless_payments`  BIGINT,
-  `canceled_checks_count`       INT(32),
-  `checks_count`                INT(32),
+  `cash_payments`               BIGINT    NOT NULL,
+  `cashless_payments`           BIGINT    NOT NULL,
+  `canceled_cash_payments`      BIGINT    NOT NULL,
+  `canceled_cashless_payments`  BIGINT    NOT NULL,
+  `canceled_checks_count`       INT(32)   NOT NULL,
+  `checks_count`                INT(32)   NOT NULL,
   PRIMARY KEY (`id`)
 );
 

@@ -68,7 +68,14 @@
                                     <td><c:out value="${loop.index + 1}"/></td>
                                     <td><c:out value="${product.id}"/></td>
                                     <td><c:out value="${product.name}"/></td>
-                                    <td><c:out value="${product.quantity}${product.productType == 'UNCOUNTABLE' ? ' kg' : ''}"/></td>
+                                    <td>
+                                        <c:if test="${product.productType == 'UNCOUNTABLE'}">
+                                            <c:out value="${product.quantity} kg"/>
+                                        </c:if>
+                                        <c:if test="${product.productType == 'COUNTABLE'}">
+                                            <formatvalue:formatNumber number="${product.quantity}" format="###0"/>
+                                        </c:if>
+                                    </td>
                                     <td><c:out value="${product.price/100.}"/></td>
                                     <c:if test="${role eq 'SENIOR_CASHIER'}">
                                         <%--<td><div class="btn btn-primary btn-sm float-right add-prod-btn"><a href="/api/remove-from-check?productId=${product.id}">delete</a></div> </td>--%>
@@ -89,7 +96,7 @@
                 <option value="CASHLESS" style="text-transform: uppercase;"><fmt:message key="cashless"/></option>
             </select>
             <button class="btn btn-primary btn-sm float-right" type="submit" style="text-transform: uppercase; background-color:#fcd85a;color:rgb(34,34,34);font-style:normal;font-weight:bold;"><fmt:message key="done"/></button>
-            <p class="float-left" style="color:rgb(34,34,34);font-style:normal; text-transform: uppercase;"><fmt:message key="total"/> <formatvalue:formatNumber number="${total}" format="###0.00"/></p>
+            <p class="float-left" style="color:rgb(34,34,34);font-style:normal; text-transform: uppercase;"><fmt:message key="total"/><formatvalue:formatNumber number="${total}" format="###0.00"/></p>
         </div>
     </form>
 </div>
