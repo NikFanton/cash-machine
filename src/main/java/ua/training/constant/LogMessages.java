@@ -25,4 +25,5 @@ public interface LogMessages {
     String GET_LATEST_REPORT_ERROR = "can't get latest report";
     String MAKE_REPORT_ERROR = "can't make report";
     String REGISTER_EMPLOYEE_ERROR = "can't register employee";
+    String LOAD_CONFIG_FILE_ERROR = "can't load config file";
 }

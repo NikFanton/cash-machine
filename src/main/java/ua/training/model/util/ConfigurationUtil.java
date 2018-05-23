@@ -2,6 +2,7 @@ package ua.training.model.util;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import ua.training.constant.LogMessages;
 import ua.training.constant.database.Configuration;
 
 import java.io.FileInputStream;
@@ -16,7 +17,7 @@ public class ConfigurationUtil {
         try {
             properties.load(new FileInputStream(Configuration.CONFIG_FILE_PATH));
         } catch (IOException e) {
-            logger.error(e.getMessage() + " " + "can't load config file");
+            logger.error(e.getMessage() + " " + LogMessages.LOAD_CONFIG_FILE_ERROR);
         }
     }
 

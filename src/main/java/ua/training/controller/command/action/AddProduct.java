@@ -13,8 +13,6 @@ import java.util.Optional;
 
 @CommandWithLocation(location = Locations.ADD_PRODUCT)
 public class AddProduct implements Command {
-    private static final String REGEX_ID = "[0-9]{1,18}";
-
     private ProductService productService;
 
     public AddProduct(ProductService service) {

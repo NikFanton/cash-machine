@@ -96,7 +96,7 @@
                 <option value="CASHLESS" style="text-transform: uppercase;"><fmt:message key="cashless"/></option>
             </select>
             <button class="btn btn-primary btn-sm float-right" type="submit" style="text-transform: uppercase; background-color:#fcd85a;color:rgb(34,34,34);font-style:normal;font-weight:bold;"><fmt:message key="done"/></button>
-            <p class="float-left" style="color:rgb(34,34,34);font-style:normal; text-transform: uppercase;"><fmt:message key="total"/><formatvalue:formatNumber number="${total}" format="###0.00"/></p>
+            <p class="float-left" style="color:rgb(34,34,34);font-style:normal; text-transform: uppercase;"><fmt:message key="total"/> <formatvalue:formatNumber number="${total}" format="###0.00"/></p>
         </div>
     </form>
 </div>

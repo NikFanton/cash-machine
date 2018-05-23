@@ -1,6 +1,6 @@
 package ua.training.model.service.impl;
 
-import ua.training.constant.CommonConstants;
+import ua.training.constant.GlobalConstants;
 import ua.training.constant.LogMessages;
 import ua.training.model.dao.CheckDAO;
 import ua.training.model.dao.ReportDAO;
@@ -67,9 +67,9 @@ public class ReportServiceImpl implements ReportService {
             }
         }
         return Report.getBuilder()
-                .setMoneyPutInCashMachine(CommonConstants.DEFAULT_MONEY_IN_CASH_MACHINE)
-                .setSeizedMoney(((totalCanceledCashPayments.compareTo(CommonConstants.DEFAULT_MONEY_IN_CASH_MACHINE) > 0)
-                                    ? totalCashPayments.subtract(CommonConstants.DEFAULT_MONEY_IN_CASH_MACHINE)
+                .setMoneyPutInCashMachine(GlobalConstants.DEFAULT_MONEY_IN_CASH_MACHINE)
+                .setSeizedMoney(((totalCanceledCashPayments.compareTo(GlobalConstants.DEFAULT_MONEY_IN_CASH_MACHINE) > 0)
+                                    ? totalCashPayments.subtract(GlobalConstants.DEFAULT_MONEY_IN_CASH_MACHINE)
                                     : totalCashPayments))
                 .setCashPayments(totalCashPayments)
                 .setCashlessPayments(totalCashlessPayments)
