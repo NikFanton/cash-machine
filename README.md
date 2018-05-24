@@ -18,6 +18,24 @@ Make *X and Z reports*.
 
 # Run project
 
-1. Istall maven http://www.apache-maven.ru/install.html
+1. Install maven http://www.apache-maven.ru/install.html
 2. Enter command "mvn tomcat7:run"
 3. Open browser and follow the link http://localhost:8084/
+4. To register new employees, use an administrator account or use existing accounts
+```
+Administrator: 
+    login: admin
+    password: market1203
+    
+Senior cashier:
+    login: irene 
+    password:suit93
+    
+Cashier: 
+    login: frank
+    password: 8272clothe
+    
+Product expert: 
+    login: eric
+    password: 8419thick
+```
