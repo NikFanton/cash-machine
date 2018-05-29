@@ -76,7 +76,7 @@
                                             <formatvalue:formatNumber number="${product.quantity}" format="###0"/>
                                         </c:if>
                                     </td>
-                                    <td><c:out value="${product.price/100.}"/></td>
+                                    <td><formatvalue:formatNumber number="${product.price/100.}" format="###0.00"/></td>
                                     <c:if test="${role eq 'SENIOR_CASHIER'}">
                                         <%--<td><div class="btn btn-primary btn-sm float-right add-prod-btn"><a href="/api/remove-from-check?productId=${product.id}">delete</a></div> </td>--%>
                                         <td style="width: 32px;"><button class="btn btn-primary btn-sm float-right add-prod-btn" type="button" style="text-transform: uppercase; background-color:#fcd85a;color:rgb(34,34,34);" onclick="location.href='${pageContext.request.contextPath}/api/remove-from-check?productId=${product.id}'"><fmt:message key="remove"/></button></td>
