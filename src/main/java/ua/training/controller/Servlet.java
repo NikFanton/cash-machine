@@ -2,21 +2,16 @@ package ua.training.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import ua.training.controller.annotation.CommandWithLocation;
-import ua.training.controller.command.*;
-import ua.training.controller.command.action.*;
-import ua.training.controller.command.direction.*;
 import ua.training.constant.Locations;
 import ua.training.constant.Pages;
-import ua.training.model.entity.Check;
-import ua.training.model.entity.ProductInCheck;
-import ua.training.model.service.CheckService;
-import ua.training.model.service.ReportService;
+import ua.training.controller.annotation.CommandWithLocation;
+import ua.training.controller.command.Command;
+import ua.training.controller.command.action.*;
+import ua.training.controller.command.direction.*;
 import ua.training.model.service.impl.CheckServiceImpl;
 import ua.training.model.service.impl.EmployeeServiceImpl;
 import ua.training.model.service.impl.ProductServiceImpl;
 import ua.training.model.service.impl.ReportServiceImpl;
-import ua.training.model.util.CryptoUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

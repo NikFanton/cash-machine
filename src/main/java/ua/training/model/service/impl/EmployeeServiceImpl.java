@@ -27,7 +27,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             return Optional.ofNullable(dao.getByLogin(login))
                     .orElseThrow(NoSuchResultFromDataBaseException::new);
         } catch (Exception e) {
-            logger.error(e.getMessage() + " " + LogMessages.GET_EMPLOYEE_BY_LOGIN_ERROR);
+            logger.error(e.getMessage() + " " + LogMessages.GET_EMPLOYEE_BY_LOGIN_ERROR + " " + login);
             throw new NoSuchResultFromDataBaseException();
         }
     }

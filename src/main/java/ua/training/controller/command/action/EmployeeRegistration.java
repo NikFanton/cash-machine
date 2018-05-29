@@ -25,13 +25,16 @@ public class EmployeeRegistration implements Command {
         String login = request.getParameter(AttributeAndParameterNames.NEW_LOGIN);
         String password = request.getParameter(AttributeAndParameterNames.NEW_PASSWORD);
         Role role = Role.valueOf(request.getParameter(AttributeAndParameterNames.NEW_ROLE));
-        employeeService.registerEmployee(Employee.builder()
-                .firstName(firstName)
-                .lastName(lastName)
-                .login(login)
-                .password(password)
-                .role(role)
-                .build());
+        try {
+            employeeService.registerEmployee(Employee.builder()
+                    .firstName(firstName)
+                    .lastName(lastName)
+                    .login(login)
+                    .password(password)
+                    .role(role)
+                    .build());
+        } catch (RuntimeException e) {
+        }
         return Locations.REDIRECT + Locations.EMPLOYEE_REGISTRATION_FORM;
     }
 }
