@@ -43,11 +43,29 @@
 
 <jsp:include page="../../util/navbars/admin-navbar.jsp"/>
 
-<div class="register-photo" style="background-color:rgba(255,255,255,0.21);">
+<div class="register-photo" style="background-color:rgba(0,0,0,0);">
     <div class="form-container">
-        <div class="image-holder"></div>
+        <form method="post">
+            <h2 class="text-center"><strong><fmt:message key="admin.info"/></strong></h2>
+            <p>
+                <strong>Cash-Machine</strong> <fmt:message key="msg.cash.machine.definition"/>
+            </p>
+            <p>
+                <fmt:message key="msg.use"/> <i style="text-transform: capitalize">"<fmt:message key="nav.admin.add.employee"/>"</i><fmt:message key="msg.add.employee.info"/>
+            </p>
+            <p>
+                <strong><i><fmt:message key="cashier"/></i></strong> <fmt:message key="msg.cashier.info"/>
+            </p>
+            <p>
+                <strong><i><fmt:message key="senior.cashier"/></i></strong> <fmt:message key="msg.senior.cashier.info"/>
+            </p>
+            <p>
+                <strong><i><fmt:message key="merchant"/></i></strong> <fmt:message key="msg.merchant.info"/>
+            </p>
+        </form>
     </div>
 </div>
+
 <script src="../../assets/js/jquery.min.js"></script>
 <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>
 </body>

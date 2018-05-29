@@ -1,7 +1,4 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="../../util/init.jsp"%>
 <!DOCTYPE html>
 <html>
 
@@ -28,17 +25,19 @@
 
 <jsp:include page="../../util/navbars/merchant-navbar.jsp"/>
 
-<div class="register-photo" style="background-color:rgba(255,255,255,0.21);">
+<div class="register-photo" style="background-color:rgba(0,0,0,0);">
     <div class="form-container">
-        <div class="product-image-holder"></div>
-        <form method="post" style="background-color:rgba(255,255,255,0.76);">
-            <h2 class="text-center"><strong>ADD NEW PRODUCT</strong></h2>
-            <div class="form-group"><input class="form-control" type="text" name="login" placeholder="Product name"></div>
-            <div class="form-group"><input class="form-control" type="text" name="login" placeholder="Quantity"></div>
-            <div class="form-group"><input class="form-control" type="text" name="login" placeholder="Price"></div>
-            <div class="form-group"><select class="form-control" style="margin-left:10px;"><option value="countable" selected="">Countable</option><option value="uncountable">Uncountable</option></select></div>
-            <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password"></div>
-            <div class="form-group"><button class="btn btn-primary btn-block btn-login" type="submit" style="background-color:#fcd85a;font-weight:normal;font-style:normal;font-size:16px;">ADD PRODUCT</button></div>
+        <form method="post">
+            <h2 class="text-center"><strong><fmt:message key="msg.product.expert.info"/></strong></h2>
+            <p>
+                <strong>Cash-Machine</strong> <fmt:message key="msg.cash.machine.definition"/>
+            </p>
+            <p>
+                <i><fmt:message key="merchant"/></i> <fmt:message key="msg.merchant.info"/>
+            </p>
+            <p>
+                <fmt:message key="msg.use"/> <i style="text-transform: capitalize">"<fmt:message key="add.product"/>"</i><fmt:message key="msg.add.product.info"/>
+            </p>
         </form>
     </div>
 </div>
