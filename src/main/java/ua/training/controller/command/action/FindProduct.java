@@ -28,7 +28,7 @@ public class FindProduct implements Command {
             List<Product> products = productService.getProductsByName(name);
             request.setAttribute(AttributeAndParameterNames.PRODUCTS, products);
         } else {
-            System.out.println("Not matches");
+            logger.info("can't find product with wrong name");
         }
         return Pages.FIND_PRODUCT;
     }
