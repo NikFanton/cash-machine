@@ -3,7 +3,7 @@ Cash-Machine is the cash register system.
 
 ***Cashier*** can open the check, add selected products by code from the database (parsley = 234, bread = 222), find products by name, enter number of products or weight. Close check. 
 
-***Senior cashier*** can cancel the check, cancel one item in the check and return the money to the customer.
+***Senior cashier*** can cancel the check, cancel one item in the check, return the money to the customer.
 Make *X and Z reports*.
 
 ***Product expert*** can create new products and enter their quantity in the warehouse.
